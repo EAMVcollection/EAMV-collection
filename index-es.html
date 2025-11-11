@@ -1,0 +1,703 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EAMV Collection — Souvenirs con alma balear · Technesano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* === GALERÍA ACCESORIO === */
+.accesorio {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 40px;
+  padding: 20px 0;
+}
+
+.accesorio figure {
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.accesorio img {
+  width: 200px;
+  height: auto;
+  border-radius: 12px;
+  opacity: 1;
+  filter: brightness(1);
+  transition: transform 0.35s ease, filter 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+.accesorio img:hover {
+  transform: scale(1.08);
+  filter: brightness(1.2);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+}
+
+.accesorio figcaption {
+  margin-top: 10px;
+  color: var(--t-brand, #00ffaa);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+/* Estilo por defecto (PC o pantallas grandes) */
+body {
+  font-size: 18px;
+  margin: 40px;
+}
+
+/* 📱 Móviles (pantallas pequeñas) */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    margin: 15px;
+  }
+}
+
+/* 💻 Tablets (pantallas medianas) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  body {
+    font-size: 17px;
+    margin: 25px;
+  }
+}
+</style>
+
+
+
+<style>
+@media (prefers-color-scheme: dark) {
+  v {
+    background: linear-gradient(90deg, #3ac6a8, #8ad6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+  }
+}
+
+</style>
+
+<style>
+  v {
+    background: linear-gradient(90deg, #3ac6a8, #8ad6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+  }
+</style>
+
+  <style>
+  :root{
+    --bg:#0a0e12; --bg2:#0d1218; --fg:#e8eef5; --muted:#9fb3c8;
+    --brand:#3ac6a8; --brand2:#8ad6ff; --card:#10161c; --line:rgba(255,255,255,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+    color:var(--fg);
+    background:radial-gradient(1200px 700px at 15% 10%, rgba(58,198,168,.08), transparent 40%),
+               radial-gradient(900px 600px at 85% 20%, rgba(138,214,255,.08), transparent 45%),
+               linear-gradient(180deg,#070a0e 0%, #0a0e12 40%, #0d1218 100%);
+  }
+  a{color:var(--brand); text-decoration:none}
+  img{max-width:100%; display:block}
+
+  /* --- NAV --- */
+  .nav{position:sticky; top:0; z-index:40; background:rgba(7,10,14,.6); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 16px}
+  .logo{display:flex; gap:10px; align-items:center}
+  .logo-mark{width:34px; height:34px; border-radius:50%; background:radial-gradient(100% 100% at 30% 30%, var(--brand) 0%, var(--brand2) 60%, #fff 100%); box-shadow:0 0 22px rgba(58,198,168,.45)}
+  .logo h1{font-size:18px; margin:0; letter-spacing:.6px}
+  .nav a{color:var(--fg); opacity:.9; margin-left:16px; transition:all .25s}
+  .nav a:hover{opacity:1; text-shadow:0 0 6px rgba(138,214,255,.5)}
+  .nav a[href="#por-que"]{color:var(--brand); font-weight:600;}
+  .nav a[href="#por-que"]:hover{text-shadow:0 0 8px rgba(58,198,168,0.8);}
+
+
+  /* --- HERO --- */
+.hero-logo {
+  display: block;
+  margin: 0 auto 1.5rem auto; /* centrado y con espacio inferior */
+  max-width: 320px;           /* tamaño máximo del logo */
+  width: 90%;                 /* responsivo */
+  filter: drop-shadow(0 0 10px rgba(58,198,168,0.4)); /* brillo turquesa suave */
+  animation: fadeIn 2s ease-in-out; /* animación de entrada */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+  .hero{position:relative; min-height:80vh; display:grid; place-items:center; overflow:hidden}
+  .hero::before{
+    content:""; position:absolute; inset:-20%;
+    background:radial-gradient(70% 60% at 50% 40%, rgba(58,198,168,.10), transparent 60%);
+    animation:breath 14s ease-in-out infinite;
+  }
+  @keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+  .hero-inner{position:relative; z-index:1; max-width:1100px; padding:64px 16px; text-align:left}
+  .kicker{color:var(--brand); text-transform:uppercase; letter-spacing:2px; font-weight:600}
+  .title{font-size:clamp(36px, 4.4vw, 64px); line-height:1.05; margin:.3em 0 .2em}
+  .title span:nth-child(1){color:var(--brand)}
+  .title span:nth-child(2){color:var(--brand2)}
+  .metal-text{
+    background:linear-gradient(90deg,#8a8a8a 0%, #c0c0c0 40%, #4f4f4f 70%, #b3b3b3 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:600;
+  }
+  .subtitle{font-size:clamp(16px,2.1vw,20px); color:var(--muted); max-width:780px}
+  .cta-row{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap}
+  .cta{display:inline-block; padding:12px 20px; border-radius:14px;
+       background:linear-gradient(135deg,var(--brand),var(--brand2));
+       color:#071018; font-weight:700; box-shadow:0 8px 24px rgba(138,214,255,.25);
+       transition:box-shadow .3s}
+  .cta.secondary{background:transparent; color:var(--fg); border:1px solid var(--line)}
+  .cta:hover{box-shadow:0 0 20px rgba(58,198,168,0.4)}
+
+  /* --- SECTIONS --- */
+  section{max-width:1100px; margin:0 auto; padding:56px 16px}
+  h2.section-title{font-size:clamp(26px,3vw,36px); text-align:center; margin:0 0 8px}
+  .section-sub{color:var(--muted); text-align:center; max-width:780px; margin:0 auto 18px}
+
+  /* --- TARJETAS GIRATORIAS --- */
+  .card {perspective:1000px; position:relative; width:90%; max-width:800px; height:600px; margin:40px auto;
+         border-radius:20px; overflow:hidden; box-shadow:0 0 25px rgba(0,0,0,.4);
+         transition:box-shadow .4s ease;}
+  .card-inner{position:relative;width:100%;height:100%;transition:transform .8s ease;transform-style:preserve-3d;}
+  .card.girada .card-inner{transform:rotateY(180deg);}
+  .card-front,.card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:20px;overflow:hidden;}
+  .card-back{background:#1a2028;color:#fff;transform:rotateY(180deg);padding:20px;text-align:center;}
+  .card:hover{box-shadow:0 0 20px rgba(58,198,168,0.25),0 0 40px rgba(138,214,255,0.15)}
+
+  /* Colores diferentes por card */
+  .card:nth-of-type(1) .card-front{background:linear-gradient(145deg,#0e151b,#0a1814);}
+  .card:nth-of-type(2) .card-front{background:linear-gradient(145deg,#0d1a1f,#092126);}
+  .card:nth-of-type(3) .card-front{background:linear-gradient(145deg,#0b181f,#0d1f1c);}
+  .card:nth-of-type(4) .card-front{background:linear-gradient(145deg,#0e1922,#0a1418);}
+  .card:nth-of-type(5) .card-front{background:linear-gradient(145deg,#0c1c1f,#091716);}
+  .card:nth-of-type(6) .card-front{background:linear-gradient(145deg,#0b171d,#0d201a);}
+
+  .tag{display:inline-block;background:#202830;padding:6px 12px;border-radius:15px;cursor:pointer;font-size:.9rem;margin-bottom:10px;transition:background .3s,box-shadow .3s;}
+  .tag:hover{background:#00ffa2;color:#000;box-shadow:0 0 10px #00ffa2;}
+
+  .galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
+  .galeria img{width:100%;border-radius:10px;opacity:0;transform:translateY(10px);transition:opacity .8s,transform .8s,box-shadow .3s;}
+  .card.girada .galeria img{opacity:1;transform:translateY(0);}
+  .galeria img:hover{transform:scale(1.05);box-shadow:0 0 12px #00ffa2;}
+  .galeria figcaption{margin-top:5px;font-size:.85rem;color:#ccc;font-weight:500;text-align:center;}
+
+  .boton-ficha{text-align:center;margin-top:12px;margin-bottom:40px;}
+  .boton{display:inline-block;padding:10px 20px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#000;font-weight:600;text-decoration:none;box-shadow:0 0 10px rgba(0,255,162,.3);transition:background .3s,box-shadow .3s;}
+  .boton:hover{background:#00d688;box-shadow:0 0 20px rgba(0,255,162,.6);}
+
+  details{background:linear-gradient(180deg,#0e151b,#0a1016);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:14px 0;}
+  summary{cursor:pointer;list-style:none;font-weight:700;}
+  summary::-webkit-details-marker{display:none;}
+  .chev{transition:transform .25s ease;display:inline-block;margin-right:8px;}
+  details[open] .chev{transform:rotate(90deg);}
+  .details-body{margin-top:12px;display:grid;gap:14px;}
+  footer{padding:28px 16px;text-align:center;color:var(--muted);}
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <h1>EAMV Collection</h1>
+      </div>
+      <div>
+        <a href="#por-que">¿Por qué comprarnos?</a>
+        <a href="#coleccion">Colección</a>
+        <a href="#technesano">Technesano</a>
+        <a href="#eamv">Sobre EAMV</a>
+        <a href="#sobre">Sobre mí</a>
+        <a href="#chibi">Chibi con accesorios</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+<img src="assets/eamv-logo.jpg" alt="EAMV Collection logo" class="hero-logo">
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="kicker">Souvenirs con alma balear</div>
+      <h2 class="title">Donde <span>arte</span>, <span>naturaleza</span> y <span class="metal-text">tecnología</span> se funden</h2>
+      <p class="subtitle">EAMV Collection rescata especies y símbolos de Baleares en ediciones limitadas, bajo el principio <b>TECHNESANO</b>: tecnología con alma sana.</p>
+      <p class="subtitle" style="margin-top:24px; font-size:clamp(16px,2vw,20px); line-height:1.6;">
+        Símbolos de <b>prestigio</b>, <b>culto</b> y <b>lujo consciente</b>.<br>
+        Son <b>recuerdos encarnados en presencia</b>,<br>
+        y cada figura refleja una o más <b>virtudes</b>.<br>
+        <span style="background:linear-gradient(90deg,var(--brand),var(--brand2));
+        -webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">
+        No te llevas un souvenir, te llevas una virtud.
+        </span>
+      </p>
+
+      <div class="cta-row">
+        <a class="cta" href="#coleccion">Explorar colección</a>
+        <a class="cta secondary" href="#technesano">¿Qué es TECHNESANO?</a>
+        <a class="cta secondary" href="#por-que">¿Por qué comprarnos?</a>
+        <a class="cta secondary" href="#chibi">Chibi con accesorios</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ¿POR QUÉ COMPRARNOS? -->
+  <section id="por-que" style="margin-top:80px;">
+    <h2 class="section-title">💚 ¿Por qué comprarnos?</h2>
+<p class="section-sub">
+
+ <b><i><v>Un fragmento de cultura, virtud y lujo consciente.</v></i></b>
+
+<p>🗺️ Cada figura es un recuerdo del viajero que explora con elegancia.
+Un <b>reflejo</b> de quien aprecia el arte, la naturaleza y la historia que habita en cada rincón del mundo.
+Mostrar una figura <b>EAMV</b> en casa no es presumir,
+es compartir un fragmento de cultura.</p>
+
+    
+      Porque cada creación de <b>EAMV Collection</b> nace con propósito.<br>
+      Fabricamos con <b>tecnología limpia</b> y <b>materiales responsables</b>, cuidando tanto del arte como del entorno que lo inspira.
+    </p>
+    <p class="section-sub">
+      Nuestra visión mira al futuro:<br>
+       Promover la <b>educación</b>, la <b>cultura</b> y la <b>preservación de la fauna balear</b>,<br>
+      como símbolo de respeto y evolución.
+    </p>
+    <p class="section-sub">
+      <b>No compras un producto.</b><br>
+      <span style="background:linear-gradient(90deg,var(--brand),var(--brand2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">
+      Dejas una huella.
+      </span>
+    </p>
+  </section>
+
+  <!-- COLECCIÓN -->
+  <section id="coleccion">
+    <h2 class="section-title">Fauna de las Islas Baleares</h2>
+    <p class="section-sub">Haz click en la temporada para ver las ediciones visuales, o en el botón para leer la historia completa.</p>
+
+    <!-- ====== PODARCIS LILFORDI ====== -->
+    <article class="card">
+      <div class="card-inner">
+        <!-- Frontal -->
+        <div class="card-front">
+          <img src="assets/podarcis-figura1.jpg" alt="Podarcis lilfordi">
+          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Galería de la Segunda Temporada (Tocar)</span>
+          <h3>🦎 Podarcis lilfordi — El lagarto balear</h3>
+          <p>Reptil lacértido endémico de Mallorca y Menorca.
+Símbolo de resiliencia y tenacidad.</p>
+        </div>
+        <!-- Reverso -->
+        <div class="card-back">
+          <button onclick="this.closest('.card').classList.toggle('girada')">← Volver</button>
+          <h4>Colección visual</h4>
+          <div class="galeria">
+            <figure><img src="assets/podarcis1.jpg"><figcaption>1. Prime Basic</figcaption></figure>
+            <figure><img src="assets/podarcis2.jpg"><figcaption>2. Prime Premium</figcaption></figure>
+            <figure><img src="assets/podarcis3.jpg"><figcaption>3. Prime Event</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>4. Prime Limited</figcaption></figure>
+            <figure><img src="assets/podarcis5.jpg"><figcaption>5. Eco Basic</figcaption></figure>
+            <figure><img src="assets/podarcis6.jpg"><figcaption>6. Eco Premium</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="boton-ficha">
+      <a href="#podarcis" class="boton">Ver ficha completa</a>
+    </div>
+
+    <!-- ====== MYOTRAGUS BALEARICUS ====== -->
+    <article class="card">
+      <div class="card-inner">
+        <!-- Frontal -->
+        <div class="card-front">
+          <img src="assets/myotragus-real1.jpg" alt="Myotragus balearicus">
+          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Galería de la Primera Temporada (tocar)</span>
+          <h3>🐐 Myotragus balearicus — La cabra prehistórica</h3>
+          <p>Bóvido endémico de Mallorca y Menorca. Símbolo de memoria y respeto.</p>
+        </div>
+        <!-- Reverso -->
+        <div class="card-back">
+          <button onclick="this.closest('.card').classList.toggle('girada')">← Volver</button>
+          <h4>Colección visual</h4>
+          <div class="galeria">
+            <figure><img src="assets/myotragus1.jpg"><figcaption>1. Prime Basic</figcaption></figure>
+            <figure><img src="assets/myotragus2.jpg"><figcaption>2. Prime Premium</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>3. Prime Event</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>4. Prime Limited</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>5. Eco Basic</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>6. Eco Premium</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="boton-ficha">
+      <a href="#myotragus" class="boton">Ver ficha completa</a>
+    </div>
+
+    <!-- ====== FICHAS DETALLADAS ====== -->
+    <details id="podarcis" style="margin-top:22px">
+      <summary><span class="chev">▶</span>🦎 <b>Podarcis lilfordi – El lagarto balear</b></summary>
+      <div class="details-body split">
+        <div class="strip">
+          <img class="item" src="assets/podarcis-real.jpg" alt="Podarcis en roca">
+          <img class="item" src="assets/podarcis-figura.jpg" alt="Figura EAMV Podarcis">
+        </div>
+        <div>
+          <p>· EAMV collection trae de vuelta a una superestrella de la naturaleza:
+un pequeño superviviente que venció al tiempo y al olvido.
+</p>
+          <p>· Pequeño, ágil y luminoso, Podarcis lilfordi guarda en su mirada la esencia de las Baleares.
+Durante siglos habitó todas las islas, hasta que el ser humano y los depredadores lo empujaron a los islotes donde hoy resiste, adaptando su color al viento y al mar.
+</p>
+          <p>· Es verde, azul o dorado, según el lugar que lo abrace.
+Símbolo de vida y resistencia, esta lagartija recuerda que incluso lo más frágil puede perdurar cuando pertenece verdaderamente a su tierra.
+</p>
+        </div>
+      </div>
+    </details>
+
+    <details id="myotragus" style="margin-top:22px">
+      <summary><span class="chev">▶</span>🐐 <b>Myotragus balearicus – La cabra de las Baleares</b></summary>
+      <div class="details-body split">
+        <div class="strip">
+          <img class="item" src="assets/myotragus-real.jpg" alt="Esqueleto Myotragus">
+          <img class="item" src="assets/myotragus-figura.jpg" alt="Figura EAMV Myotragus">
+        </div>
+        <div>
+          <p> · El Myotragus balearicus fue una cabra única que vivió exclusivamente en Mallorca y Menorca. Pequeña, de mirada frontal y movimientos pausados, aprendió a sobrevivir en un entorno donde el tiempo parecía ir más despacio.
+Durante miles de años, convivió en equilibrio con la naturaleza, adaptándose a un ritmo que solo las islas pueden imponer.
+</p>
+          <p> · Pero hace unos 4.000 años, la llegada de los primeros humanos cambió ese equilibrio para siempre. El Myotragus desapareció, dejando tras de sí un silencio que aún se siente en las cuevas y montañas de las Baleares.
+Su historia nos recuerda lo fácil que es romper un ciclo que tardó siglos en construirse, y lo valioso que es cuidar lo que permanece.
+</p>
+          <p> · En EAMV collection, esta figura rescata su presencia como símbolo de resistencia y memoria: una vida que existió en armonía y que, aunque extinguida, sigue marcando el pulso invisible de nuestras islas.
+</p>
+          
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- TECHNESANO -->
+  <section id="technesano">
+    <details open>
+      <summary><span class="chev">▶</span>⚙️ <b>¿Qué es el movimiento TECHNESANO?</b></summary>
+      <div class="details-body">
+       <p><b>⚙️ MANIFIESTO TECHNESANO</b></p>
+
+<p>El arte de crear con alma humana en una era de máquinas</p>
+<p><b>Fundador:</b> >Eric A. Mas Verdú</p>
+<p><b>Fecha:</b> 28 de octubre de 2025</p>
+<p><v><b>Porqué un ser humano sin manos no puede crear. Una máquina sin alma no puede sentir.</b></v></p>
+
+<p><b>🌍 Origen del término</b></p>
+
+<p><b><i>TECHNESANO</i></b> nace de la unión de dos lenguas antiguas que, al encontrarse, dan vida a un concepto nuevo:</p>
+
+<p><b>Techne (τέχνη)</b> del Griego Arte, oficio, habilidad práctica Tecnología, creatividad consciente</p>
+<p><b>Sano (sanus)</b> del Latín Saludable, íntegro, equilibrado,Armonía, pureza de intención</p>
+
+
+<p><b><i>TECHNESANO</i></b> significa arte técnico en equilibrio o tecnología con alma sana.
+Es el punto donde el artesano clásico y el creador digital se reconocen.</p>
+<p><v>No rechaza la máquina: la humaniza.
+No sustituye el alma: la expande.</v></p>
+
+<p><b>🧠 Esencia del movimiento</b></p>
+
+<p>Vivimos en una época donde la tecnología intenta imitar la creatividad,
+y el arte, sin darse cuenta, empieza a mecanizarse.</p>
+
+<p><b><i>Technesano</i></b> nace como respuesta:
+una reconciliación entre la emoción y la técnica,
+entre la sensibilidad y el código,
+entre la mente y el metal.</p>
+
+<p>El <b><i>Technesano</i></b> no se enfrenta a la máquina.</p>
+
+ <p><v>Le recuerda lo que significa crear.</v></p>
+
+
+
+<p>No busca dominar la tecnología,
+sino purificarla con intención.</p>
+<p>Cada obra nacida bajo este principio respira alma,
+porque fue creada para sentir tanto como para funcionar.</p>
+
+<p><b>🛠️ Principios fundacionales</b></p>
+
+<p><b>1. Ars Viva</b> — El arte debe seguir vivo, no automatizado.</p>
+
+<p><b>2. Simbiosis</b> — Humano y tecnología trabajan juntos, no como opuestos.</p>
+
+<p><b>3. Ética creativa</b> — Crear con respeto al origen, al alma y a la tierra.</p>
+
+<p><b>4. Autenticidad</b> — Cada pieza conserva la huella del creador.</p>
+
+<p><b>5. Evolución cultural</b> — Recuperar la esencia del artesano en el siglo XXI.</p>
+
+<p><b>🔮 Filosofía central</b></p>
+
+<p> Un ser humano sin manos no puede crear.
+Una máquina sin alma no puede sentir.</p>
+
+<p>Así lo decía el arte. Así lo decía la técnica.</p>
+<p>Hasta que nació el <b><i>Technesano</i></b>.</p>
+
+<p><v>Cuando un humano sin manos se une a una máquina fría,
+surge algo nuevo: una extensión del ser,
+un puente entre la carne y el circuito,
+donde el alma vuelve a tener espacio para habitar.</v></p>
+
+<p>El <b><i>Technesano</i></b> no teme a la máquina: la comprende.
+No reemplaza al artesano: lo libera.</p>
+
+<p><v>Porque el arte no muere en la era digital;
+solo evoluciona hacia su forma más pura:
+la unión entre el alma y la creación consciente.</v></p>
+
+<p><b>💬 Ejemplo de aplicación</b></p>
+
+<p><b>EAMV</b> nace del principio <b><i>Technesano</i></b>,
+<v>donde la tecnología y el arte cooperan
+en equilibrio con la naturaleza y la emoción humana.</v></p>
+
+
+
+<p>Puede emplearse también como sello de autenticidad cultural:</p>
+
+<p><v>Hecho bajo el principio <b><i>Technesano</i></b>.</v></p>
+
+<p>🕊️ Epílogo</p>
+
+<p>El <b><i>Technesano no es una tendencia ni una estética.</p>
+<p>Es una visión. Una filosofía.</p>
+<p><v>Un recordatorio de que el arte no necesita manos: necesita alma.</v></p>
+
+<p><v>El arte no muere, se transforma.</v></p>
+<p><v>El alma no se apaga, se expande.</v></p>
+
+
+
+<p>— Eric A. Mas Verdú, 28 de octubre de 2025</p>
+
+        
+      </div>
+    </details>
+  </section>
+
+  <!-- EAMV COLLECTION INFO -->
+  <section id="eamv">
+    <details open>
+      <summary><span class="chev">▶</span> <b>EAMV Collection — Souvenirs con alma balear</b></summary>
+      <div class="details-body">
+        <p><v>En el corazón del Mediterráneo, donde el mar guarda secretos y las montañas respiran historia, nace EAMV collection. No somos solo una colección de souvenirs: somos la chispa que despierta la memoria de un archipiélago único, uniendo arte, ciencia y naturaleza.</v></p>
+
+ <p>Cada pieza que creamos es un puente entre mundos: desde el <i>Myotragus balearicus</i> –la cabra prehistórica de Mallorca y Menorca– hasta las criaturas que todavía habitan nuestras islas, convertimos legado en diseño. En nuestras manos, el <b>low poly</b> no es solo estética: <v>es símbolo de cómo lo antiguo puede renacer en lo contemporáneo.</v></p>
+
+ <p><b>EAMV collection</b> es la primera rama de <b>EAMV</b>, <v>un proyecto más grande que busca dar alma a los diferentes elementos que puedas imaginar, mezclando herramientas modernas con el espíritu y la memoria del pasado. Queremos que cada elemento cuente una historia, tenga identidad y sirva como puente entre tradición y futuro.</v></p>
+
+ <p><v>Nuestro objetivo no se detiene aquí.</v> Queremos <b>inspirar</b>, <b>educar</b> y <b>conservar</b>, y en el futuro abrir <b>nuevas líneas creativas</b>, colaboraciones y plataformas que amplíen este movimiento. EAMV collection aspira a colaborar en proyectos de conservación real, reconocer más animales y contar sus historias, pero también a explorar nuevas formas de diseño, tecnología y experiencias que se irán revelando con el tiempo.</p>
+
+ <p>Cada pieza que adquieres es una pequeña contribución para recordar, valorar y conservar.
+Llevamos la memoria de las Baleares en nuestras manos para que tú puedas llevarla contigo.
+</p>
+        <p><b>-Calidad:</b></p>
+<p>🌿 Edición ecológica: fabricada con tecnología sostenible y respeto por la naturaleza.</p>
+
+<p>💎 Edición prime: creada con precisión avanzada para un acabado excepcional.
+</p>
+        <p><b>-Material:</b> Cada pieza ha sido creada a través de un proceso cuidadosamente seleccionado, utilizando materiales de alta gama y acabados premium.
+Algunas piezas destacan por su acabado translúcido o brillo especial, mientras que otras presentan una textura más sólida o satinada, pensada para resaltar su forma y carácter único.
+El resultado es un conjunto de piezas que conservan su belleza con el paso del tiempo, manteniendo su color, integridad y presencia original.
+</p>
+
+ <p><b>-Proceso:</b> Producidas mediante tecnología 3D de precisión milimétrica, cada figura pasa por un proceso de curado y acabado especial que garantiza una durabilidad excepcional y un tacto refinado.</p>
+
+        <p><b>-Origen:</b> Diseñadas y producidas en Mallorca, donde la innovación tecnológica se une con el cuidado artesanal en cada detalle.</p>
+       <p><b>Detalles únicos::</b>
+         Cada pieza es irrepetible. Puede contener sutiles matices o variaciones internas que la hacen aún más especial, como si guardara una historia o un fragmento de alma dentro de sí.</p>
+
+        <p><b>-Ediciones únicas:</b></p> 
+ <p>Cada temporada de EAMV collection es irrepetible. Las figuras se producen en series limitadas que nunca vuelven a repetirse del mismo modo: incluso si un modelo regresa en el futuro, lo hará con variaciones en diseño, color o detalles.</p>
+
+
+ <p>Dentro de estas ediciones, existen colores exclusivos que elevan aún más el valor de cada pieza:</p>
+
+ <p>1. Edición Básica – Color principal de temporada.</p>
+
+
+ <p>2. Edición Premium – Colores más raros y distintivos, con un acabado de mayor calidad que resalta el detalle de la pieza.</p>
+
+
+ <p>3. Edición Limitada – Colores únicos con numeración individual, garantizando que cada pieza sea irrepetible dentro de la colección y muchos más misterios.</p>
+
+ <p>4. Edición Evento – Temporadas especiales y celebraciones.
+Colores temáticos y acabados únicos creados para momentos concretos como Navidad, Halloween, ediciones de verano, etcétera.
+Cada evento trae una combinación distinta de energía y simbolismo, haciendo de cada pieza un recuerdo ligado al tiempo y a la emoción que la vio nacer.
+</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre">
+    <details>
+      <summary><span class="chev">▶</span>👤 <b>Sobre mí — El creador</b></summary>
+      <div class="details-body">
+        <p><b>Eric A. Mas Verdú</b> Nací en <i>Mallorca</i>, en un entorno donde la tradición y la modernidad conviven, y aprendí a ver en cada objeto una historia que aún podía contarse. Durante años trabajé con herramientas técnicas y procesos industriales, pero siempre tuve la intuición de que podía ir más allá: usar la tecnología para dar alma a las cosas. </p>
+        <p>Así nació <b>EAMV collection</b>. No es un fin en sí mismo, sino el primer paso de algo más amplio: una marca que transforma símbolos, animales, materiales y conceptos en experiencias tangibles. Comenzamos con souvenirs inspirados en especies únicas de Baleares, pero la visión no se detiene ahí. Mi objetivo es expandirme hacia nuevas líneas creativas que se irán revelando con el tiempo: objetos, colecciones, diseños, tecnologías y colaboraciones que cambien la forma en que vemos lo cotidiano.</p>
+        <p><v>No creo en producir por producir; creo en crear con intención.</v> Cada pieza de <b>EAMV collection</b> es un experimento: rescata del olvido, mezcla pasado y presente, y abre puertas a lo que vendrá. Mi sueño es que esta marca evolucione hacia una plataforma viva, capaz de <b>inspirar, educar y colaborar en proyectos de conservación real.</b>
+        <p><v>Lo que ves hoy es solo el principio. Cada objeto es una pista del camino que viene.</v></p>
+
+        <p><v>EAMV: Tocamos el cielo sin olvidar las raíces.</v></p>
+
+      </div>
+    </details>
+  </section>
+
+  <!-- CHIBI CON ACCESORIOS -->
+  <section id="chibi" style="margin-top:80px;">
+    <h2 class="section-title">🧩 Chibi con accesorios — Miniaturas y complementos EAMV</h2>
+    <p class="section-sub">Los Chibis <b>EAMV</b> nacen para quienes ven en lo pequeño algo grande.
+Para quienes aprecian las emociones sinceras y las formas tiernas, sin dejar de lado el alma que hay detrás.</p>
+
+<p class="section-sub">Cada Chibi está hecho para conectar con el lado más humano del arte ese que sonríe, que siente y que recuerda sin palabras.
+Representan una nueva forma de expresión dentro de <b>EAMV Collection</b>: más ligera, más cercana, pero con la misma profundidad y propósito.</p>
+
+<p class="section-sub"><v>Aquí no vendemos solo un fragmento de alma,
+vendemos una emoción hecha forma.</v></p>
+
+<p class="section-sub"><v>No los compras, los adoptas.</p>
+<p class="section-sub">Cada uno guarda su propia chispa, un recuerdo que se deja querer.
+</v></p>
+
+    <!-- CHIBI MYOTRAGUS -->
+    <article class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assets/chibi-myotragus1.jpg" alt="Chibi Myotragus">
+          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición Chibi — Inspirada en las figuras originales EAMV (Tocar)</span>
+          <h3>🐐 Chibi Myotragus</h3>
+          <p>Figura coleccionable inspirada en el Myotragus balearicus, símbolo de memoria y respeto.</p>
+        </div>
+        <div class="card-back">
+          <button onclick="this.closest('.card').classList.toggle('girada')">← Volver</button>
+          <h4>Galería visual</h4>
+          <div class="galeria">
+            <figure><img src="assets/p.jpg"><figcaption>Versión Especial</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>Marrón</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>Beige claro</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>MArrón rojizo</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>Evento especial</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CHIBI PODARCIS -->
+    <article class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assets/chibi-podarcis1.jpg" alt="Chibi Podarcis">
+          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición Chibi — Inspirada en las figuras originales EAMV (Tocar)</span>
+          <h3>🦎 Chibi Podarcis</h3>
+          <p>Figura coleccionable basada en el Podarcis lilfordi, símbolo de resiliencia y tenacidad.</p>
+        </div>
+        <div class="card-back">
+          <button onclick="this.closest('.card').classList.toggle('girada')">← Volver</button>
+          <h4>Galería visual</h4>
+          <div class="galeria">
+            <figure><img src="assets/chibi-podarcis1.jpg"><figcaption>Versión especial</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>Azul</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>Verde</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>Negra</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>Amarillo tostado</figcaption></figure>
+            <figure><img src="assets/p.jpg"><figcaption>Evento</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </article>
+
+ <!-- ACCESORIOS -->
+<section id="accesorios" style="margin-top:80px;">
+  <h2 class="section-title">✨ Accesorios</h2>
+  <p class="section-sub">Complementos para personalizar tus figuras Chibi y ampliar la colección.</p>
+
+  <div class="accesorio">
+    <figure>
+      <img src="assets/accesorio1.jpg" alt="Accesorio 1">
+      <figcaption>Accesorio 1</figcaption>
+    </figure>
+
+    <figure>
+      <img src="assets/p.jpg" alt="Accesorio 2">
+      <figcaption>Accesorio 2</figcaption>
+    </figure>
+
+    <figure>
+      <img src="assets/p.jpg" alt="Accesorio 3">
+      <figcaption>Accesorio 3</figcaption>
+    </figure>
+  </div>
+</section>
+
+
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <h2 class="section-title">Contacto</h2>
+    <p class="section-sub">Colaboraciones, tiendas y exposiciones.</p>
+    <div class="card">
+      <p>
+        Instagram: <a href="https://instagram.com/eamvcollection" target="_blank">@EAMVcollection</a><br>
+        Email: <a href="mailto:eamversion@icloud.com">eamversion@icloud.com</a><br>
+        Ubicación: Mallorca, Islas Baleares
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 EAMV · Technesano Movement · Mallorca
+  </footer>
+
+  <script>
+    // Abrir automáticamente el details si llegas por hash (#podarcis, #myotragus, etc.)
+    function openHashDetails(){
+      if(location.hash){
+        const el = document.querySelector(location.hash);
+        if(el && el.tagName.toLowerCase()==='details'){
+          el.open = true;
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      }
+    }
+    window.addEventListener('hashchange', openHashDetails);
+    window.addEventListener('DOMContentLoaded', openHashDetails);
+  </script>
+</body>
+</html>
+
+
+

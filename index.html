@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EAMV</title>
+
+  <style>
+    /* === BASE === */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+      color: #fff;
+      background: radial-gradient(circle at 20% 20%, rgba(0,255,200,0.15), transparent 40%),
+                  radial-gradient(circle at 80% 80%, rgba(0,150,255,0.12), transparent 50%),
+                  #0b0b0b;
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* === LOGO CENTRAL === */
+    .logo {
+      margin-top: 140px;
+      text-align: center;
+      animation: pulso 6s ease-in-out infinite;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .logo img {
+      width: 260px;
+      height: auto;
+      filter: drop-shadow(0 0 25px rgba(0,255,255,0.5));
+      transition: transform 0.5s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 35px rgba(0,255,255,0.7));
+    }
+
+    @keyframes pulso {
+      0%, 100% { opacity: 0.95; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.03); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === IDIOMAS === */
+    .idiomas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 100px;
+      text-align: center;
+    }
+
+    .idiomas a {
+      text-decoration: none;
+      color: #00ffaa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      opacity: 0;
+      animation: aparecer 0.8s ease forwards;
+    }
+
+    /* Encendido secuencial */
+    .idiomas a:nth-child(1) { animation-delay: 0.6s; }
+    .idiomas a:nth-child(2) { animation-delay: 0.8s; }
+    .idiomas a:nth-child(3) { animation-delay: 1s; }
+    .idiomas a:nth-child(4) { animation-delay: 1.2s; }
+    .idiomas a:nth-child(5) { animation-delay: 1.4s; }
+    .idiomas a:nth-child(6) { animation-delay: 1.6s; }
+    .idiomas a:nth-child(7) { animation-delay: 1.8s; }
+    .idiomas a:nth-child(8) { animation-delay: 2s; }
+    .idiomas a:nth-child(9) { animation-delay: 2.2s; }
+    .idiomas a:nth-child(10) { animation-delay: 2.4s; }
+    .idiomas a:nth-child(11) { animation-delay: 2.6s; }
+    .idiomas a:nth-child(12) { animation-delay: 2.8s; }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .idiomas p {
+      margin: 2px 0;
+      font-size: 1rem;
+      color: #00ffaa;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease, opacity 0.3s ease;
+    }
+
+    .idiomas span {
+      font-size: 2.5rem;
+      margin: 8px 0;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .idiomas .bienvenida {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      color: #00ffaa;
+      margin-top: 3px;
+    }
+
+    .idiomas a:hover {
+      transform: scale(1.15);
+      text-shadow: 0 0 10px rgba(0,255,255,0.8);
+    }
+
+    .idiomas a:hover span {
+      text-shadow: 0 0 20px rgba(0,255,255,0.8);
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .logo img { width: 200px; }
+      .idiomas { gap: 35px; margin-top: 80px; }
+      .idiomas span { font-size: 2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .logo img { width: 160px; }
+      .idiomas { gap: 25px; margin-top: 60px; }
+      .idiomas span { font-size: 1.7rem; }
+      .idiomas p, .idiomas .bienvenida { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="assets/eamv-logo.jpg" alt="Logo EAMV">
+  </div>
+
+  <!-- IDIOMAS -->
+  <div class="idiomas">
+    <a href="index-es.html"><p>Español</p><span>🇪🇸</span><p class="bienvenida">Bienvenido</p></a>
+    <a href="index-en.html"><p>English</p><span>🇬🇧</span><p class="bienvenida">Welcome</p></a>
+    <a href="index-fr.html"><p>Français</p><span>🇫🇷</span><p class="bienvenida">Bienvenue</p></a>
+    <a href="index-it.html"><p>Italiano</p><span>🇮🇹</span><p class="bienvenida">Benvenuto</p></a>
+    <a href="index-de.html"><p>Deutsch</p><span>🇩🇪</span><p class="bienvenida">Willkommen</p></a>
+    <a href="index-nl.html"><p>Nederlands</p><span>🇳🇱</span><p class="bienvenida">Welkom</p></a>
+    <a href="index-jp.html"><p>日本語</p><span>🇯🇵</span><p class="bienvenida">ようこそ</p></a>
+    <a href="index-cn.html"><p>中文</p><span>🇨🇳</span><p class="bienvenida">欢迎</p></a>
+    <a href="index-kr.html"><p>한국어</p><span>🇰🇷</span><p class="bienvenida">환영합니다</p></a>
+    <a href="index-ru.html"><p>Русский</p><span>🇷🇺</span><p class="bienvenida">Добро пожаловать</p></a>
+    <a href="index-pt.html"><p>Português</p><span>🇧🇷</span><p class="bienvenida">Bem-vindo</p></a>
+    <a href="index-ar.html"><p>العربية</p><span>🇸🇦</span><p class="bienvenida">مرحبا</p></a>
+  </div>
+</body>
+</html>
