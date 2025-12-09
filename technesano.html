@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manifiesto Technesano – EAMV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fuente elegante -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ===== BASE ===== */
+    * {
+      box-sizing: border-box;
+    }
+
+    body.technesano-body {
+      margin: 0;
+      padding: 0;
+      background: #030405 url("assets/technesano-backdrop.png")
+        center center / cover fixed no-repeat;
+      color: #f5f0e4;
+      font-family: "EB Garamond", serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    #technesano-gate {
+      position: relative;
+      min-height: 100vh;
+      padding: 80px 10vw 120px;
+      box-sizing: border-box;
+    }
+
+    /* ===== PUERTAS DORADAS CON ENGRANAJES ===== */
+    .door {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 50vw;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(0, 0, 0, 0.35), transparent 60%),
+        linear-gradient(
+          135deg,
+          #f6e3ad 0%,
+          #d6b868 40%,
+          #b8923d 70%,
+          #7a5b20 100%
+        );
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+      z-index: 20;
+      transform: translateX(0);
+      transition: transform 2.6s cubic-bezier(0.18, 0.84, 0.36, 1.1);
+      overflow: hidden;
+    }
+
+    .door.left {
+      left: 0;
+      border-right: 1px solid rgba(0, 0, 0, 0.4);
+    }
+
+    .door.right {
+      right: 0;
+      border-left: 1px solid rgba(0, 0, 0, 0.4);
+    }
+
+    .gears-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(30, 22, 5, 0.55) 0, transparent 40%),
+        radial-gradient(circle at 65% 40%, rgba(30, 22, 5, 0.55) 0, transparent 45%),
+        radial-gradient(circle at 35% 75%, rgba(30, 22, 5, 0.55) 0, transparent 42%),
+        repeating-radial-gradient(
+          circle,
+          rgba(255, 235, 180, 0.32) 0,
+          rgba(255, 235, 180, 0.32) 2px,
+          transparent 3px,
+          transparent 6px
+        );
+      mix-blend-mode: multiply;
+      opacity: 0.9;
+      animation: gears-rotate 12s linear infinite;
+    }
+
+    @keyframes gears-rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Estado cuando el portal se abre */
+    .gate-open .door.left {
+      transform: translateX(-100%);
+    }
+
+    .gate-open .door.right {
+      transform: translateX(100%);
+    }
+
+    /* Estado de cierre (volver) */
+    .gate-closing .door.left {
+      transform: translateX(0);
+    }
+
+    .gate-closing .door.right {
+      transform: translateX(0);
+    }
+
+    .door-hidden {
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 2s ease-out;
+    }
+
+    /* ===== ENGRANAJES CENTRALES DE LATÓN ===== */
+    .center-gears {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      width: 100vw;
+      height: 0;
+      z-index: 22;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    /* Base de cada engranaje */
+    .center-gear {
+      position: absolute;
+      top: 50%;
+      width: 120px;
+      height: 120px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #fff5cf 0, #c89a4d 45%, #7b5520 100%);
+      box-shadow:
+        0 0 15px rgba(0, 0, 0, 0.8),
+        0 0 25px rgba(255, 235, 180, 0.6);
+      overflow: hidden;
+    }
+
+    /* Primer engranaje a la izquierda */
+    .center-gear:nth-child(1) {
+      left: 7vw;
+    }
+
+    /* Segundo engranaje a la derecha */
+    .center-gear:nth-child(2) {
+      right: 7vw;
+    }
+
+    .center-gear::before,
+    .center-gear::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .center-gear::before {
+      inset: 18%;
+      border: 4px dashed rgba(73, 48, 14, 0.85);
+    }
+
+    .center-gear::after {
+      inset: 34%;
+      border: 3px solid rgba(255, 236, 185, 0.85);
+      box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .center-gear-inner {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.9);
+      background-image:
+        radial-gradient(circle at 50% 50%, transparent 0, transparent 35%, rgba(0, 0, 0, 0.7) 36%, transparent 38%, transparent 100%),
+        repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.7) 0,
+          rgba(0, 0, 0, 0.7) 4px,
+          transparent 5px,
+          transparent 12px
+        );
+      animation: center-gear-spin 7s linear infinite;
+    }
+
+    .center-gear:nth-child(2) .center-gear-inner {
+      animation-duration: 10s;
+      animation-direction: reverse;
+    }
+
+    @keyframes center-gear-spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .gate-open .center-gears {
+      opacity: 1;
+    }
+
+    .gears-hidden {
+      opacity: 0 !important;
+    }
+
+    /* ===== POLVO / ARENA DORADA ===== */
+    .dust-layer {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    .dust {
+      position: absolute;
+      top: -10vh;
+      width: 3px;
+      height: 12px;
+      background: rgba(237, 210, 150, 0.55);
+      filter: blur(0.4px);
+      border-radius: 50%;
+      opacity: 0;
+      animation-name: dust-fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes dust-fall {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) translateX(8px);
+        opacity: 0;
+      }
+    }
+
+    /* ===== PERGAMINO TECHNESANO: FONDO + SCROLL INTERNO ===== */
+
+    .technesano-scroll-wrapper {
+      position: relative;
+      z-index: 5;
+      width: 90%;
+      max-width: 900px;
+      height: 80vh; /* altura fija del pergamino */
+      margin: 0 auto;
+
+      background: url("assets/technesano-scroll.png")
+        center top / 100% 100% no-repeat;  /* aquí va la imagen del pergamino */
+
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      transform-origin: bottom center;
+      opacity: 0;
+    }
+
+    /* Cuando las puertas se abren */
+    .scroll-open .technesano-scroll-wrapper {
+      animation: scroll-unroll 1.45s ease-out forwards;
+      animation-delay: 1s;
+    }
+
+    /* Cuando las puertas se cierran */
+    .gate-closing .technesano-scroll-wrapper {
+      animation: scroll-roll-up 1.25s ease-in forwards !important;
+      animation-delay: 0s;
+    }
+
+    @keyframes scroll-unroll {
+      0% {
+        transform: translateY(60px) scaleY(0.0);
+        opacity: 0;
+      }
+      40% {
+        transform: translateY(20px) scaleY(1.03);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0) scaleY(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes scroll-roll-up {
+      0% {
+        transform: translateY(0) scaleY(1);
+        opacity: 1;
+      }
+      40% {
+        transform: translateY(10px) scaleY(1.03);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(40px) scaleY(0);
+        opacity: 0;
+      }
+    }
+
+    /* Contenido interior del pergamino (texto) con SCROLL interno oculto */
+    .scroll-inner {
+      position: absolute;
+      inset: 9% 11% 11% 11%;   /* márgenes del texto dentro de la imagen */
+      z-index: 1;
+
+      overflow-y: auto;
+      scrollbar-width: none;   /* oculta barra en Firefox */
+
+      color: #3b2a14;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    .scroll-inner::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    .scroll-inner h1 {
+      font-size: 2.1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0 0 0.8rem;
+      color: #24160b;
+    }
+
+    .scroll-inner .subtitle {
+      font-size: 0.95rem;
+      text-align: left;
+      margin: 0 0 0.8rem;
+      color: #3b3016;
+    }
+
+    .scroll-inner article {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .scroll-inner h2 {
+      margin-top: 1.6rem;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 1.05rem;
+      color: #2b1b0e;
+    }
+
+    .scroll-inner p {
+      margin: 0.35rem 0;
+    }
+
+    .scroll-inner small {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .scroll-inner v {
+      display: block;
+      margin: 0.6em 0;
+      padding: 4px 10px;
+      border-left: 3px solid #b38c3e;
+      background: linear-gradient(
+        to right,
+        rgba(255, 245, 210, 0.95),
+        rgba(255, 245, 210, 0.0)
+      );
+      font-weight: 600;
+      color: #2b1408;
+    }
+
+    /* Brillos */
+    .glow {
+      text-shadow:
+        0 0 4px rgba(255, 255, 255, 0.7),
+        0 0 14px rgba(255, 248, 210, 0.85),
+        0 0 30px rgba(255, 220, 140, 0.7);
+      animation: glow-pulse 3.2s ease-in-out infinite alternate;
+    }
+
+    .glow-soft {
+      text-shadow:
+        0 0 4px rgba(255, 255, 255, 0.6),
+        0 0 10px rgba(255, 240, 200, 0.5);
+      animation: glow-pulse-soft 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow-pulse {
+      from {
+        text-shadow:
+          0 0 4px rgba(255, 255, 255, 0.6),
+          0 0 14px rgba(255, 245, 210, 0.7),
+          0 0 26px rgba(255, 215, 140, 0.5);
+      }
+      to {
+        text-shadow:
+          0 0 8px rgba(255, 255, 255, 1),
+          0 0 24px rgba(255, 250, 220, 1),
+          0 0 44px rgba(255, 225, 160, 0.95);
+      }
+    }
+
+    @keyframes glow-pulse-soft {
+      from {
+        opacity: 0.85;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ===== BOTÓN VOLVER ===== */
+    .back-btn {
+      position: fixed;
+      top: 18px;
+      left: 22px;
+      z-index: 30;
+      background: rgba(0, 0, 0, 0.75);
+      color: #f5f0e4;
+      border: 1px solid rgba(255, 225, 170, 0.7);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 230, 180, 0.12);
+      box-shadow: 0 0 12px rgba(255, 230, 170, 0.55);
+      transform: translateY(-1px);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      #technesano-gate {
+        padding: 70px 6vw 90px;
+      }
+
+      .technesano-scroll-wrapper {
+        width: 94%;
+        height: 85vh;
+      }
+
+      .scroll-inner {
+        inset: 11% 8% 12% 8%;
+      }
+
+      .scroll-inner h1 {
+        font-size: 1.6rem;
+        letter-spacing: 0.14em;
+      }
+    }
+  </style>
+</head>
+
+<body class="technesano-body">
+  <!-- Botón para volver a la web principal -->
+  <button class="back-btn" type="button" onclick="volverAWeb()">
+    Volver
+  </button>
+
+  <main id="technesano-gate">
+    <!-- Puertas doradas a pantalla completa -->
+    <div class="door left">
+      <div class="gears-overlay"></div>
+    </div>
+    <div class="door right">
+      <div class="gears-overlay"></div>
+    </div>
+
+    <!-- Engranajes centrales de latón -->
+    <div class="center-gears">
+      <div class="center-gear">
+        <div class="center-gear-inner"></div>
+      </div>
+      <div class="center-gear">
+        <div class="center-gear-inner"></div>
+      </div>
+    </div>
+
+    <!-- Polvo / arena dorada -->
+    <div class="dust-layer"></div>
+
+    <!-- PERGAMINO: fondo + texto con scroll interno -->
+    <section class="technesano-scroll-wrapper">
+      <div class="scroll-inner">
+        <h1 class="glow">MANIFIESTO TECHNESANO</h1>
+        <p class="subtitle glow-soft">
+          El arte de crear con alma humana en una era de máquinas.
+        </p>
+
+        <article>
+          <p><b>Fundador:</b> Eric A. Mas Verdú</p>
+          <p><b>Fecha:</b> 28 de octubre de 2025</p>
+
+          <p>
+            <v><b>Porque un ser humano sin manos no puede crear. Una máquina sin alma no puede sentir.</b></v>
+          </p>
+
+          <h2 class="glow">ORIGEN DEL TÉRMINO</h2>
+
+          <p>
+            <b><i>TECHNESANO</i></b> nace de la unión de dos lenguas antiguas que, al encontrarse,
+            dan vida a un concepto nuevo:
+          </p>
+
+          <p>
+            <b>Techne (τέχνη)</b> – del griego.<br />
+            Arte, oficio, habilidad práctica.<br />
+            Tecnología, creatividad consciente.
+          </p>
+
+          <p>
+            <b>Sano (sanus)</b> – del latín.<br />
+            Saludable, íntegro, equilibrado.<br />
+            Armonía, pureza de intención.
+          </p>
+
+          <p>
+            <b><i>TECHNESANO</i></b> significa <b>arte técnico en equilibrio</b> o
+            <b>tecnología con alma sana</b>. Es el punto donde el artesano clásico y el creador
+            digital se reconocen.
+          </p>
+
+          <p>
+            <v>No rechaza la máquina: la humaniza.<br />
+            No sustituye el alma: la expande.</v>
+          </p>
+
+          <h2 class="glow">ESENCIA DEL MOVIMIENTO</h2>
+
+          <p>
+            Vivimos en una época donde la tecnología intenta imitar la creatividad,
+            y el arte, sin darse cuenta, empieza a mecanizarse.
+          </p>
+
+          <p>
+            <b><i>Technesano</i></b> nace como respuesta: una reconciliación entre la emoción
+            y la técnica, entre la sensibilidad y el código, entre la mente y el metal.
+          </p>
+
+          <p>El <b><i>Technesano</i></b> no se enfrenta a la máquina.</p>
+
+          <p><v>Le recuerda lo que significa crear.</v></p>
+
+          <p>No busca dominar la tecnología, sino purificarla con intención.</p>
+
+          <p>
+            Cada obra nacida bajo este principio respira alma, porque fue creada para
+            sentir tanto como para funcionar.
+          </p>
+
+          <h2 class="glow">PRINCIPIOS FUNDACIONALES</h2>
+
+          <p><b>1. Ars Viva</b> — El arte debe seguir vivo, no automatizado.</p>
+          <p><b>2. Simbiosis</b> — Humano y tecnología trabajan juntos, no como opuestos.</p>
+          <p><b>3. Ética creativa</b> — Crear con respeto al origen, al alma y a la tierra.</p>
+          <p><b>4. Autenticidad</b> — Cada pieza conserva la huella del creador.</p>
+          <p><b>5. Evolución cultural</b> — Recuperar la esencia del artesano en el siglo XXI.</p>
+
+          <h2 class="glow">FILOSOFÍA CENTRAL</h2>
+
+          <p>
+            Un ser humano sin manos no puede crear.<br />
+            Una máquina sin alma no puede sentir.
+          </p>
+
+          <p>Así lo decía el arte. Así lo decía la técnica.</p>
+          <p>Hasta que nació el <b><i>Technesano</i></b>.</p>
+
+          <p>
+            <v>Cuando un humano sin manos se une a una máquina fría, surge algo nuevo:
+            una extensión del ser, un puente entre la carne y el circuito,
+            donde el alma vuelve a tener espacio para habitar.</v>
+          </p>
+
+          <p>
+            El <b><i>Technesano</i></b> no teme a la máquina: la comprende.<br />
+            No reemplaza al artesano: lo libera.
+          </p>
+
+          <p>
+            <v>Porque el arte no muere en la era digital;
+            solo evoluciona hacia su forma más pura:
+            la unión entre el alma y la creación consciente.</v>
+          </p>
+
+          <h2 class="glow">EJEMPLO DE APLICACIÓN</h2>
+
+          <p>
+            <b>EAMV</b> nace del principio <b><i>Technesano</i></b>,
+            <v>donde la tecnología y el arte cooperan
+            en equilibrio con la naturaleza y la emoción humana.</v>
+          </p>
+
+          <p>Puede emplearse también como sello de autenticidad cultural:</p>
+
+          <p><v>Hecho bajo el principio <b><i>Technesano</i></b>.</v></p>
+
+          <h2 class="glow">EPÍLOGO</h2>
+
+          <p>
+            El <b><i>Technesano</i></b> no es una tendencia ni una estética.<br />
+            Es una visión. Una filosofía.
+          </p>
+
+          <p><v>Un recordatorio de que el arte no necesita manos: necesita alma.</v></p>
+          <p><v>El arte no muere, se transforma.</v></p>
+          <p><v>El alma no se apaga, se expande.</v></p>
+
+          <p>— Eric A. Mas Verdú, 28 de octubre de 2025</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let closing = false;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const body = document.body;
+      const dustLayer = document.querySelector(".dust-layer");
+      const centerGears = document.querySelector(".center-gears");
+
+      // Crear partículas de polvo/arena
+      const NUM_PARTICLES = 70;
+      for (let i = 0; i < NUM_PARTICLES; i++) {
+        const d = document.createElement("span");
+        d.classList.add("dust");
+        d.style.left = Math.random() * 100 + "%";
+        d.style.animationDelay = (Math.random() * 2.5).toFixed(2) + "s";
+        d.style.animationDuration = (2.8 + Math.random() * 2).toFixed(2) + "s";
+        dustLayer.appendChild(d);
+      }
+
+      // 1) Abrimos puertas
+      setTimeout(() => {
+        body.classList.add("gate-open");
+      }, 700);
+
+      // 2) Desenrollamos pergamino
+      setTimeout(() => {
+        body.classList.add("scroll-open");
+      }, 1100);
+
+      // 3) Ocultamos puertas y engranajes tras la apertura
+      setTimeout(() => {
+        document.querySelectorAll(".door").forEach((d) => {
+          d.classList.add("door-hidden");
+        });
+        if (centerGears) {
+          centerGears.classList.add("gears-hidden");
+        }
+      }, 3600);
+    });
+
+    function volverAWeb() {
+      if (closing) return;
+      closing = true;
+
+      const body = document.body;
+      const centerGears = document.querySelector(".center-gears");
+      const doors = document.querySelectorAll(".door");
+
+      // Volvemos a mostrar las puertas para que se cierren
+      doors.forEach((d) => d.classList.remove("door-hidden"));
+      if (centerGears) {
+        centerGears.classList.remove("gears-hidden");
+      }
+
+      // Activamos animación de cierre: pergamino se enrolla y puertas se cierran
+      body.classList.remove("gate-open");
+      body.classList.add("gate-closing");
+
+      const duracionSalida = 1800;
+      setTimeout(() => {
+        window.location.href = "index-es.html#technesano";
+      }, duracionSalida);
+    }
+
+    // Cerrar con ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        volverAWeb();
+      }
+    });
+  </script>
+</body>
+</html>
