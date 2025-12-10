@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sobre EAMV – Universo EAMV</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <!-- Fuente elegante -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body.eamv-cosmos {
+      min-height: 100vh;
+      background: #000000;
+      color: #f5f7ff;
+      font-family: "EB Garamond", serif;
+      overflow: hidden; /* sin scroll global, solo en la tarjeta */
+    }
+
+
+.e-gold {
+  color: #f6da8a;
+  text-shadow: 0 0 6px rgba(255, 222, 140, 0.8);
+  font-weight: 500;
+}
+
+.e-blue {
+  color: #b2d4ff;
+  text-shadow: 0 0 8px rgba(120, 180, 255, 0.8);
+}
+
+
+
+    /* CONTENEDOR GENERAL */
+    .cosmos-root {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* FASE 1: CAPA OSCURA + ASCENSO (con aura turquesa) */
+    .ascend-layer {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 130%, rgba(0,255,196,0.40) 0, transparent 55%),
+        radial-gradient(circle at 50% 50%, #040615 0, #020208 45%, #000000 100%);
+      background-size: 100% 200%;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 1.2s ease-out;
+      z-index: 1;
+    }
+    body.phase-ascend .ascend-layer {
+      animation: ascend-motion 3s ease-out forwards;
+    }
+    @keyframes ascend-motion {
+      0% {
+        transform: translateY(10%);
+        opacity: 1;
+      }
+      60% {
+        transform: translateY(-10%);
+        opacity: 0.95;
+      }
+      100% {
+        transform: translateY(-25%);
+        opacity: 0.8;
+      }
+    }
+
+    /* AURA / NIEBLA TURQUESA QUE SUBE */
+    .ascend-layer::after {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 120%, rgba(0, 255, 200, 0.38) 0, rgba(0, 255, 200, 0.0) 55%),
+        radial-gradient(circle at 10% 100%, rgba(0, 190, 255, 0.20) 0, rgba(0, 190, 255, 0.0) 50%);
+      mix-blend-mode: screen;
+      opacity: 0;
+      transform: translateY(25%);
+    }
+    body.phase-ascend .ascend-layer::after {
+      animation: mist-rise 4.5s ease-out forwards;
+    }
+    @keyframes mist-rise {
+      0% {
+        opacity: 0;
+        transform: translateY(30%);
+      }
+      35% {
+        opacity: 0.95;
+        transform: translateY(10%);
+      }
+      70% {
+        opacity: 0.7;
+        transform: translateY(-5%);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-12%);
+      }
+    }
+
+    /* FASE 3: UNIVERSO CON COSMOS.PNG */
+    .universe-layer {
+      position: absolute;
+      inset: 0;
+      background: url("assets/cosmos.png") center/cover no-repeat fixed;
+      opacity: 0;
+      transition: opacity 1.6s ease-out;
+      z-index: 2;
+    }
+    body.phase-universe .universe-layer {
+      opacity: 1;
+    }
+
+    /* LIGERA CAPA DE ESTRELLAS SUAVES (sin cuadritos) */
+    .starfield {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 20% 15%, rgba(255,255,255,0.55) 0, transparent 55%),
+        radial-gradient(circle at 80% 35%, rgba(255,255,255,0.4) 0, transparent 55%),
+        radial-gradient(circle at 60% 80%, rgba(255,255,255,0.5) 0, transparent 55%);
+      opacity: 0.35;
+    }
+
+    /* CONTENEDOR DEL CONTENIDO (placa arriba, texto centro) */
+    .universe-center {
+      position: relative;
+      z-index: 4;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* placa arriba */
+      padding: 9vh 6vw 4vh;
+      text-align: center;
+    }
+
+    /* PLACA EAMV ARRIBA */
+    .star-core {
+      position: relative;
+      display: inline-block;
+      padding: 1.6rem 2.6rem;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 50% 50%, #ffffff 0, #fdf7da 25%, #f8e49c 55%, rgba(0,0,0,0) 100%);
+      box-shadow:
+        0 0 18px rgba(255,255,255,0.9),
+        0 0 42px rgba(120,220,255,0.8),
+        0 0 80px rgba(0,255,196,0.6);
+      animation: star-core-pulse 4.2s ease-in-out infinite alternate;
+      cursor: default;
+      opacity: 0;          /* oculto al principio */
+      transition: opacity 1.2s ease-out;
+      margin-bottom: 6vh;  /* separación con el texto */
+    }
+    .star-core h1 {
+      font-size: 1.7rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #04101a;
+      text-shadow:
+        0 0 6px rgba(255,255,255,0.95),
+        0 0 18px rgba(255,245,210,0.9);
+      margin-bottom: 0.7rem;
+    }
+    .star-core span {
+      display: block;
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      color: #0b2640;
+      text-transform: uppercase;
+      text-shadow: 0 0 6px rgba(255,255,255,0.7);
+    }
+    @keyframes star-core-pulse {
+      0% {
+        transform: scale(0.98);
+        box-shadow:
+          0 0 10px rgba(255,255,255,0.7),
+          0 0 24px rgba(120,220,255,0.7),
+          0 0 48px rgba(0,255,196,0.5);
+      }
+      100% {
+        transform: scale(1.03);
+        box-shadow:
+          0 0 22px rgba(255,255,255,1),
+          0 0 46px rgba(120,220,255,0.95),
+          0 0 90px rgba(0,255,196,0.8);
+      }
+    }
+    .star-core.flash-core {
+      animation: star-core-flare 1.4s ease-out;
+    }
+    @keyframes star-core-flare {
+      0% {
+        transform: scale(1);
+        box-shadow:
+          0 0 24px rgba(255,255,255,1),
+          0 0 52px rgba(188,222,255,1),
+          0 0 96px rgba(0,255,196,1);
+      }
+      50% {
+        transform: scale(1.07);
+        box-shadow:
+          0 0 34px rgba(255,255,255,1),
+          0 0 80px rgba(188,222,255,1),
+          0 0 140px rgba(0,255,196,1);
+      }
+      100% {
+        transform: scale(1.01);
+        box-shadow:
+          0 0 22px rgba(255,255,255,0.9),
+          0 0 46px rgba(120,220,255,0.9),
+          0 0 90px rgba(0,255,196,0.8);
+      }
+    }
+
+    /* TEXTO SOBRE EAMV EN EL CENTRO, SCROLL INTERNO SIN BARRA */
+    .about-eamv {
+      position: relative;
+      max-width: 860px;
+      width: 90%;
+      margin: 0 auto;
+      border-radius: 18px;
+      background: linear-gradient(
+        to bottom,
+        rgba(4,10,24,0.96),
+        rgba(3,5,15,0.99)
+      );
+      box-shadow:
+        0 0 18px rgba(0,0,0,0.7),
+        0 0 40px rgba(47,130,255,0.35);
+      text-align: left;
+      font-size: 0.98rem;
+      color: #f5f7ff;
+      opacity: 0;          /* oculto al principio */
+      transition: opacity 1.2s ease-out;
+      z-index: 4;
+
+      /* altura fija en centro y scroll interno */
+      max-height: 60vh;
+      padding: 1.8rem 2.2rem;
+      overflow-y: auto;
+      scrollbar-width: none;          /* Firefox */
+    }
+    .about-eamv::-webkit-scrollbar {
+      display: none;                  /* Chrome, Safari */
+    }
+
+    .about-eamv h2 {
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #d7e6ff;
+    }
+    .about-eamv p {
+      margin: 0.35rem 0;
+      line-height: 1.7;
+    }
+    .about-eamv .accent-blue {
+      color: #9dc9ff;
+    }
+    .about-eamv .accent-gold {
+      color: #f6da8a;
+    }
+    .about-eamv .soft-glow {
+      text-shadow:
+        0 0 6px rgba(157,201,255,0.9),
+        0 0 18px rgba(246,218,138,0.75);
+    }
+
+    /* BOTÓN VOLVER */
+    .back-btn {
+      position: fixed;
+      top: 16px;
+      left: 20px;
+      z-index: 40;
+      background: rgba(0,0,0,0.7);
+      color: #f5f7ff;
+      border: 1px solid rgba(157,201,255,0.9);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .back-btn:hover {
+      background: rgba(147,191,255,0.12);
+      box-shadow: 0 0 12px rgba(147,191,255,0.8);
+      transform: translateY(-1px);
+    }
+
+    /* ===== OVERLAY INTRO CON CÍRCULO ===== */
+    .intro-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.86) 0, #000000 60%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+      transition: opacity 1s ease-out;
+    }
+    .intro-overlay.visible {
+      opacity: 1;
+    }
+    .intro-circle {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(255,255,255,1) 0, rgba(255,255,255,0.97) 38%, rgba(255,255,255,0) 76%);
+      box-shadow:
+        0 0 40px rgba(255,255,255,1),
+        0 0 85px rgba(180,245,255,0.85),
+        0 0 120px rgba(0,255,196,0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.6rem;
+      text-align: center;
+      transform: scale(0.8);
+      opacity: 0;
+      transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+    }
+    .intro-overlay.visible .intro-circle {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .intro-text-main {
+      font-size: 0.95rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #04101a;
+      text-shadow:
+        0 0 6px rgba(255,255,255,0.9),
+        0 0 16px rgba(180,245,255,0.8),
+        0 0 24px rgba(0,255,196,0.6);
+    }
+    .intro-text-sub {
+      margin-top: 0.7rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #0b2640;
+      text-shadow:
+        0 0 5px rgba(255,255,255,0.85),
+        0 0 12px rgba(160,210,255,0.7);
+    }
+
+    /* ===== ESTRELLAS FUGACES (diagonales) ===== */
+    .shooting-star {
+      position: fixed;
+      width: 3px;
+      height: 3px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255,255,255,0.9);
+      opacity: 0;
+      z-index: 50;
+      pointer-events: none;
+    }
+    .shooting-star::after {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: -80px;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(
+        to right,
+        rgba(255,230,150,0),
+        rgba(255,230,150,0.7),
+        rgba(255,255,255,0.95)
+      );
+      border-radius: 999px;
+      filter: blur(1px);
+    }
+    @keyframes shooting-star-move {
+      0% {
+        opacity: 0;
+        transform: translate(0, 0);
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(320px, 190px);
+      }
+    }
+    .shooting-star.gold {
+      background: #ffe7a8;
+      box-shadow: 0 0 12px rgba(255,235,150,0.95);
+    }
+    .shooting-star.blue {
+      background: #b0d9ff;
+      box-shadow: 0 0 14px rgba(160,210,255,0.95);
+    }
+    .shooting-star.big {
+      width: 6px;
+      height: 6px;
+      box-shadow:
+        0 0 14px rgba(255,255,255,1),
+        0 0 30px rgba(255,240,200,1),
+        0 0 60px rgba(146,193,255,1);
+    }
+    .shooting-star.big::after {
+      left: -140px;
+      width: 140px;
+      background: linear-gradient(
+        to right,
+        rgba(255,230,150,0),
+        rgba(255,230,150,0.9),
+        rgba(255,255,255,1)
+      );
+      filter: blur(1.5px);
+    }
+    @keyframes shooting-star-big-move {
+      0% {
+        opacity: 0;
+        transform: translate(0, 0);
+      }
+      8% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(420px, 230px);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .universe-center {
+        padding-top: 7vh;
+      }
+      .star-core {
+        padding: 1.3rem 1.8rem;
+        margin-bottom: 4vh;
+      }
+      .star-core h1 {
+        font-size: 1.3rem;
+        letter-spacing: 0.25em;
+      }
+      .about-eamv {
+        max-height: 48vh;
+        width: 92%;
+        padding: 1.4rem 1.3rem;
+        font-size: 0.95rem;
+      }
+      .intro-circle {
+        width: 220px;
+        height: 220px;
+        padding: 1.2rem;
+      }
+      .intro-text-main {
+        font-size: 0.82rem;
+      }
+      .intro-text-sub {
+        font-size: 0.74rem;
+      }
+    }
+  </style>
+</head>
+<body class="eamv-cosmos">
+  <button class="back-btn" type="button" onclick="volverAlIndex()">
+    Volver
+  </button>
+
+  <div class="cosmos-root">
+    <!-- CAPA OSCURA / ASCENSO -->
+    <div class="ascend-layer"></div>
+
+    <!-- UNIVERSO FINAL -->
+    <div class="universe-layer">
+      <div class="starfield"></div>
+
+      <div class="universe-center">
+        <!-- PLACA ARRIBA -->
+        <div class="star-core" id="starCore">
+          <h1>EAMV COLLECTION</h1>
+          <span>UNIVERSO CREATIVO</span>
+        </div>
+
+        <!-- TEXTO EN EL CENTRO, SCROLL INTERNO -->
+        <section class="about-eamv">
+          <h2 class="soft-glow">SOBRE EAMV</h2>
+          
+<!-- EAMV COLLECTION INFO -->
+<section id="eamv">
+  <details open>
+    <summary><span class="chev">▶</span> <span class="e-gold">EAMV Collection — Souvenirs con alma balear</span></summary>
+
+    <div class="details-body">
+
+      <p><span class="e-blue">En el corazón del Mediterráneo, donde el mar guarda secretos y las montañas respiran historia, nace EAMV collection. No somos solo una colección de souvenirs: somos la chispa que despierta la memoria de un archipiélago único, uniendo arte, ciencia y naturaleza.</span></p>
+
+      <p>Cada pieza que creamos es un puente entre mundos: desde el <i>Myotragus balearicus</i> –la cabra prehistórica de Mallorca y Menorca– hasta las criaturas que todavía habitan nuestras islas, convertimos legado en diseño. En nuestras manos, el <span class="e-gold">low poly</span> no es solo estética: <span class="e-blue">es símbolo de cómo lo antiguo puede renacer en lo contemporáneo.</span></p>
+
+      <p><span class="e-gold">EAMV collection</span> es la primera rama de <span class="e-gold">EAMV</span>, <span class="e-blue">un proyecto más grande que busca dar alma a los diferentes elementos que puedas imaginar, mezclando herramientas modernas con el espíritu y la memoria del pasado. Queremos que cada elemento cuente una historia, tenga identidad y sirva como puente entre tradición y futuro.</span></p>
+
+      <p><span class="e-blue">Nuestro objetivo no se detiene aquí.</span> Queremos <span class="e-gold">inspirar</span>, <span class="e-gold">educar</span> y <span class="e-gold">conservar</span>, y en el futuro abrir <span class="e-gold">nuevas líneas creativas</span>, colaboraciones y plataformas que amplíen este movimiento.</p>
+
+      <p>EAMV collection aspira a colaborar en proyectos de conservación real, reconocer más animales y contar sus historias, pero también a explorar nuevas formas de diseño, tecnología y experiencias que se irán revelando con el tiempo.</p>
+
+      <p>Cada pieza que adquieres es una pequeña contribución para recordar, valorar y conservar.
+      Llevamos la memoria de las Baleares en nuestras manos para que tú puedas llevarla contigo.</p>
+
+      <p><span class="e-gold">-Calidad:</span></p>
+
+      <p><span class="e-gold">🌿 Axion:</span> fabricada con tecnología sostenible y respeto por la naturaleza.</p>
+
+      <p>Axion proviene del griego <i>áxios</i> (digno, valioso). Representa nuestra línea esencial y ecológica, creada para que puedas llevarte Mallorca de forma auténtica y responsable.</p>
+
+      <p><span class="e-gold">✨ Luxoris:</span> creada con precisión avanzada para un acabado excepcional.</p>
+
+      <p>Luxoris proviene del latín <i>lux</i> (luz, claridad, brillantez, prestigio) y el sufijo <i>-oris</i> (lo que pertenece a). Es nuestra línea premium: piezas que destacan por su elegancia, presencia y nivel de detalle.</p>
+
+      <p><span class="e-gold">-Material:</span> Cada pieza ha sido creada a través de un proceso cuidadosamente seleccionado, utilizando materiales de alta gama y acabados premium.
+      Algunas piezas destacan por su acabado translúcido o brillo especial, mientras que otras presentan una textura más sólida o satinada, pensada para resaltar su forma y carácter único.</p>
+
+      <p>El resultado es un conjunto de piezas que conservan su belleza con el paso del tiempo, manteniendo su color, integridad y presencia original.</p>
+
+      <p><span class="e-gold">-Proceso:</span> Producidas mediante tecnología 3D de precisión milimétrica, cada figura pasa por un proceso de curado y acabado especial que garantiza una durabilidad excepcional y un tacto refinado.</p>
+
+      <p><span class="e-gold">-Origen:</span> Diseñadas y producidas en Mallorca, donde la innovación tecnológica se une con el cuidado artesanal en cada detalle.</p>
+
+      <p><span class="e-gold">Detalles únicos:</span>
+      Cada pieza es irrepetible. Puede contener sutiles matices o variaciones internas que la hacen aún más especial, como si guardara una historia o un fragmento de alma dentro de sí.</p>
+
+      <p><span class="e-gold">-Ediciones únicas:</span></p>
+
+      <p>Cada temporada de EAMV collection es irrepetible. Las figuras se producen en series limitadas que nunca vuelven a repetirse del mismo modo: incluso si un modelo regresa en el futuro, lo hará con variaciones en diseño, color o detalles.</p>
+
+      <p>Dentro de estas ediciones, existen colores exclusivos que elevan aún más el valor de cada pieza:</p>
+
+      <p>1. Edición Creative – la edición artística, colores inventados.</p>
+      <p>2. Edición Origin – la edición fiel al animal real (original de la naturaleza), con un acabado de mayor calidad que resalta el detalle de la pieza.</p>
+      <p>3. Edición Limitada – Colores únicos con numeración individual, garantizando que cada pieza sea irrepetible dentro de la colección y muchos más misterios.</p>
+      <p>4. Edición Evento – Temporadas especiales y celebraciones. Colores temáticos y acabados únicos creados para momentos concretos como Navidad, Halloween, ediciones de verano, etcétera.</p>
+      
+    </div>
+
+  </details>
+</section>
+
+      </div>
+    </div>
+
+    <!-- OVERLAY DE INTRO CON CÍRCULO Y TEXTOS -->
+    <div class="intro-overlay" id="introOverlay">
+      <div class="intro-circle">
+        <p class="intro-text-main" id="introTextMain"></p>
+        <p class="intro-text-sub" id="introTextSub"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const body      = document.body;
+      const introOv   = document.getElementById("introOverlay");
+      const mainText  = document.getElementById("introTextMain");
+      const subText   = document.getElementById("introTextSub");
+      const starCore  = document.getElementById("starCore");
+      const aboutBox  = document.querySelector(".about-eamv");
+
+      // Frases
+      const firstPhrase  = "SOLO LOS ELEGIDOS PUEDEN SENTIRLO, NO SOLO LEERLO";
+      const secondPhrase = "EAMV COLLECTION";
+      const thirdPhrase  = "Tocamos el cielo sin olvidar las raíces";
+
+      // Tiempos (ms)
+      const tCircleIn        = 1000;  // aparece círculo
+      const tFirstDelay      = 200;   // 0.2s después del círculo -> texto 1
+      const firstPhraseDur   = 5000;  // 5s
+      const silenceBetween   = 400;   // 0.4s
+      const secondPhraseDur  = 3000;  // 3s
+      const thirdPhraseDur   = 3000;  // 3s
+
+      const tFirstStart   = tCircleIn + tFirstDelay;
+      const tFirstEnd     = tFirstStart + firstPhraseDur;
+      const tSecondStart  = tFirstEnd + silenceBetween;
+      const tThirdStart   = tSecondStart + secondPhraseDur;
+      const tOverlayEnd   = tThirdStart + thirdPhraseDur;
+
+      // 1) Activar ascenso de cámara
+      setTimeout(() => {
+        body.classList.add("phase-ascend");
+      }, 100);
+
+      // 2) Activar universo (aunque aún no se ve por la intro encima)
+      setTimeout(() => {
+        body.classList.add("phase-universe");
+      }, 2500);
+
+      // 3) Mostrar círculo
+      setTimeout(() => {
+        if (introOv) {
+          introOv.classList.add("visible");
+        }
+      }, tCircleIn);
+
+      // 4) Texto 1
+      setTimeout(() => {
+        if (mainText) {
+          mainText.textContent = firstPhrase;
+        }
+        if (subText) {
+          subText.textContent = "";
+        }
+      }, tFirstStart);
+
+      // 5) Texto 2
+      setTimeout(() => {
+        if (mainText) {
+          mainText.textContent = secondPhrase;
+        }
+        if (subText) {
+          subText.textContent = "";
+        }
+      }, tSecondStart);
+
+      // 6) Texto 3 (añade la frase abajo)
+      setTimeout(() => {
+        if (mainText) {
+          mainText.textContent = secondPhrase;
+        }
+        if (subText) {
+          subText.textContent = thirdPhrase;
+        }
+      }, tThirdStart);
+
+      // 7) Desvanecer overlay y mostrar universo central
+      setTimeout(() => {
+        if (introOv) {
+          introOv.style.opacity = 0;
+          setTimeout(() => {
+            introOv.style.display = "none";
+          }, 1200);
+        }
+        if (starCore) {
+          starCore.style.opacity = 1;
+        }
+        if (aboutBox) {
+          aboutBox.style.opacity = 1;
+        }
+      }, tOverlayEnd);
+
+      // ===== ESTRELLAS FUGACES =====
+      setInterval(() => {
+        lanzarEstrellaFugaz();
+      }, 4000 + Math.random() * 4000);
+
+      setInterval(() => {
+        lanzarEstrellaFugazGrande();
+      }, 30000);
+    });
+
+    function volverAlIndex() {
+      window.location.href = "index-es.html#home";
+    }
+
+    function lanzarEstrellaFugaz() {
+      const star = document.createElement("div");
+      star.classList.add("shooting-star");
+
+      const tipo = Math.random();
+      if (tipo < 0.33) star.classList.add("gold");
+      else if (tipo < 0.66) star.classList.add("blue");
+
+      star.style.top  = Math.random() * 30 + "vh";
+      star.style.left = Math.random() * 70 + "vw";
+
+      const duracion = (2 + Math.random() * 2).toFixed(2);
+      star.style.animation = `shooting-star-move ${duracion}s linear forwards`;
+
+      document.body.appendChild(star);
+
+      setTimeout(() => {
+        star.remove();
+      }, duracion * 1000);
+    }
+
+    function lanzarEstrellaFugazGrande() {
+      const star = document.createElement("div");
+      star.classList.add("shooting-star", "big", "gold");
+
+      star.style.top  = (20 + Math.random() * 20) + "vh";
+      star.style.left = (10 + Math.random() * 40) + "vw";
+
+      const duracion = 2.8;
+      star.style.animation = `shooting-star-big-move ${duracion}s linear forwards`;
+
+      document.body.appendChild(star);
+
+      const core = document.getElementById("starCore");
+      if (core) {
+        core.classList.add("flash-core");
+        setTimeout(() => {
+          core.classList.remove("flash-core");
+        }, 1400);
+      }
+
+      setTimeout(() => {
+        star.remove();
+      }, duracion * 1000);
+    }
+  </script>
+</body>
+</html>
