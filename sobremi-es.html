@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sobre mí — El creador | EAMV</title>
+  <style>
+    :root{
+      --bg:#0e1b14;
+      --txt: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.82);
+      --border: rgba(255,255,255,0.12);
+      --accent: #61f2c2;
+      --gold: rgba(255, 215, 160, 0.45);
+      --gold-strong: rgba(214,178,124,0.75);
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; margin:0; }
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--txt);
+      overflow-x:hidden;
+    }
+
+    /* Tu etiqueta <v> */
+    v{
+      color: #1e5a55;              /* verde oscuro natural */
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-shadow: 0 0 6px rgba(31, 79, 58, 0.25);
+    }
+    .panel v{
+      display: inline-block;
+      margin: 4px 0;
+    }
+
+    /* ====== BOTÓN VOLVER ====== */
+    .btn-volver{
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 50;
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      transition: transform .2s ease, border-color .2s ease, color .2s ease, background .2s ease;
+    }
+    .btn-volver:hover{
+      transform: translateY(-1px);
+      border-color: rgba(97,242,194,0.6);
+      color: var(--accent);
+      background: rgba(0,0,0,0.55);
+    }
+    .btn-volver:active{ transform: translateY(0px); }
+
+    /* ====== PORTAL ====== */
+    #portal-bosque{
+      position:relative;
+      min-height:100vh;
+      overflow:hidden;
+      perspective: 1200px;
+      background: #0b140f;
+    }
+
+    /* Fondo final (assets/bosque.png) */
+    .fondo-bosque{
+      position:absolute;
+      inset:0;
+      background: url("assets/bosque.png") center/cover no-repeat;
+      filter: saturate(1.05) contrast(1.02);
+      opacity:0;
+      transition: opacity 2.1s ease;   /* más lento */
+      z-index:1;
+    }
+
+    /* Luz que cae desde arriba */
+    .luz{
+      position:absolute;
+      top:-60%;
+      left:50%;
+      width:220%;
+      height:220%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle at top, var(--gold), rgba(0,0,0,0) 55%);
+      opacity:0;
+      transition: opacity 2.2s ease;   /* más lento */
+      z-index:2;
+      pointer-events:none;
+    }
+
+    /* Puertas de madera (simuladas) */
+    .puerta{
+      position:absolute;
+      top:0;
+      height:100%;
+      width:50%;
+      z-index:6;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      background:
+        linear-gradient(90deg,
+          rgba(25,12,6,0.95),
+          rgba(58,30,16,0.95) 18%,
+          rgba(35,18,9,0.95) 38%,
+          rgba(70,36,18,0.95) 62%,
+          rgba(30,14,7,0.95)
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.05) 0px,
+          rgba(255,255,255,0.05) 2px,
+          rgba(0,0,0,0.0) 6px,
+          rgba(0,0,0,0.0) 10px
+        );
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.55);
+      transition: transform 2s cubic-bezier(.2,.9,.2,1); /* 🔥 puertas 2s */
+    }
+    .puerta.izq{
+      left:0;
+      transform-origin: left center;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .puerta.der{
+      right:0;
+      transform-origin: right center;
+      border-left: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Contenido (panel lectura) */
+    .contenido{
+      position:relative;
+      z-index:10;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      padding: 110px 18px 60px;
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    /* ✅ Panel en madera roble (más legible) */
+    .panel{
+      width:min(980px, 100%);
+      border: 1px solid rgba(214,178,124,0.35);
+      border-radius: 18px;
+      padding: 26px 24px;
+
+      /* madera roble + veta */
+      background:
+        linear-gradient(135deg,
+          rgba(56, 33, 18, 0.92),
+          rgba(40, 24, 14, 0.92)
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.05) 0px,
+          rgba(255,255,255,0.05) 1px,
+          rgba(0,0,0,0.00) 5px,
+          rgba(0,0,0,0.00) 10px
+        );
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.55),
+        inset 0 0 18px rgba(214,178,124,0.10);
+    }
+
+    .titulo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 10px;
+      font-size: 24px;
+      letter-spacing: 0.2px;
+    }
+    .titulo .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(97,242,194,0.35);
+      flex:0 0 auto;
+    }
+
+    .texto p{
+      margin: 10px 0;
+      color: rgba(255,255,255,0.90); /* más contraste */
+      line-height: 1.65;
+      font-size: 16px;
+    }
+    .texto strong, .texto b{ color: rgba(255,255,255,0.96); }
+
+    /* Canvas hojas */
+    #hojas{
+      position:absolute;
+      inset:0;
+      z-index:9;
+      pointer-events:none;
+      opacity:0;
+      transition: opacity 1s ease;
+    }
+
+    /* Mensaje “Entrando / Saliendo” */
+    .estado{
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 60;
+      font-size: 13px;
+      color: rgba(255,255,255,0.88);
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 8px 12px;
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      opacity:0;
+      transition: opacity .35s ease;
+      pointer-events:none;
+    }
+    .estado.on{ opacity:1; }
+
+    /* ====== ESTADOS ====== */
+    /* Estado OPEN (puertas abiertas hacia dentro) */
+    #portal-bosque.open .puerta.izq{ transform: rotateY(-70deg); }
+    #portal-bosque.open .puerta.der{ transform: rotateY(70deg); }
+
+    /* Fondo y luz aparecen, pero con delay para que no “salte” tan rápido */
+    #portal-bosque.open .fondo-bosque{ opacity:1; transition-delay: .35s; }
+    #portal-bosque.open .luz{ opacity:1; transition-delay: .55s; }
+
+    /* Lectura aparece después */
+    #portal-bosque.read .contenido{
+      opacity:1;
+      transform: translateY(0);
+    }
+    #portal-bosque.read #hojas{ opacity:1; }
+
+    /* Cerrando (marcha atrás) */
+    #portal-bosque.closing .contenido{
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    #portal-bosque.closing #hojas{ opacity:0; transition: opacity .6s ease; }
+    #portal-bosque.closing .luz{ opacity:0; transition: opacity 1.1s ease; transition-delay: 0s; }
+    #portal-bosque.closing .fondo-bosque{ opacity:0; transition: opacity 1.1s ease; transition-delay: 0s; }
+
+    @media (max-width: 520px){
+      .contenido{ padding-top: 90px; }
+      .panel{ padding: 20px 18px; border-radius: 16px; }
+      .titulo{ font-size: 20px; }
+      .texto p{ font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="index-es.html" class="btn-volver" id="btnVolver">← Volver</a>
+  <div class="estado" id="estadoMsg">Entrando al bosque…</div>
+
+  <section id="portal-bosque" aria-label="Portal del bosque - Sobre mí">
+    <div class="fondo-bosque"></div>
+    <div class="luz"></div>
+
+    <div class="puerta izq"></div>
+    <div class="puerta der"></div>
+
+    <canvas id="hojas"></canvas>
+
+    <div class="contenido">
+      <div class="panel">
+        <h1 class="titulo"><span class="dot"></span>Sobre mí — El creador</h1>
+        <div class="texto">
+          <p><b>Eric A. Mas Verdú</b> Nací en <i>Mallorca</i>, en un entorno donde la tradición y la modernidad conviven, y aprendí a ver en cada objeto una historia que aún podía contarse. Durante años trabajé con herramientas técnicas y procesos industriales, pero siempre tuve la intuición de que podía ir más allá: usar la tecnología para dar alma a las cosas.</p>
+
+          <p>Así nació <b>EAMV collection</b>. No es un fin en sí mismo, sino el primer paso de algo más amplio: una marca que transforma símbolos, animales, materiales y conceptos en experiencias tangibles. Comenzamos con souvenirs inspirados en especies únicas de Baleares, pero la visión no se detiene ahí. Mi objetivo es expandirme hacia nuevas líneas creativas que se irán revelando con el tiempo: objetos, colecciones, diseños, tecnologías y colaboraciones que cambien la forma en que vemos lo cotidiano.</p>
+
+          <p><v>No creo en producir por producir; creo en crear con intención.</v> Cada pieza de <b>EAMV collection</b> es un experimento: rescata del olvido, mezcla pasado y presente, y abre puertas a lo que vendrá. Mi sueño es que esta marca evolucione hacia una plataforma viva, capaz de <b>inspirar, educar y colaborar en proyectos de conservación real.</b></p>
+
+          <p><v>Lo que ves hoy es solo el principio. Cada objeto es una pista del camino que viene.</v></p>
+          <p><v>EAMV: Tocamos el cielo sin olvidar las raíces.</v></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const portal = document.getElementById("portal-bosque");
+    const estado = document.getElementById("estadoMsg");
+    const btnVolver = document.getElementById("btnVolver");
+
+    // ====== MENSAJE ======
+    function showMsg(text, ms=2000){
+      estado.textContent = text;
+      estado.classList.add("on");
+      setTimeout(() => estado.classList.remove("on"), ms);
+    }
+
+    // ====== SECUENCIA DE ENTRADA (más tarde y más lenta) ======
+    window.addEventListener("load", () => {
+      const delayInicio = 800;  // 👈 espera antes de empezar (para que no sea instantáneo)
+      const durPuertas = 2000;  // 👈 puertas 2s
+
+      setTimeout(() => {
+        portal.classList.add("open");              // empieza apertura (2s)
+        showMsg("Entrando al bosque…", 2000);      // mensaje 2s
+        // cuando las puertas ya han abierto, aparece lectura + hojas
+        setTimeout(() => {
+          portal.classList.add("read");
+        }, durPuertas + 350); // pequeño margen para que se sienta “ceremonial”
+      }, delayInicio);
+    });
+
+    // ====== SECUENCIA DE SALIDA (VOLVER) ======
+    btnVolver.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (portal.classList.contains("closing")) return;
+
+      const durPuertas = 2000; // coincide con CSS
+      showMsg("Saliendo del bosque…", 2000);
+
+      portal.classList.add("closing");
+      portal.classList.remove("read");
+
+      // tras 2s de mensaje, cerramos puertas (quitar open)
+      setTimeout(() => {
+        portal.classList.remove("open"); // puerta vuelve cerrando (2s)
+        setTimeout(() => {
+          window.location.href = "index-es.html";
+        }, durPuertas);
+      }, 2000);
+    });
+
+    // ====== HOJAS (canvas) ======
+    const canvas = document.getElementById("hojas");
+    const ctx = canvas.getContext("2d", { alpha: true });
+
+    function resize(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    const hojas = [];
+    const N = 34;
+
+    function nuevaHoja(){
+      const w = canvas.width, h = canvas.height;
+      return {
+        x: Math.random() * w,
+        y: -20 - Math.random() * h,
+        s: 6 + Math.random() * 10,
+        v: 0.4 + Math.random() * 0.9,
+        drift: (Math.random() * 0.6 + 0.2),
+        phase: Math.random() * Math.PI * 2,
+        rot: Math.random() * Math.PI * 2,
+        rotv: (Math.random() * 0.02 + 0.005),
+        alpha: 0.15 + Math.random() * 0.35
+      };
+    }
+    for(let i=0;i<N;i++) hojas.push(nuevaHoja());
+
+    function drawLeaf(leaf){
+      ctx.save();
+      ctx.translate(leaf.x, leaf.y);
+      ctx.rotate(leaf.rot);
+      ctx.fillStyle = `rgba(120, 165, 120, ${leaf.alpha})`;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, leaf.s, leaf.s*0.55, 0, 0, Math.PI*2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(leaf.s*0.6, 0);
+      ctx.lineTo(leaf.s*1.15, leaf.s*0.15);
+      ctx.lineTo(leaf.s*1.05, -leaf.s*0.15);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function tick(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+
+      const reading = portal.classList.contains("read") && !portal.classList.contains("closing");
+      if(reading){
+        const w = canvas.width, h = canvas.height;
+        for(const leaf of hojas){
+          leaf.phase += 0.02;
+          leaf.rot += leaf.rotv;
+          leaf.y += leaf.v;
+          leaf.x += Math.sin(leaf.phase) * leaf.drift;
+          drawLeaf(leaf);
+          if(leaf.y > h + 30){
+            leaf.x = Math.random() * w;
+            leaf.y = -30;
+          }
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  </script>
+</body>
+</html>
