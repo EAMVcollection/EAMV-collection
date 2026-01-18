@@ -186,9 +186,54 @@ body{ font-size:18px; margin:40px; }
     object-fit: cover !important;
     margin: 0 auto !important;
   }
+
+/* =========================
+   OVERLAY EDICIONES - SOLO MOVIL
+   ========================= */
+@media (max-width:768px){
+
+  /* El panel que use casi todo el ancho */
+  .ediciones-panel{
+    width: 96vw !important;
+    padding: 10px !important;
+  }
+
+  /* En móvil: 1 sola columna (Luxoris encima, Axion debajo) */
+  .ediciones-grid{
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Que cada bloque ocupe bien sin “encajonarse” */
+  .ed-col{
+    padding: 10px !important;
+    border-radius: 14px !important;
+  }
+
+  /* Dentro de cada categoría: que sea 1 por fila (más grande y limpio) */
+  .ed-items{
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Imagen más pequeña y bien encajada */
+  .ed-item img{
+    height: 92px !important;      /* prueba 80–110 */
+    object-fit: cover !important;
+  }
+
+  /* Texto un pelín más compacto */
+  .ed-item .cap{
+    font-size: 11px !important;
+    padding: 7px 9px !important;
+  }
+
+  /* Botón cerrar: que no se coma media pantalla */
+  .ediciones-close{
+    padding: 7px 10px !important;
+    border-radius: 10px !important;
+  }
 }
-
-
 
 
   </style>
