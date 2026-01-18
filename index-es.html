@@ -136,25 +136,14 @@ body{ font-size:18px; margin:40px; }
 /* 💻 Tablets */  
 @media (max-width:1024px) and (min-width:769px){  
   body{ font-size:17px; margin:25px; }  
-}  
-  </style>  
-  <style>  
-@media (prefers-color-scheme: dark) {  
-  v{  
-    background: linear-gradient(90deg, #3ac6a8, #8ad6ff);  
-    -webkit-background-clip: text;  
-    -webkit-text-fill-color: transparent;  
-    font-weight: 600;  
-  }  
+} 
+
 /* ===== FIX MOVIL: fichas + imagenes ===== */
 @media (max-width: 768px){
-
   html, body { overflow-x: hidden; }
 
   /* si tus fichas tienen grid/2 columnas, que en movil sea 1 columna */
-  .details-body.split{
-    display: block !important;
-  }
+  .details-body.split{ display: block !important; }
 
   /* centrado del bloque donde va la imagen */
   .strip{
@@ -166,7 +155,7 @@ body{ font-size:18px; margin:40px; }
   /* LA CLAVE: la imagen de las fichas (class="item") */
   .strip .item{
     width: 100%;
-    max-width: 320px;   /* prueba 280-360 */
+    max-width: 320px;  /* prueba 280-360 */
     height: auto;
     display: block;
     margin: 0 auto;
@@ -180,8 +169,22 @@ body{ font-size:18px; margin:40px; }
     display: block;
     margin: 0 auto;
   }
+}
+
+
+  </style>
+  
+  <style>  
+@media (prefers-color-scheme: dark) {  
+  v{  
+    background: linear-gradient(90deg, #3ac6a8, #8ad6ff);  
+    -webkit-background-clip: text;  
+    -webkit-text-fill-color: transparent;  
+    font-weight: 600;  
+  }  
+
+  </style> 
  
-  </style>  
   <style>  
 v{  
   background: linear-gradient(90deg, #3ac6a8, #8ad6ff);  
@@ -926,7 +929,7 @@ n{ color:#0A0A0A !important; font-weight:600; }
 
     <!-- FERRERET (NUEVO: MISMO FORMATO QUE LOS OTROS) -->  
     <details id="ferreret" style="margin-top:22px">  
-      <summary><span class="chev">▶</span>🐸 <b>Alytes multensis – El ferreret de Mallorca</b></summary>  
+      <summary><span class="chev">▶</span>🐸 <b>Alytes muletensis – El ferreret de Mallorca</b></summary>  
       <div class="details-body split">  
         <div class="strip">  
           <img class="item" src="assets/ferreret-real.jpg" alt="Ferreret en la roca">  
@@ -1066,7 +1069,7 @@ En EAMV Collection, representa la virtud de la reserva y resistencia: existir en
           <img src="assets/chibi-ferreret1.jpg" alt="Chibi Ferreret">  
           <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición Chibi — Inspirada en las figuras originales EAMV</span>  
           <h3>🐸 Endemoria ligera Ferreret</h3>  
-          <p>Coleccionable inspirada en el Ferreret, símbolo de rareza, resistencia y valor ancestral.</p>  
+          <p>Coleccionable inspirada en el Ferreret, símbolo resistencia y reserva.</p>  
         </div>  
         <div class="card-back">  
           <button onclick="this.closest('.card').classList.toggle('girada')">← Volver</button>  
