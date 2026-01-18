@@ -146,7 +146,41 @@ body{ font-size:18px; margin:40px; }
     -webkit-text-fill-color: transparent;  
     font-weight: 600;  
   }  
-}  
+/* ===== FIX MOVIL: fichas + imagenes ===== */
+@media (max-width: 768px){
+
+  html, body { overflow-x: hidden; }
+
+  /* si tus fichas tienen grid/2 columnas, que en movil sea 1 columna */
+  .details-body.split{
+    display: block !important;
+  }
+
+  /* centrado del bloque donde va la imagen */
+  .strip{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* LA CLAVE: la imagen de las fichas (class="item") */
+  .strip .item{
+    width: 100%;
+    max-width: 320px;   /* prueba 280-360 */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+  }
+
+  /* por si alguna imagen va dentro de .card */
+  .card img{
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+ 
   </style>  
   <style>  
 v{  
@@ -1540,6 +1574,5 @@ window.addEventListener("DOMContentLoaded", ()=>{
   buildColorBoard();  
 });  
   </script>
-
 
 
