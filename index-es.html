@@ -15,6 +15,7 @@
 .card {
   display: flex;
   flex-direction: column;
+  min-height: 400px;
     }
 
 .card img {
@@ -140,6 +141,7 @@ body{ font-size:18px; margin:40px; }
 /* 💻 Tablets */  
 @media (max-width:1024px) and (min-width:769px){  
   body{ font-size:17px; margin:25px; }  
+  .galeria { grid-template-columns: repeat(2,1fr); }
 } 
 
 /* ===== FIX MOVIL: fichas + imagenes ===== */
@@ -172,6 +174,14 @@ body{ font-size:18px; margin:40px; }
     height: auto;
     display: block;
     margin: 0 auto;
+  }
+
+  .card {
+    min-height: 350px;
+  }
+
+  .galeria {
+    grid-template-columns: 1fr;
   }
 }
 
