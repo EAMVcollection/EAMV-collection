@@ -144,46 +144,44 @@ body{ font-size:18px; margin:40px; }
   .galeria { grid-template-columns: repeat(2,1fr); }
 } 
 
-/* ===== FIX MOVIL: fichas + imagenes ===== */
-@media (max-width: 768px){
-  html, body { overflow-x: hidden; }
+/* ===== FIX SOLO MOVIL: que las cards SI se vean ===== */
+@media (max-width:768px){
 
-  /* si tus fichas tienen grid/2 columnas, que en movil sea 1 columna */
-  .details-body.split{ display: block !important; }
+  /* 1) Evita scroll raro */
+  html, body{ overflow-x:hidden; }
 
-  /* centrado del bloque donde va la imagen */
-  .strip{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* 2) La card debe tener altura real por contenido */
+  .card{ height:auto !important; }
+
+  /* 3) En móvil NO uses absolute en las caras (colapsa alturas) */
+  .card-inner{
+    height:auto !important;
+    display:block !important;
+    transform:none !important;
   }
 
-  /* LA CLAVE: la imagen de las fichas (class="item") */
-  .strip .item{
-    width: 100%;
-    max-width: 320px;  /* prueba 280-360 */
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    object-fit: cover;
+  .card-front,
+  .card-back{
+    position:relative !important;   /* <- clave */
+    height:auto !important;
+    width:100% !important;
+    transform:none !important;
+    backface-visibility:visible !important;
   }
 
-  /* por si alguna imagen va dentro de .card */
-  .card img{
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
+  /* 4) En móvil mostramos solo el FRONT (más simple y estable) */
+  .card-back{ display:none !important; }
 
-  .card {
-    min-height: 350px;
-  }
-
-  .galeria {
-    grid-template-columns: 1fr;
+  /* 5) Imágenes dentro de cards: que se adapten */
+  .card-front img{
+    width:100% !important;
+    height:auto !important;
+    max-height:360px;
+    object-fit:contain;
+    margin:0 auto;
   }
 }
+
 
 
   </style>
