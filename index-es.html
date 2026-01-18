@@ -144,43 +144,50 @@ body{ font-size:18px; margin:40px; }
   .galeria { grid-template-columns: repeat(2,1fr); }
 } 
 
-/* ===== FIX SOLO MOVIL: que las cards SI se vean ===== */
+/* ===== FIX MOVIL DEFINITIVO: apagar "flip cards" ===== */
 @media (max-width:768px){
 
-  /* 1) Evita scroll raro */
-  html, body{ overflow-x:hidden; }
-
-  /* 2) La card debe tener altura real por contenido */
-  .card{ height:auto !important; }
-
-  /* 3) En móvil NO uses absolute en las caras (colapsa alturas) */
-  .card-inner{
-    height:auto !important;
-    display:block !important;
-    transform:none !important;
+  /* La tarjeta deja de ser un escenario 3D con altura fija */
+  .card{
+    height: auto !important;
+    min-height: 0 !important;
+    perspective: none !important;
+    overflow: visible !important; /* para que no recorte */
   }
 
+  /* El contenedor interno deja de rotar */
+  .card-inner{
+    transform: none !important;
+    transition: none !important;
+    transform-style: flat !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* Las caras dejan de ser absolute (esto es LA CLAVE) */
   .card-front,
   .card-back{
-    position:relative !important;   /* <- clave */
-    height:auto !important;
-    width:100% !important;
-    transform:none !important;
-    backface-visibility:visible !important;
+    position: relative !important;
+    height: auto !important;
+    width: 100% !important;
+    backface-visibility: visible !important;
+    transform: none !important;
+    overflow: visible !important;
   }
 
-  /* 4) En móvil mostramos solo el FRONT (más simple y estable) */
-  .card-back{ display:none !important; }
+  /* En móvil, ocultamos la cara trasera (si quieres) */
+  .card-back{ display: none !important; }
 
-  /* 5) Imágenes dentro de cards: que se adapten */
+  /* Imagen principal: que se vea grande y normal */
   .card-front img{
-    width:100% !important;
-    height:auto !important;
-    max-height:360px;
-    object-fit:contain;
-    margin:0 auto;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important; /* evita la rayita por límites raros */
+    object-fit: cover !important;
+    margin: 0 auto !important;
   }
 }
+
 
 
 
