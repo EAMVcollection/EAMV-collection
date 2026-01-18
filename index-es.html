@@ -15,29 +15,27 @@
 .card {
   display: flex;
   flex-direction: column;
-    }
+}
 
 .card img {
   max-height: 360px;
   object-fit: contain;
   margin: 0 auto;
-    }
+}
  
 .strip {
   display: flex;
   justify-content: center;
   gap: 16px; /* opcional */
-    }
+}
 
 .strip .item {
   width: 100%;
   max-width: 500px;
   height: 380px;
   object-fit: cover;
-     }
-</style> 
-<style> 
 }
+
 /* ====== Sobremi cuadro ====== */  
 .link-sobremi{ display:block; text-decoration:none; }  
 .bloque-sobremi{  
@@ -129,25 +127,31 @@
   font-size:.95rem;  
   letter-spacing:.5px;  
 }  
-</style> 
-<style> 
 /* Estilo por defecto (PC o pantallas grandes) */  
 body{ font-size:18px; margin:40px; }  
-/* 📱 Móviles */  
-@media (max-width:768px){  
-  body{ font-size:16px; margin:15px; }  
-}  
+
 /* 💻 Tablets */  
 @media (max-width:1024px) and (min-width:769px){  
   body{ font-size:17px; margin:25px; }  
-} 
-
+}  
+  </style>  
+  <style>  
+@media (prefers-color-scheme: dark) {  
+  v{  
+    background: linear-gradient(90deg, #3ac6a8, #8ad6ff);  
+    -webkit-background-clip: text;  
+    -webkit-text-fill-color: transparent;  
+    font-weight: 600;  
+  }  
 /* ===== FIX MOVIL: fichas + imagenes ===== */
 @media (max-width: 768px){
+
   html, body { overflow-x: hidden; }
 
   /* si tus fichas tienen grid/2 columnas, que en movil sea 1 columna */
-  .details-body.split{ display: block !important; }
+  .details-body.split{
+    display: block !important;
+  }
 
   /* centrado del bloque donde va la imagen */
   .strip{
@@ -159,7 +163,7 @@ body{ font-size:18px; margin:40px; }
   /* LA CLAVE: la imagen de las fichas (class="item") */
   .strip .item{
     width: 100%;
-    max-width: 320px;  /* prueba 280-360 */
+    max-width: 320px;   /* prueba 280-360 */
     height: auto;
     display: block;
     margin: 0 auto;
@@ -173,22 +177,8 @@ body{ font-size:18px; margin:40px; }
     display: block;
     margin: 0 auto;
   }
-}
-
-
-  </style>
-  
-  <style>  
-@media (prefers-color-scheme: dark) {  
-  v{  
-    background: linear-gradient(90deg, #3ac6a8, #8ad6ff);  
-    -webkit-background-clip: text;  
-    -webkit-text-fill-color: transparent;  
-    font-weight: 600;  
-  }  
-
-  </style> 
  
+  </style>  
   <style>  
 v{  
   background: linear-gradient(90deg, #3ac6a8, #8ad6ff);  
@@ -933,7 +923,7 @@ n{ color:#0A0A0A !important; font-weight:600; }
 
     <!-- FERRERET (NUEVO: MISMO FORMATO QUE LOS OTROS) -->  
     <details id="ferreret" style="margin-top:22px">  
-      <summary><span class="chev">▶</span>🐸 <b>Alytes muletensis – El ferreret de Mallorca</b></summary>  
+      <summary><span class="chev">▶</span>🐸 <b>Alytes multensis – El ferreret de Mallorca</b></summary>  
       <div class="details-body split">  
         <div class="strip">  
           <img class="item" src="assets/ferreret-real.jpg" alt="Ferreret en la roca">  
