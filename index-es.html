@@ -984,7 +984,7 @@ En EAMV Collection, representa la virtud de la reserva y resistencia: existir en
         <div class="col-board-head">  
           <div>  
             <h3>Tablero simbólico</h3>  
-            <p>Toca un color para ver su significado. (Lectura rápida, limpia y elegante.)</p>  
+            <p>Toca un color para ver su significado.</p>  
           </div>  
           <button class="col-board-chip" onclick="openColorOverlay()">Abrir panel ✦</button>  
         </div>  
@@ -1044,7 +1044,7 @@ En EAMV Collection, representa la virtud de la reserva y resistencia: existir en
       <div class="card-inner">  
         <div class="card-front">  
           <img src="assets/chibi-myotragus1.jpg" alt="Chibi Myotragus">  
-          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición Chibi — Inspirada en las figuras originales EAMV</span>  
+          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición ligera — Inspirada en las figuras originales EAMV</span>  
           <h3>🐐 Endemoria ligera Myotragus</h3>  
           <p>Coleccionable inspirada en el Myotragus balearicus, símbolo de memoria y respeto.</p>  
         </div>  
@@ -1067,7 +1067,7 @@ En EAMV Collection, representa la virtud de la reserva y resistencia: existir en
       <div class="card-inner">  
         <div class="card-front">  
           <img src="assets/chibi-podarcis1.jpg" alt="Chibi Podarcis">  
-          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición Chibi — Inspirada en las figuras originales EAMV</span>  
+          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición ligera — Inspirada en las figuras originales EAMV</span>  
           <h3>🦎 Endemoria ligera Podarcis</h3>  
           <p>Coleccionable basada en el Podarcis lilfordi, símbolo de resiliencia y tenacidad.</p>  
         </div>  
@@ -1091,7 +1091,7 @@ En EAMV Collection, representa la virtud de la reserva y resistencia: existir en
       <div class="card-inner">  
         <div class="card-front">  
           <img src="assets/chibi-ferreret1.jpg" alt="Chibi Ferreret">  
-          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición Chibi — Inspirada en las figuras originales EAMV</span>  
+          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición ligera — Inspirada en las figuras originales EAMV</span>  
           <h3>🐸 Endemoria ligera Ferreret</h3>  
           <p>Coleccionable inspirada en el Ferreret, símbolo resistencia y reserva.</p>  
         </div>  
@@ -1386,28 +1386,28 @@ function setupAccordion(columnEl){
 const COLORS = [  
   {  
     key: "verde_transparente",  
-    name: "Verde transparente",  
+    name: "Viridis Diaphanus",  
     adjective: "Vivo",  
     nature: ["bosque húmedo", "musgo", "hojas al sol"],  
     hex: "#35E2A3"  
   },  
   {  
     key: "azul_transparente",  
-    name: "Azul transparente",  
+    name: "Caeruleus Diaphanus",  
     adjective: "Sereno",  
     nature: ["mar en calma", "poza cristalina", "cielo limpio"],  
     hex: "#4DBBFF"  
   },  
   {  
     key: "naranja",  
-    name: "Naranja",  
+    name: "Aurantium Solis",  
     adjective: "Solar",  
     nature: ["atardecer mediterráneo", "arcilla cálida", "cala dorada"],  
     hex: "#FF7A1A"  
   },  
   {  
     key: "rojo_transparente",  
-    name: "Rojo transparente",  
+    name: "Ruber Diaphanus",  
     adjective: "Intenso",  
     nature: ["granada abierta", "coral", "puesta roja"],  
     hex: "#FF3B4A"  
@@ -1428,28 +1428,28 @@ const COLORS = [
   },  
   {  
     key: "azul_verde_fuerte",  
-    name: "Mar Abisal (azul · verde fuerte)",  
+    name: "Mare Abyssale (azul · verde fuerte)",  
     adjective: "Eléctrica",  
     nature: ["olas profundas", "posidonia", "tormenta lejana"],  
     hex: "#00C7B7"  
   },  
   {  
     key: "rojo_dorado",  
-    name: "Fulgor Carmesí (rojo · dorado)",  
+    name: "Ignis Ruber (rojo · dorado)",  
     adjective: "Majestuosa",  
     nature: ["sol bajo", "tierra roja", "reflejo dorado"],  
     hex: "#D12A2A"  
   },  
   {  
     key: "marron_dorado",  
-    name: "Ámbar Antiguo (marrón · dorado)",  
+    name: "Succinum Antiquum (marrón · dorado)",  
     adjective: "Noble",  
     nature: ["pino seco", "arena tostada", "madera vieja"],  
     hex: "#A56A2A"  
   },  
   {  
     key: "verde_flojo_amarillo",  
-    name: "Cítrico Suave (verde flojo · amarillo)",  
+    name: "Viridis Matutinus (verde flojo · amarillo)",  
     adjective: "Fresco",  
     nature: ["limonero", "pradera joven", "luz de mañana"],  
     hex: "#B8E85E"  
@@ -1461,7 +1461,7 @@ const COLORS = [
      ============================ */  
   {  
     key: "lotus_succinus",  
-    name: "Lotus succinus",  
+    name: "Lotus succineus",  
     adjective: "Crepuscular",  
     nature: ["flor de loto al atardecer", "ámbar suave", "brillo rosado"],  
     hex: "#FF9A6B"  
@@ -1469,14 +1469,14 @@ const COLORS = [
 
   {  
     key: "blanco",  
-    name: "Blanco",  
+    name: "Albus Purus",  
     adjective: "Puro",  
     nature: ["sal marina", "nube alta", "arena clara"],  
     hex: "#F2F5F8"  
   },  
   {  
     key: "transparente",  
-    name: "Transparente",  
+    name: "Claritas",  
     adjective: "Limpio",  
     nature: ["agua clara", "hielo fino", "cristal"],  
     hex: "#CFE8FF"  
