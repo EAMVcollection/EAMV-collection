@@ -12,6 +12,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  
   <style> 
 
+.ed-item {
+  width: 260px;
+  height: 340px;
+  max-width: 260px;
+  max-height: 340px;
+  overflow: hidden;
+}
+
+.ed-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* o cover si quieres recorte */
+  display: block;
+}
+
+
 .card {
   display: flex;
   flex-direction: column;
@@ -364,8 +380,8 @@ n{ color:#0A0A0A !important; font-weight:600; }
 }  
 .ediciones-overlay.open{ display:flex; }  
 .ediciones-panel{  
-  width:min(980px, 96vw);  
-  max-height:min(82vh, 820px);  
+  width:min(1200px, 98vw);  
+  max-height:min(92vh, 900px);  
   overflow:auto;  
   border-radius:18px;  
   border:1px solid rgba(255,255,255,.10);  
@@ -961,7 +977,7 @@ n{ color:#0A0A0A !important; font-weight:600; }
           
         </div>  
         <div>  
-          <p>·El ferreret es un pequeño anfibio único de Mallorca, habitante ancestral de la Serra de Tramuntana desde hace millones de años.
+          <p>·El Ferreret es un pequeño anfibio único de Mallorca, habitante ancestral de la Serra de Tramuntana desde hace millones de años.
 Durante siglos vivió oculto entre grietas y torrentes, reservado y silencioso, adaptándose a un entorno duro y cambiante.
 </p>  
           <p>·La llegada del ser humano y de especies invasoras lo empujó al borde de la extinción, hasta que durante décadas se le dio por desaparecido.
@@ -1245,7 +1261,7 @@ En EAMV Collection, representa la virtud de la reserva y resistencia: existir en
     </div>  
   </div>  
 </body>
-  <script>  
+  <script> 
 /* ============================  
    DATA DE EDICIONES  
    ============================== */  
@@ -1255,17 +1271,17 @@ const EDITIONS = {
     sub: "Luxoris · Axion",  
     luxoris: {  
       creative: [{img:"assets/podarcis1.jpg", name:"Luxoris Creative", note:""}],  
-      origin:   [{img:"assets/podarcis2.jpg", name:"Luxoris Origin",   note:""}],  
+      origin:   [{img:"assets/podarcis2.jpg", name:"Luxoris Origin",   note:""},     {img:"assets/podarcis22.jpg", name:"Luxoris Origin",   note:""},],  
       eventum:  [{img:"assets/podarcis3.jpg", name:"Luxoris Eventum",  note:""}],  
       limitata: [{img:"assets/p.jpg",         name:"Luxoris Limitata", note:"Próximamente"}],  
-      unicum:   []  
+      unicum:   [{img:"assets/p.jpg",         name:"", note:"Próximamente"}]  
     },  
     axion: {  
-      creative: [{img:"assets/podarcis5.jpg", name:"Axion Creative", note:""}],  
-      origin:   [{img:"assets/podarcis6.jpg", name:"Axion Origin",   note:""}],  
-      eventum:  [],  
-      limitata: [],  
-      unicum:   []  
+      creative: [{img:"assets/podarcis5.jpg", name:"Axion Creative", note:""}, {img:"assets/podarcis55.jpg", name:"Axion Creative", note:""},],  
+      origin:   [{img:"assets/podarcis6.jpg", name:"Axion Origin",   note:""}, {img:"assets/podarcis66.jpg", name:"Axion Origin",   note:""}, ],  
+      eventum:  [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
+      limitata: [{img:"assets/p.jpg",         name:"Luxoris Limitata", note:"Próximamente"}],  
+      unicum:   [{img:"assets/p.jpg",         name:"", note:"Próximamente"}]  
     }  
   },  
 
@@ -1273,18 +1289,18 @@ const EDITIONS = {
     title: "🐐 Myotragus balearicus — Ediciones",  
     sub: "Luxoris · Axion",  
     luxoris: {  
-      creative: [{img:"assets/myotragus1.jpg", name:"Luxoris Creative", note:""}],  
-      origin:   [{img:"assets/myotragus2.jpg", name:"Luxoris Origin",   note:""}],  
+      creative: [{img:"assets/myotragus1.jpg", name:"Luxoris Creative", note:""},{img:"assets/myotragus11.jpg", name:"Luxoris Creative", note:""},],  
+      origin:   [{img:"assets/myotragus2.jpg", name:"Luxoris Origin",   note:""},],  
       eventum:  [{img:"assets/p.jpg",          name:"Luxoris Eventum",  note:"Próximamente"}],  
       limitata: [{img:"assets/p.jpg",          name:"Luxoris Limitata", note:"Próximamente"}],  
-      unicum:   []  
+      unicum:   [{img:"assets/p.jpg",         name:"", note:"Próximamente"}]  
     },  
     axion: {  
       creative: [{img:"assets/p.jpg", name:"Axion Creative", note:"Próximamente"}],  
       origin:   [{img:"assets/p.jpg", name:"Axion Origin",   note:"Próximamente"}],  
-      eventum:  [],  
-      limitata: [],  
-      unicum:   []  
+      eventum:  [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
+      limitata: [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
+      unicum:   [{img:"assets/p.jpg",         name:"", note:"Próximamente"}]  
     }  
   },  
 
@@ -1297,17 +1313,17 @@ const EDITIONS = {
     sub: "Luxoris · Axion",  
     luxoris: {  
       creative: [{img:"assets/ferreret1.jpg", name:"Luxoris Creative", note:""}],  
-      origin:   [{img:"assets/ferreret2.jpg", name:"Luxoris Origin",   note:""}],  
-      eventum:  [{img:"assets/p.jpg",         name:"Luxoris Eventum",  note:"Próximamente"}],  
-      limitata: [{img:"assets/p.jpg",         name:"Luxoris Limitata", note:"Próximamente"}],  
-      unicum:   []  
+      origin:   [{img:"assets/p.jpg",         name:"",  note:"Próximamente"}],  
+      eventum:  [{img:"assets/p.jpg",         name:"",  note:"Próximamente"}],  
+      limitata: [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
+      unicum:   [{img:"assets/p.jpg",         name:"", note:"Próximamente"}]  
     },  
     axion: {  
-      creative: [{img:"assets/p.jpg", name:"Axion Creative", note:"Próximamente"}],  
-      origin:   [{img:"assets/p.jpg", name:"Axion Origin",   note:"Próximamente"}],  
-      eventum:  [],  
-      limitata: [],  
-      unicum:   []  
+      creative: [{img:"assets/ferreret5.jpg", name:"Axion Creative", note:""}, {img:"assets/ferreret55.jpg", name:"Axion Creative", note:""},],  
+      origin:   [{img:"assets/ferreret6.jpg", name:"Axion Origin",   note:""}],  
+      eventum:  [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
+      limitata: [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
+      unicum:   [{img:"assets/ferreretXXXV.jpg", name:"COSMICA XXXV",   note:""}]  
     }  
   }  
 };  
@@ -1388,14 +1404,14 @@ const COLORS = [
   {  
     key: "verde_transparente",  
     name: "Viridis Diaphanus",  
-    adjective: "Vivo",  
+    adjective: "Sabiduría",  
     nature: ["bosque húmedo", "musgo", "hojas al sol"],  
     hex: "#35E2A3"  
   },  
   {  
     key: "azul_transparente",  
     name: "Caeruleus Diaphanus",  
-    adjective: "Sereno",  
+    adjective: "Claridad",  
     nature: ["mar en calma", "poza cristalina", "cielo limpio"],  
     hex: "#4DBBFF"  
   },  
