@@ -1,17 +1,67 @@
 <!-- =========================
      PARTE 1 / 4  (HEAD)
      ========================= -->
-<!DOCTYPE html>  
-<html lang="es">  
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1" />  
-  <title>EAMV collection — Souvenirs con alma balear · Technesano</title>  
-  <link rel="preconnect" href="https://fonts.googleapis.com">  
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  
-  <style> 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EAMV collection — Souvenirs con alma balear · Technesano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <style>
+.panel-toggle{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.03);
+  color: inherit;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+.panel-title{ font-weight: 700; }
+.panel-icon{
+  font-size: 18px;
+  transform: rotate(0deg);
+  transition: transform .25s ease;
+  opacity: .9;
+}
+.panel{
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height .35s ease, opacity .25s ease, transform .25s ease;
+  will-change: max-height, opacity, transform;
+}
+.panel-inner{
+  padding: 12px 16px 18px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.02);
+  margin-top: 10px;
+  line-height: 1.55;
+}
+.panel.is-open{
+  opacity: 1;
+  transform: translateY(0);
+}
+.panel-toggle.is-open .panel-icon{
+  transform: rotate(180deg);
+}
+@media (prefers-reduced-motion: reduce){
+  .panel, .panel-icon{ transition: none; }
+}
+</style>
+
+<style>
 .ed-item {
   width: 260px;
   height: 340px;
@@ -19,166 +69,157 @@
   max-height: 340px;
   overflow: hidden;
 }
-
 .ed-item img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* o cover si quieres recorte */
+  object-fit: contain;
   display: block;
 }
-
-
 .card {
   display: flex;
   flex-direction: column;
   min-height: 400px;
-    }
-
+}
 .card img {
   max-height: 360px;
   object-fit: contain;
   margin: 0 auto;
-    }
- 
+}
+
 .strip {
   display: flex;
   justify-content: center;
-  gap: 16px; /* opcional */
-    }
-
+  gap: 16px;
+}
 .strip .item img {
   width: 100%;
   max-width: 500px;
   height: 380px;
   object-fit: cover;
-     }
-</style> 
-<style> 
+}
+</style>
 
-/* ====== Sobremi cuadro ====== */  
-.link-sobremi{ display:block; text-decoration:none; }  
-.bloque-sobremi{  
-  width: 100%;  
-  display: flex;  
-  align-items: center;  
-  justify-content: center;  
-  gap: 14px;  
-  padding: 18px 22px;  
-  margin-top: 12px;  
-  background: linear-gradient(90deg, rgba(22, 70, 52, 0.95), rgba(18, 48, 38, 0.95));  
-  border: 1px solid rgba(210, 170, 90, 0.7);  
-  border-radius: 16px;  
-  box-shadow: 0 10px 28px rgba(0,0,0,0.45), inset 0 0 22px rgba(210,170,90,0.15);  
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;  
-}  
-.bloque-sobremi:hover{  
-  transform: translateY(-1px);  
-  border-color: rgba(235, 200, 130, 0.95);  
-  box-shadow: 0 14px 36px rgba(0,0,0,0.55), inset 0 0 26px rgba(235,200,130,0.22);  
-}  
-.bloque-sobremi .texto{  
-  color:#e8f6ef;  
-  font-weight:600;  
-  letter-spacing:.3px;  
-  font-size:14px;  
-}  
-.bloque-sobremi .icono{  
-  width:8px;height:8px;border-radius:50%;  
-  background: radial-gradient(circle,#f1d18a,#b89345);  
-  box-shadow: 0 0 10px rgba(241,209,138,0.7);  
-}  
-/* --- cuadrado sobre eamv --- */  
-.btn-sobre-eamv {  
-  display:inline-block;  
-  padding:0.6rem 1.8rem;  
-  border-radius:999px;  
-  background:  
-    radial-gradient(circle at 50% 0%, rgba(0,255,196,0.5) 0, transparent 55%),  
-    linear-gradient(135deg, #f5e3b4 0%, #f3d48a 40%, #f0c86b 70%, #e7b955 100%);  
-  color:#111;  
-  font-family:"EB Garamond", serif;  
-  font-size:0.82rem;  
-  letter-spacing:0.22em;  
-  text-transform:uppercase;  
-  text-decoration:none;  
-  text-align:center;  
-  border:1px solid rgba(255,255,255,0.6);  
-  box-shadow:0 0 12px rgba(0,255,196,0.55), 0 14px 30px rgba(0,0,0,0.55);  
-  transition:transform .18s ease-out, box-shadow .18s ease-out, background .25s ease-out;  
-}  
-.btn-sobre-eamv:hover {  
-  transform:translateY(-1px);  
-  box-shadow:0 0 18px rgba(0,255,196,0.8), 0 18px 40px rgba(0,0,0,0.7);  
-  background:  
-    radial-gradient(circle at 50% 0%, rgba(0,255,220,0.7) 0, transparent 60%),  
-    linear-gradient(135deg, #f9eac4 0%, #f6d98f 40%, #f1cc6c 70%, #eabb53 100%);  
-}  
-.btn-sobre-eamv:active {  
-  transform:translateY(1px);  
-  box-shadow:0 0 10px rgba(0,255,196,0.6), 0 8px 20px rgba(0,0,0,0.7);  
-}  
-/* === GALERÍA ACCESORIO === */  
-.accesorio{  
-  display:flex; justify-content:center; flex-wrap:wrap;  
-  gap:40px; margin-top:40px; padding:20px 0;  
-}  
-.accesorio figure{  
-  text-align:center;  
-  transition:transform .3s ease, box-shadow .3s ease;  
-  border-radius:12px;  
-  overflow:hidden;  
-}  
-.accesorio img{  
-  width:200px; height:auto; border-radius:12px;  
-  opacity:1; filter:brightness(1);  
-  transition:transform .35s ease, filter .35s ease, box-shadow .35s ease;  
-  box-shadow:0 0 12px rgba(0,0,0,0.25);  
-}  
-.accesorio img:hover{  
-  transform:scale(1.08);  
-  filter:brightness(1.2);  
-  box-shadow:0 0 25px rgba(0,255,255,0.4);  
-}  
-.accesorio figcaption{  
-  margin-top:10px;  
-  color:var(--t-brand, #00ffaa);  
-  font-weight:500;  
-  font-size:.95rem;  
-  letter-spacing:.5px;  
-}  
-</style> 
-<style> 
-/* Estilo por defecto (PC o pantallas grandes) */  
-body{ font-size:18px; margin:40px; }  
-/* 📱 Móviles */  
-@media (max-width:768px){  
-  body{ font-size:16px; margin:15px; }  
-}  
-/* 💻 Tablets */  
-@media (max-width:1024px) and (min-width:769px){  
-  body{ font-size:17px; margin:25px; }  
+<style>
+/* ====== Sobremi cuadro ====== */
+.link-sobremi{ display:block; text-decoration:none; }
+.bloque-sobremi{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px 22px;
+  margin-top: 12px;
+  background: linear-gradient(90deg, rgba(22, 70, 52, 0.95), rgba(18, 48, 38, 0.95));
+  border: 1px solid rgba(210, 170, 90, 0.7);
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.45), inset 0 0 22px rgba(210,170,90,0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.bloque-sobremi:hover{
+  transform: translateY(-1px);
+  border-color: rgba(235, 200, 130, 0.95);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.55), inset 0 0 26px rgba(235,200,130,0.22);
+}
+.bloque-sobremi .texto{
+  color:#e8f6ef;
+  font-weight:600;
+  letter-spacing:.3px;
+  font-size:14px;
+}
+.bloque-sobremi .icono{
+  width:8px;height:8px;border-radius:50%;
+  background: radial-gradient(circle,#f1d18a,#b89345);
+  box-shadow: 0 0 10px rgba(241,209,138,0.7);
+}
+/* --- cuadrado sobre eamv --- */
+.btn-sobre-eamv {
+  display:inline-block;
+  padding:0.6rem 1.8rem;
+  border-radius:999px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(0,255,196,0.5) 0, transparent 55%),
+    linear-gradient(135deg, #f5e3b4 0%, #f3d48a 40%, #f0c86b 70%, #e7b955 100%);
+  color:#111;
+  font-family:"EB Garamond", serif;
+  font-size:0.82rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  text-decoration:none;
+  text-align:center;
+  border:1px solid rgba(255,255,255,0.6);
+  box-shadow:0 0 12px rgba(0,255,196,0.55), 0 14px 30px rgba(0,0,0,0.55);
+  transition:transform .18s ease-out, box-shadow .18s ease-out, background .25s ease-out;
+}
+.btn-sobre-eamv:hover {
+  transform:translateY(-1px);
+  box-shadow:0 0 18px rgba(0,255,196,0.8), 0 18px 40px rgba(0,0,0,0.7);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(0,255,220,0.7) 0, transparent 60%),
+    linear-gradient(135deg, #f9eac4 0%, #f6d98f 40%, #f1cc6c 70%, #eabb53 100%);
+}
+.btn-sobre-eamv:active {
+  transform:translateY(1px);
+  box-shadow:0 0 10px rgba(0,255,196,0.6), 0 8px 20px rgba(0,0,0,0.7);
+}
+
+/* === GALERÍA ACCESORIO === */
+.accesorio{
+  display:flex; justify-content:center; flex-wrap:wrap;
+  gap:40px; margin-top:40px; padding:20px 0;
+}
+.accesorio figure{
+  text-align:center;
+  transition:transform .3s ease, box-shadow .3s ease;
+  border-radius:12px;
+  overflow:hidden;
+}
+.accesorio img{
+  width:200px; height:auto; border-radius:12px;
+  opacity:1; filter:brightness(1);
+  transition:transform .35s ease, filter .35s ease, box-shadow .35s ease;
+  box-shadow:0 0 12px rgba(0,0,0,0.25);
+}
+.accesorio img:hover{
+  transform:scale(1.08);
+  filter:brightness(1.2);
+  box-shadow:0 0 25px rgba(0,255,255,0.4);
+}
+.accesorio figcaption{
+  margin-top:10px;
+  color:var(--t-brand, #00ffaa);
+  font-weight:500;
+  font-size:.95rem;
+  letter-spacing:.5px;
+}
+</style>
+
+<style>
+/* Estilo por defecto (PC o pantallas grandes) */
+body{ font-size:18px; margin:40px; }
+/* 📱 Móviles */
+@media (max-width:768px){
+  body{ font-size:16px; margin:15px; }
+}
+/* 💻 Tablets */
+@media (max-width:1024px) and (min-width:769px){
+  body{ font-size:17px; margin:25px; }
   .galeria { grid-template-columns: repeat(2,1fr); }
-} 
-
+}
 /* ===== FIX MOVIL DEFINITIVO: apagar "flip cards" ===== */
 @media (max-width:768px){
-
-  /* La tarjeta deja de ser un escenario 3D con altura fija */
   .card{
     height: auto !important;
     min-height: 0 !important;
     perspective: none !important;
-    overflow: visible !important; /* para que no recorte */
+    overflow: visible !important;
   }
-
-.strip .item{
-   height: auto !important;
+  .strip .item{
+    height: auto !important;
     min-height: 0 !important;
     perspective: none !important;
-    overflow: visible !important; /* para que no recorte */
-     }
-
-  /* El contenedor interno deja de rotar */
+    overflow: visible !important;
+  }
   .card-inner{
     transform: none !important;
     transition: none !important;
@@ -186,8 +227,6 @@ body{ font-size:18px; margin:40px; }
     height: auto !important;
     display: block !important;
   }
-
-  /* Las caras dejan de ser absolute (esto es LA CLAVE) */
   .card-front,
   .card-back{
     position: relative !important;
@@ -197,1436 +236,1721 @@ body{ font-size:18px; margin:40px; }
     transform: none !important;
     overflow: visible !important;
   }
-
-  /* En móvil, ocultamos la cara trasera (si quieres) */
   .card-back{ display: none !important; }
-
-  /* Imagen principal: que se vea grande y normal */
   .card-front img{
     width: 100% !important;
     height: auto !important;
-    max-height: none !important; /* evita la rayita por límites raros */
+    max-height: none !important;
     object-fit: cover !important;
     margin: 0 auto !important;
   }
 }
+</style>
 
+<style>
+@media (prefers-color-scheme: dark) {
+  v{
+    background: linear-gradient(90deg, #3ac6a8, #8ad6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+  }
+}
+</style>
 
-  </style>
-  
-  <style>  
-@media (prefers-color-scheme: dark) {  
-  v{  
-    background: linear-gradient(90deg, #3ac6a8, #8ad6ff);  
-    -webkit-background-clip: text;  
-    -webkit-text-fill-color: transparent;  
-    font-weight: 600;  
-  }  
+<style>
+v{
+  background: linear-gradient(90deg, #3ac6a8, #8ad6ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-weight:600;
+}
+</style>
 
-  </style> 
- 
-  <style>  
-v{  
-  background: linear-gradient(90deg, #3ac6a8, #8ad6ff);  
-  -webkit-background-clip:text;  
-  -webkit-text-fill-color:transparent;  
-  font-weight:600;  
-}  
-  </style>  
-  <style>  
-:root{  
-  --bg:#0a0e12; --bg2:#0d1218; --fg:#e8eef5; --muted:#9fb3c8;  
-  --brand:#3ac6a8; --brand2:#8ad6ff; --card:#10161c; --line:rgba(255,255,255,.08);  
-}  
-*{box-sizing:border-box}  
-html{scroll-behavior:smooth}  
-body{  
-  margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;  
-  color:var(--fg);  
-  background:  
-    radial-gradient(1200px 700px at 15% 10%, rgba(58,198,168,.08), transparent 40%),  
-    radial-gradient(900px 600px at 85% 20%, rgba(138,214,255,.08), transparent 45%),  
-    linear-gradient(180deg,#070a0e 0%, #0a0e12 40%, #0d1218 100%);  
-}  
-a{color:var(--brand); text-decoration:none}  
-img{max-width:100%; display:block}  
-/* --- NAV --- */  
-.nav{position:sticky; top:0; z-index:40; background:rgba(7,10,14,.6); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}  
-.nav-inner{max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 16px}  
-.logo{display:flex; gap:10px; align-items:center}  
-.logo-mark{width:34px; height:34px; border-radius:50%; background:radial-gradient(100% 100% at 30% 30%, var(--brand) 0%, var(--brand2) 60%, #fff 100%); box-shadow:0 0 22px rgba(58,198,168,.45)}  
-.logo h1{font-size:18px; margin:0; letter-spacing:.6px}  
-.nav a{color:var(--fg); opacity:.9; margin-left:16px; transition:all .25s}  
-.nav a:hover{opacity:1; text-shadow:0 0 6px rgba(138,214,255,.5)}  
-.nav a[href="#por-que"]{color:var(--brand); font-weight:600;}  
-.nav a[href="#por-que"]:hover{text-shadow:0 0 8px rgba(58,198,168,0.8);}  
-/* --- HERO --- */  
-.hero-logo{  
-  display:block;  
-  margin:0 auto 1.5rem auto;  
-  max-width:320px;  
-  width:90%;  
-  filter:drop-shadow(0 0 10px rgba(58,198,168,0.4));  
-  animation:fadeIn 2s ease-in-out;  
-}  
-@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}  
-.hero{position:relative; min-height:80vh; display:grid; place-items:center; overflow:hidden}  
-.hero::before{  
-  content:""; position:absolute; inset:-20%;  
-  background:radial-gradient(70% 60% at 50% 40%, rgba(58,198,168,.10), transparent 60%);  
-  animation:breath 14s ease-in-out infinite;  
-}  
-@keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}  
-.hero-inner{position:relative; z-index:1; max-width:1100px; padding:64px 16px; text-align:left}  
-.kicker{color:var(--brand); text-transform:uppercase; letter-spacing:2px; font-weight:600}  
-.title{font-size:clamp(36px, 4.4vw, 64px); line-height:1.05; margin:.3em 0 .2em}  
-.title span:nth-child(1){color:var(--brand)}  
-.title span:nth-child(2){color:var(--brand2)}  
-.metal-text{  
-  background:linear-gradient(90deg,#8a8a8a 0%, #c0c0c0 40%, #4f4f4f 70%, #b3b3b3 100%);  
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:600;  
-}  
-.subtitle{font-size:clamp(16px,2.1vw,20px); color:var(--muted); max-width:780px}  
-.cta-row{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap}  
-.cta{  
-  display:inline-block; padding:12px 20px; border-radius:14px;  
-  background:linear-gradient(135deg,var(--brand),var(--brand2));  
-  color:#071018; font-weight:700; box-shadow:0 8px 24px rgba(138,214,255,.25);  
-  transition:box-shadow .3s  
-}  
-.cta.secondary{background:transparent; color:var(--fg); border:1px solid var(--line)}  
-.cta:hover{box-shadow:0 0 20px rgba(58,198,168,0.4)}  
-/* --- SECTIONS --- */  
-section{max-width:1100px; margin:0 auto; padding:56px 16px}  
-h2.section-title{font-size:clamp(26px,3vw,36px); text-align:center; margin:0 0 8px}  
-.section-sub{color:var(--muted); text-align:center; max-width:780px; margin:0 auto 18px}  
-/* --- TARJETAS --- */  
-.card{  
-  perspective:1000px; position:relative; width:90%; max-width:800px; height:600px; margin:40px auto;  
-  border-radius:20px; overflow:hidden; box-shadow:0 0 25px rgba(0,0,0,.4);  
-  transition:box-shadow .4s ease;  
-}  
-@media (max-width: 768px){  
-  .card{ height:auto; }  
-}  
-.card-inner{position:relative;width:100%;height:100%;transition:transform .8s ease;transform-style:preserve-3d;}  
-.card.girada .card-inner{transform:rotateY(180deg);}  
-.card-front,.card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:20px;overflow:hidden;border:2px solid rgba(0,0,0,0);}  
-.card-front{color:#fff; padding:20px;}  
-.card-back{background:#1a2028;color:#fff;transform:rotateY(180deg);padding:20px;text-align:center;}  
-.card:hover{box-shadow:0 0 20px rgba(58,198,168,0.25),0 0 40px rgba(138,214,255,0.15)}  
-.card:nth-of-type(1) .card-front{background:linear-gradient(145deg,#0e151b,#0a1814);}  
-.card:nth-of-type(2) .card-front{background:linear-gradient(145deg,#0d1a1f,#092126);}  
-.card:nth-of-type(3) .card-front{background:linear-gradient(145deg,#0b181f,#0d1f1c);}  
-.card:nth-of-type(4) .card-front{background:linear-gradient(145deg,#0e1922,#0a1418);}  
-.card:nth-of-type(5) .card-front{background:linear-gradient(145deg,#0c1c1f,#091716);}  
-.card:nth-of-type(6) .card-front{background:linear-gradient(145deg,#0b171d,#0d201a);}  
-.tag{  
-  display:inline-block;background:#202830;padding:6px 12px;border-radius:15px;cursor:pointer;font-size:.9rem;margin-bottom:10px;  
-  transition:background .3s,box-shadow .3s;  
-}  
-.tag:hover{background:#00ffa2;color:#000;box-shadow:0 0 10px #00ffa2;}  
-.galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}  
-.galeria img{width:100%;border-radius:10px;opacity:0;transform:translateY(10px);transition:opacity .8s,transform .8s,box-shadow .3s;}  
-.card.girada .galeria img{opacity:1;transform:translateY(0);}  
-.galeria img:hover{transform:scale(1.05);box-shadow:0 0 12px #00ffa2;}  
-.galeria figcaption{margin-top:5px;font-size:.85rem;color:#ccc;font-weight:500;text-align:center;}  
-.boton-ficha{text-align:center;margin-top:12px;margin-bottom:40px;}  
-.boton{  
-  display:inline-block;padding:10px 20px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));  
-  color:#000;font-weight:600;text-decoration:none;box-shadow:0 0 10px rgba(0,255,162,.3);transition:background .3s,box-shadow .3s;  
-}  
-.boton:hover{background:#00d688;box-shadow:0 0 20px rgba(0,255,162,.6);}  
-details{background:linear-gradient(180deg,#0e151b,#0a1016);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:14px 0;}  
-summary{cursor:pointer;list-style:none;font-weight:700;}  
-summary::-webkit-details-marker{display:none;}  
-.chev{transition:transform .25s ease;display:inline-block;margin-right:8px;}  
-details[open] .chev{transform:rotate(90deg);}  
-.details-body{margin-top:12px;display:grid;gap:14px;}  
-footer{padding:28px 16px;text-align:center;color:var(--muted);}  
-/* ====== BOTÓN DISPARADOR ====== */  
-.technesano-btn{  
-  font-family:"EB Garamond", serif;  
-  letter-spacing:0.08em;  
-  font-size:1rem;  
-  padding:0.6rem 1.6rem;  
-  border-radius:999px;  
-  border:1px solid rgba(255, 215, 160, 0.7);  
-  background: radial-gradient(circle at 30% 0%, #f8e3b0 0, #b28b4a 40%, #312015 100%);  
-  color:#fdf6e3;  
-  text-shadow:0 0 4px rgba(255,255,210,0.6);  
-  text-transform:uppercase;  
-  cursor:pointer;  
-  position:relative;  
-  overflow:hidden;  
-  transition:transform .18s ease, box-shadow .18s ease, background .3s ease;  
-  box-shadow:0 0 0 rgba(0,0,0,0.4);  
-}  
-/* OJO: esto es un tag inventado (n). Funciona, pero no es estándar. */  
-n{ color:#0A0A0A !important; font-weight:600; }  
-/* ============================  
-   PANEL DE EDICIONES  
-   ============================== */  
-.ediciones-overlay{  
-  position:fixed;  
-  inset:0;  
-  z-index:999;  
-  display:none;  
-  align-items:center;  
-  justify-content:center;  
-  padding:18px;  
-  background:rgba(0,0,0,.68);  
-  backdrop-filter: blur(10px);  
-}  
-.ediciones-overlay.open{ display:flex; }  
-.ediciones-panel{  
-  width:min(1200px, 98vw);  
-  max-height:min(92vh, 900px);  
-  overflow:auto;  
-  border-radius:18px;  
-  border:1px solid rgba(255,255,255,.10);  
-  background: linear-gradient(180deg, rgba(12,18,24,.96), rgba(8,12,18,.96));  
-  box-shadow: 0 18px 60px rgba(0,0,0,.55);  
-  padding:14px;  
-  position:relative;  
-  scrollbar-width:none;  
-  -ms-overflow-style:none;  
-}  
-.ediciones-panel::-webkit-scrollbar{ width:0; height:0; }  
-.ediciones-top{  
-  display:flex;  
-  align-items:center;  
-  justify-content:space-between;  
-  gap:12px;  
-  padding:6px 4px 12px 4px;  
-  border-bottom:1px solid rgba(255,255,255,.08);  
-}  
-.ediciones-title{  
-  margin:0;  
-  font-size:16px;  
-  letter-spacing:.3px;  
-  color:#e8eef5;  
-}  
-.ediciones-sub{  
-  margin:2px 0 0 0;  
-  color:rgba(232,238,245,.72);  
-  font-size:13px;  
-}  
-.ediciones-close{  
-  border:1px solid rgba(255,255,255,.14);  
-  background:rgba(255,255,255,.06);  
-  color:#fff;  
-  border-radius:12px;  
-  padding:8px 12px;  
-  cursor:pointer;  
-  font-weight:700;  
-}  
-.ediciones-close:hover{  
-  background:rgba(0,255,162,.15);  
-  border-color:rgba(0,255,162,.35);  
-}  
-.ediciones-grid{  
-  display:grid;  
-  grid-template-columns: 1fr 1fr;  
-  gap:14px;  
-  margin-top:12px;  
-}  
-@media (max-width: 860px){  
-  .ediciones-grid{ grid-template-columns: 1fr; }  
-}  
-.ed-col{  
-  border:1px solid rgba(255,255,255,.08);  
-  border-radius:16px;  
-  padding:12px;  
-  background:rgba(255,255,255,.02);  
-}  
-.ed-col h4{  
-  margin:0 0 8px 0;  
-  font-size:15px;  
-  letter-spacing:.25px;  
-}  
-.ed-col h4 span{  
-  background:linear-gradient(90deg,var(--brand),var(--brand2));  
-  -webkit-background-clip:text;  
-  -webkit-text-fill-color:transparent;  
-}  
-.ed-block{  
-  border:1px solid rgba(255,255,255,.08);  
-  border-radius:14px;  
-  padding:10px;  
-  background:rgba(255,255,255,.015);  
-  margin-bottom:12px;  
-}  
-.ed-block-title{  
-  list-style:none;  
-  cursor:pointer;  
-  font-weight:800;  
-  color:#cfe6ff;  
-  margin:0;  
-  padding:8px 10px;  
-  border-radius:12px;  
-  display:flex;  
-  align-items:center;  
-  justify-content:space-between;  
-  user-select:none;  
-  background:rgba(255,255,255,.02);  
-  border:1px solid rgba(255,255,255,.06);  
-}  
-.ed-block-title::-webkit-details-marker{ display:none; }  
-.ed-block-title::after{  
-  content:"▸";  
-  opacity:.8;  
-  transform:rotate(0deg);  
-  transition:transform .2s ease, opacity .2s ease;  
-}  
-.ed-block[open] .ed-block-title::after{  
-  transform:rotate(90deg);  
-  opacity:1;  
-}  
-.ed-items{  
-  margin-top:10px;  
-  display:grid;  
-  grid-template-columns: repeat(2, 1fr);  
-  gap:10px;  
-}  
-@media (max-width: 460px){  
-  .ed-items{ grid-template-columns: 1fr; }  
-}  
-.ed-item{  
-  border:1px solid rgba(255,255,255,.08);  
-  border-radius:14px;  
-  overflow:hidden;  
-  background:rgba(0,0,0,.25);  
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;  
-}  
-.ed-item:hover{  
-  transform: translateY(-1px);  
-  border-color: rgba(0,255,162,.25);  
-  box-shadow: 0 0 16px rgba(0,255,162,.12);  
-}  
-.ed-item img{  
-  width: auto;  
-  height: auto !important;  
-  object-fit:cover;  
-  display:block;  
-}  
-.ed-item .cap{  
-  padding:8px 10px;  
-  font-size:12px;  
-  color:rgba(232,238,245,.85);  
-}  
-.ed-item .cap b{  
-  display:block;  
-  color:#fff;  
-  font-size:12px;  
-  margin-bottom:2px;  
-}  
-.ed-empty{  
-  padding:10px;  
-  color:rgba(232,238,245,.65);  
-  font-size:12px;  
-  border:1px dashed rgba(255,255,255,.14);  
-  border-radius:12px;  
-  text-align:center;  
-}  
-/* ============================  
-   SIMBOLOGÍA DE COLORES (UI)  
-   ============================== */  
-.col-board-wrap{  
-  margin-top: 18px;  
-  border:1px solid rgba(255,255,255,.08);  
-  border-radius: 18px;  
-  padding: 16px;  
-  background: linear-gradient(180deg, rgba(16,22,28,.62), rgba(8,12,18,.62));  
-  box-shadow: 0 14px 34px rgba(0,0,0,.35);  
-}  
-.col-board-head{  
-  display:flex;  
-  align-items:flex-start;  
-  justify-content:space-between;  
-  gap:12px;  
-  margin-bottom: 12px;  
-}  
-.col-board-head h3{  
-  margin:0;  
-  font-size: 16px;  
-  letter-spacing: .25px;  
-}  
-.col-board-head p{  
-  margin: 2px 0 0 0;  
-  color: rgba(232,238,245,.72);  
-  font-size: 13px;  
-  max-width: 720px;  
-}  
-.col-board-chip{  
-  border:1px solid rgba(255,255,255,.12);  
-  background: rgba(255,255,255,.05);  
-  color:#fff;  
-  border-radius: 999px;  
-  padding: 8px 12px;  
-  cursor:pointer;  
-  font-weight: 800;  
-  white-space: nowrap;  
-}  
-.col-board-chip:hover{  
-  background: rgba(0,255,162,.12);  
-  border-color: rgba(0,255,162,.28);  
-}  
-.color-board{  
-  display:grid;  
-  grid-template-columns: repeat(6, 1fr);  
-  gap:10px;  
-}  
-@media (max-width: 980px){  
-  .color-board{ grid-template-columns: repeat(4, 1fr); }  
-}  
-@media (max-width: 560px){  
-  .color-board{ grid-template-columns: repeat(3, 1fr); }  
-}  
-.color-tile{  
-  border: 1px solid rgba(255,255,255,.10);  
-  border-radius: 14px;  
-  overflow:hidden;  
-  background: rgba(0,0,0,.20);  
-  cursor:pointer;  
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;  
-  position: relative;  
-  min-height: 76px;  
-}  
-.color-tile:hover{  
-  transform: translateY(-1px);  
-  border-color: rgba(0,255,162,.22);  
-  box-shadow: 0 0 18px rgba(0,255,162,.10);  
-}  
-.color-swatch{  
-  height: 44px;  
-  background: #222;  
-}  
-.color-name{  
-  padding: 8px 10px 10px 10px;  
-  font-size: 12px;  
-  color: rgba(232,238,245,.92);  
-  font-weight: 800;  
-  letter-spacing: .2px;  
-}  
-.color-sub{  
-  font-size: 11px;  
-  color: rgba(232,238,245,.62);  
-  font-weight: 600;  
-  margin-top: 2px;  
-}  
-/* Overlay colores */  
-.colores-overlay{  
-  position:fixed;  
-  inset:0;  
-  z-index:1000;  
-  display:none;  
-  align-items:center;  
-  justify-content:center;  
-  padding:18px;  
-  background:rgba(0,0,0,.68);  
-  backdrop-filter: blur(10px);  
-}  
-.colores-overlay.open{ display:flex; }  
-.colores-panel{  
-  width:min(920px, 96vw);  
-  max-height:min(82vh, 820px);  
-  overflow:auto;  
-  border-radius:18px;  
-  border:1px solid rgba(255,255,255,.10);  
-  background: linear-gradient(180deg, rgba(12,18,24,.96), rgba(8,12,18,.96));  
-  box-shadow: 0 18px 60px rgba(0,0,0,.55);  
-  padding:14px;  
-  position:relative;  
-  scrollbar-width:none;  
-  -ms-overflow-style:none;  
-}  
-.colores-panel::-webkit-scrollbar{ width:0; height:0; }  
-.colores-top{  
-  display:flex;  
-  align-items:center;  
-  justify-content:space-between;  
-  gap:12px;  
-  padding:6px 4px 12px 4px;  
-  border-bottom:1px solid rgba(255,255,255,.08);  
-}  
-.colores-title{  
-  margin:0;  
-  font-size:16px;  
-  letter-spacing:.3px;  
-  color:#e8eef5;  
-}  
-.colores-sub{  
-  margin:2px 0 0 0;  
-  color:rgba(232,238,245,.72);  
-  font-size:13px;  
-}  
-.colores-close{  
-  border:1px solid rgba(255,255,255,.14);  
-  background:rgba(255,255,255,.06);  
-  color:#fff;  
-  border-radius:12px;  
-  padding:8px 12px;  
-  cursor:pointer;  
-  font-weight:700;  
-}  
-.colores-close:hover{  
-  background:rgba(0,255,162,.15);  
-  border-color:rgba(0,255,162,.35);  
-}  
-.colores-body{  
-  display:grid;  
-  grid-template-columns: 1fr 1.35fr;  
-  gap: 14px;  
-  margin-top: 12px;  
-}  
-@media (max-width: 860px){  
-  .colores-body{ grid-template-columns: 1fr; }  
-}  
-.colores-list{  
-  border:1px solid rgba(255,255,255,.08);  
-  border-radius:16px;  
-  background:rgba(255,255,255,.02);  
-  padding: 10px;  
-}  
-.colores-list h4{  
-  margin: 0 0 8px 0;  
-  font-size: 14px;  
-  letter-spacing: .2px;  
-  color: rgba(232,238,245,.9);  
-}  
-.colores-btn{  
-  width:100%;  
-  display:flex;  
-  align-items:center;  
-  gap:10px;  
-  border:1px solid rgba(255,255,255,.10);  
-  background:rgba(0,0,0,.25);  
-  color:#fff;  
-  border-radius: 14px;  
-  padding: 10px;  
-  cursor:pointer;  
-  margin-bottom: 10px;  
-  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease;  
-  text-align:left;  
-}  
-.colores-btn:hover{  
-  transform: translateY(-1px);  
-  border-color: rgba(0,255,162,.20);  
-  box-shadow: 0 0 14px rgba(0,255,162,.10);  
-}  
-.colores-btn.active{  
-  border-color: rgba(0,255,162,.35);  
-  background: rgba(0,255,162,.08);  
-}  
-.colores-dot{  
-  width:16px; height:16px;  
-  border-radius: 6px;  
-  background:#333;  
-  box-shadow: 0 0 10px rgba(0,0,0,.35);  
-  flex: 0 0 auto;  
-}  
-.colores-btn .txt{  
-  display:flex;  
-  flex-direction:column;  
-  gap:2px;  
-}  
-.colores-btn .txt b{  
-  font-size: 12px;  
-  letter-spacing:.2px;  
-}  
-.colores-btn .txt span{  
-  font-size: 11px;  
-  color: rgba(232,238,245,.70);  
-  font-weight: 600;  
-}  
-.colores-detail{  
-  border:1px solid rgba(255,255,255,.08);  
-  border-radius:16px;  
-  background:rgba(255,255,255,.02);  
-  padding: 14px;  
-}  
-.colores-detail-top{  
-  display:flex;  
-  align-items:center;  
-  gap: 12px;  
-  margin-bottom: 10px;  
-}  
-.colores-bigswatch{  
-  width: 42px;  
-  height: 42px;  
-  border-radius: 14px;  
-  background: #444;  
-  border: 1px solid rgba(255,255,255,.14);  
-  box-shadow: 0 0 14px rgba(0,0,0,.45);  
-}  
-.colores-detail-top h4{  
-  margin:0;  
-  font-size: 15px;  
-  letter-spacing: .25px;  
-}  
-.colores-detail p{  
-  margin: 0 0 10px 0;  
-  color: rgba(232,238,245,.78);  
-  line-height: 1.6;  
-  font-size: 13px;  
-}  
-.colores-tags{  
-  display:flex;  
-  flex-wrap: wrap;  
-  gap: 8px;  
-  margin-top: 10px;  
-}  
-.col-tag{  
-  border:1px solid rgba(255,255,255,.10);  
-  background: rgba(255,255,255,.04);  
-  border-radius: 999px;  
-  padding: 6px 10px;  
-  font-size: 11px;  
-  color: rgba(232,238,245,.85);  
-  font-weight: 700;  
-}  
-  </style>  
+<style>
+:root{
+  --bg:#0a0e12; --bg2:#0d1218; --fg:#e8eef5; --muted:#9fb3c8;
+  --brand:#3ac6a8; --brand2:#8ad6ff; --card:#10161c; --line:rgba(255,255,255,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+  color:var(--fg);
+  background:
+    radial-gradient(1200px 700px at 15% 10%, rgba(58,198,168,.08), transparent 40%),
+    radial-gradient(900px 600px at 85% 20%, rgba(138,214,255,.08), transparent 45%),
+    linear-gradient(180deg,#070a0e 0%, #0a0e12 40%, #0d1218 100%);
+}
+a{color:var(--brand); text-decoration:none}
+img{max-width:100%; display:block}
+
+/* --- NAV --- */
+.nav{position:sticky; top:0; z-index:40; background:rgba(7,10,14,.6); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 16px}
+.logo{display:flex; gap:10px; align-items:center}
+.logo-mark{width:34px; height:34px; border-radius:50%; background:radial-gradient(100% 100% at 30% 30%, var(--brand) 0%, var(--brand2) 60%, #fff 100%); box-shadow:0 0 22px rgba(58,198,168,.45)}
+.logo h1{font-size:18px; margin:0; letter-spacing:.6px}
+.nav a{color:var(--fg); opacity:.9; margin-left:16px; transition:all .25s}
+.nav a:hover{opacity:1; text-shadow:0 0 6px rgba(138,214,255,.5)}
+.nav a[href="#por-que"]{color:var(--brand); font-weight:600;}
+.nav a[href="#por-que"]:hover{text-shadow:0 0 8px rgba(58,198,168,0.8);}
+
+/* --- HERO --- */
+.hero-logo{
+  display:block;
+  margin:0 auto 1.5rem auto;
+  max-width:320px;
+  width:90%;
+  filter:drop-shadow(0 0 10px rgba(58,198,168,0.4));
+  animation:fadeIn 2s ease-in-out;
+}
+@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.hero{position:relative; min-height:80vh; display:grid; place-items:center; overflow:hidden}
+.hero::before{
+  content:""; position:absolute; inset:-20%;
+  background:radial-gradient(70% 60% at 50% 40%, rgba(58,198,168,.10), transparent 60%);
+  animation:breath 14s ease-in-out infinite;
+}
+@keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.hero-inner{position:relative; z-index:1; max-width:1100px; padding:64px 16px; text-align:left}
+.kicker{color:var(--brand); text-transform:uppercase; letter-spacing:2px; font-weight:600}
+.title{font-size:clamp(36px, 4.4vw, 64px); line-height:1.05; margin:.3em 0 .2em}
+.title span:nth-child(1){color:var(--brand)}
+.title span:nth-child(2){color:var(--brand2)}
+.metal-text{
+  background:linear-gradient(90deg,#8a8a8a 0%, #c0c0c0 40%, #4f4f4f 70%, #b3b3b3 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:600;
+}
+.subtitle{font-size:clamp(16px,2.1vw,20px); color:var(--muted); max-width:780px}
+.cta-row{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap}
+.cta{
+  display:inline-block; padding:12px 20px; border-radius:14px;
+  background:linear-gradient(135deg,var(--brand),var(--brand2));
+  color:#071018; font-weight:700; box-shadow:0 8px 24px rgba(138,214,255,.25);
+  transition:box-shadow .3s
+}
+.cta.secondary{background:transparent; color:var(--fg); border:1px solid var(--line)}
+.cta:hover{box-shadow:0 0 20px rgba(58,198,168,0.4)}
+
+/* --- SECTIONS --- */
+section{max-width:1100px; margin:0 auto; padding:56px 16px}
+h2.section-title{font-size:clamp(26px,3vw,36px); text-align:center; margin:0 0 8px}
+.section-sub{color:var(--muted); text-align:center; max-width:780px; margin:0 auto 18px}
+
+/* --- TARJETAS --- */
+.card{
+  perspective:1000px; position:relative; width:90%; max-width:800px; height:600px; margin:40px auto;
+  border-radius:20px; overflow:hidden; box-shadow:0 0 25px rgba(0,0,0,.4);
+  transition:box-shadow .4s ease;
+}
+@media (max-width: 768px){
+  .card{ height:auto; }
+}
+.card-inner{position:relative;width:100%;height:100%;transition:transform .8s ease;transform-style:preserve-3d;}
+.card.girada .card-inner{transform:rotateY(180deg);}
+.card-front,.card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:20px;overflow:hidden;border:2px solid rgba(0,0,0,0);}
+.card-front{color:#fff; padding:20px;}
+.card-back{background:#1a2028;color:#fff;transform:rotateY(180deg);padding:20px;text-align:center;}
+.card:hover{box-shadow:0 0 20px rgba(58,198,168,0.25),0 0 40px rgba(138,214,255,0.15)}
+.card:nth-of-type(1) .card-front{background:linear-gradient(145deg,#0e151b,#0a1814);}
+.card:nth-of-type(2) .card-front{background:linear-gradient(145deg,#0d1a1f,#092126);}
+.card:nth-of-type(3) .card-front{background:linear-gradient(145deg,#0b181f,#0d1f1c);}
+.card:nth-of-type(4) .card-front{background:linear-gradient(145deg,#0e1922,#0a1418);}
+.card:nth-of-type(5) .card-front{background:linear-gradient(145deg,#0c1c1f,#091716);}
+.card:nth-of-type(6) .card-front{background:linear-gradient(145deg,#0b171d,#0d201a);}
+
+.tag{
+  display:inline-block;background:#202830;padding:6px 12px;border-radius:15px;cursor:pointer;font-size:.9rem;margin-bottom:10px;
+  transition:background .3s,box-shadow .3s;
+}
+.tag:hover{background:#00ffa2;color:#000;box-shadow:0 0 10px #00ffa2;}
+.galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
+.galeria img{width:100%;border-radius:10px;opacity:0;transform:translateY(10px);transition:opacity .8s,transform .8s,box-shadow .3s;}
+.card.girada .galeria img{opacity:1;transform:translateY(0);}
+.galeria img:hover{transform:scale(1.05);box-shadow:0 0 12px #00ffa2;}
+.galeria figcaption{margin-top:5px;font-size:.85rem;color:#ccc;font-weight:500;text-align:center;}
+.boton-ficha{text-align:center;margin-top:12px;margin-bottom:40px;}
+.boton{
+  display:inline-block;padding:10px 20px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));
+  color:#000;font-weight:600;text-decoration:none;box-shadow:0 0 10px rgba(0,255,162,.3);transition:background .3s,box-shadow .3s;
+}
+.boton:hover{background:#00d688;box-shadow:0 0 20px rgba(0,255,162,.6);}
+
+details{background:linear-gradient(180deg,#0e151b,#0a1016);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:14px 0;}
+summary{cursor:pointer;list-style:none;font-weight:700;}
+summary::-webkit-details-marker{display:none;}
+.chev{transition:transform .25s ease;display:inline-block;margin-right:8px;}
+details[open] .chev{transform:rotate(90deg);}
+.details-body{margin-top:12px;display:grid;gap:14px;}
+footer{padding:28px 16px;text-align:center;color:var(--muted);}
+
+/* ====== BOTÓN DISPARADOR ====== */
+.technesano-btn{
+  font-family:"EB Garamond", serif;
+  letter-spacing:0.08em;
+  font-size:1rem;
+  padding:0.6rem 1.6rem;
+  border-radius:999px;
+  border:1px solid rgba(255, 215, 160, 0.7);
+  background: radial-gradient(circle at 30% 0%, #f8e3b0 0, #b28b4a 40%, #312015 100%);
+  color:#fdf6e3;
+  text-shadow:0 0 4px rgba(255,255,210,0.6);
+  text-transform:uppercase;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition:transform .18s ease, box-shadow .18s ease, background .3s ease;
+  box-shadow:0 0 0 rgba(0,0,0,0.4);
+}
+
+/* OJO: esto es un tag inventado (n). Funciona, pero no es estándar. */
+n{ color:#0A0A0A !important; font-weight:600; }
+
+/* ============================
+   PANEL DE EDICIONES
+   ============================ */
+.ediciones-overlay{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(0,0,0,.68);
+  backdrop-filter: blur(10px);
+}
+.ediciones-overlay.open{ display:flex; }
+.ediciones-panel{
+  width:min(1200px, 98vw);
+  max-height:min(92vh, 900px);
+  overflow:auto;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(12,18,24,.96), rgba(8,12,18,.96));
+  box-shadow: 0 18px 60px rgba(0,0,0,.55);
+  padding:14px;
+  position:relative;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.ediciones-panel::-webkit-scrollbar{ width:0; height:0; }
+.ediciones-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:6px 4px 12px 4px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.ediciones-title{
+  margin:0;
+  font-size:16px;
+  letter-spacing:.3px;
+  color:#e8eef5;
+}
+.ediciones-sub{
+  margin:2px 0 0 0;
+  color:rgba(232,238,245,.72);
+  font-size:13px;
+}
+.ediciones-close{
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  border-radius:12px;
+  padding:8px 12px;
+  cursor:pointer;
+  font-weight:700;
+}
+.ediciones-close:hover{
+  background:rgba(0,255,162,.15);
+  border-color:rgba(0,255,162,.35);
+}
+.ediciones-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+  margin-top:12px;
+}
+@media (max-width: 860px){
+  .ediciones-grid{ grid-template-columns: 1fr; }
+}
+.ed-col{
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:12px;
+  background:rgba(255,255,255,.02);
+}
+.ed-col h4{
+  margin:0 0 8px 0;
+  font-size:15px;
+  letter-spacing:.25px;
+}
+.ed-col h4 span{
+  background:linear-gradient(90deg,var(--brand),var(--brand2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.ed-block{
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:10px;
+  background:rgba(255,255,255,.015);
+  margin-bottom:12px;
+}
+.ed-block-title{
+  list-style:none;
+  cursor:pointer;
+  font-weight:800;
+  color:#cfe6ff;
+  margin:0;
+  padding:8px 10px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  user-select:none;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.06);
+}
+.ed-block-title::-webkit-details-marker{ display:none; }
+.ed-block-title::after{
+  content:"▸";
+  opacity:.8;
+  transform:rotate(0deg);
+  transition:transform .2s ease, opacity .2s ease;
+}
+.ed-block[open] .ed-block-title::after{
+  transform:rotate(90deg);
+  opacity:1;
+}
+.ed-items{
+  margin-top:10px;
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:10px;
+}
+@media (max-width: 460px){
+  .ed-items{ grid-template-columns: 1fr; }
+}
+.ed-item{
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  overflow:hidden;
+  background:rgba(0,0,0,.25);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.ed-item:hover{
+  transform: translateY(-1px);
+  border-color: rgba(0,255,162,.25);
+  box-shadow: 0 0 16px rgba(0,255,162,.12);
+}
+.ed-item img{
+  width: auto;
+  height: auto !important;
+  object-fit:cover;
+  display:block;
+}
+.ed-item .cap{
+  padding:8px 10px;
+  font-size:12px;
+  color:rgba(232,238,245,.85);
+}
+.ed-item .cap b{
+  display:block;
+  color:#fff;
+  font-size:12px;
+  margin-bottom:2px;
+}
+.ed-empty{
+  padding:10px;
+  color:rgba(232,238,245,.65);
+  font-size:12px;
+  border:1px dashed rgba(255,255,255,.14);
+  border-radius:12px;
+  text-align:center;
+}
+
+/* ============================
+   SIMBOLOGÍA DE COLORES (UI)
+   ============================ */
+.col-board-wrap{
+  margin-top: 18px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(16,22,28,.62), rgba(8,12,18,.62));
+  box-shadow: 0 14px 34px rgba(0,0,0,.35);
+}
+.col-board-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom: 12px;
+}
+.col-board-head h3{
+  margin:0;
+  font-size: 16px;
+  letter-spacing: .25px;
+}
+.col-board-head p{
+  margin: 2px 0 0 0;
+  color: rgba(232,238,245,.72);
+  font-size: 13px;
+  max-width: 720px;
+}
+.col-board-chip{
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  color:#fff;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor:pointer;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.col-board-chip:hover{
+  background: rgba(0,255,162,.12);
+  border-color: rgba(0,255,162,.28);
+}
+.color-board{
+  display:grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap:10px;
+}
+@media (max-width: 980px){
+  .color-board{ grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 560px){
+  .color-board{ grid-template-columns: repeat(3, 1fr); }
+}
+.color-tile{
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 14px;
+  overflow:hidden;
+  background: rgba(0,0,0,.20);
+  cursor:pointer;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  position: relative;
+  min-height: 76px;
+}
+.color-tile:hover{
+  transform: translateY(-1px);
+  border-color: rgba(0,255,162,.22);
+  box-shadow: 0 0 18px rgba(0,255,162,.10);
+}
+.color-swatch{
+  height: 44px;
+  background: #222;
+}
+.color-name{
+  padding: 8px 10px 10px 10px;
+  font-size: 12px;
+  color: rgba(232,238,245,.92);
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+.color-sub{
+  font-size: 11px;
+  color: rgba(232,238,245,.62);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Overlay colores */
+.colores-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(0,0,0,.68);
+  backdrop-filter: blur(10px);
+}
+.colores-overlay.open{ display:flex; }
+.colores-panel{
+  width:min(920px, 96vw);
+  max-height:min(82vh, 820px);
+  overflow:auto;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(12,18,24,.96), rgba(8,12,18,.96));
+  box-shadow: 0 18px 60px rgba(0,0,0,.55);
+  padding:14px;
+  position:relative;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.colores-panel::-webkit-scrollbar{ width:0; height:0; }
+.colores-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:6px 4px 12px 4px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.colores-title{
+  margin:0;
+  font-size:16px;
+  letter-spacing:.3px;
+  color:#e8eef5;
+}
+.colores-sub{
+  margin:2px 0 0 0;
+  color:rgba(232,238,245,.72);
+  font-size:13px;
+}
+.colores-close{
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  border-radius:12px;
+  padding:8px 12px;
+  cursor:pointer;
+  font-weight:700;
+}
+.colores-close:hover{
+  background:rgba(0,255,162,.15);
+  border-color:rgba(0,255,162,.35);
+}
+.colores-body{
+  display:grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+@media (max-width: 860px){
+  .colores-body{ grid-template-columns: 1fr; }
+}
+.colores-list{
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  background:rgba(255,255,255,.02);
+  padding: 10px;
+}
+.colores-list h4{
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  letter-spacing: .2px;
+  color: rgba(232,238,245,.9);
+}
+.colores-btn{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.25);
+  color:#fff;
+  border-radius: 14px;
+  padding: 10px;
+  cursor:pointer;
+  margin-bottom: 10px;
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease;
+  text-align:left;
+}
+.colores-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(0,255,162,.20);
+  box-shadow: 0 0 14px rgba(0,255,162,.10);
+}
+.colores-btn.active{
+  border-color: rgba(0,255,162,.35);
+  background: rgba(0,255,162,.08);
+}
+.colores-dot{
+  width:16px; height:16px;
+  border-radius: 6px;
+  background:#333;
+  box-shadow: 0 0 10px rgba(0,0,0,.35);
+  flex: 0 0 auto;
+}
+.colores-btn .txt{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.colores-btn .txt b{
+  font-size: 12px;
+  letter-spacing:.2px;
+}
+.colores-btn .txt span{
+  font-size: 11px;
+  color: rgba(232,238,245,.70);
+  font-weight: 600;
+}
+.colores-detail{
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  background:rgba(255,255,255,.02);
+  padding: 14px;
+}
+.colores-detail-top{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.colores-bigswatch{
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: #444;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 0 14px rgba(0,0,0,.45);
+}
+.colores-detail-top h4{
+  margin:0;
+  font-size: 15px;
+  letter-spacing: .25px;
+}
+.colores-detail p{
+  margin: 0 0 10px 0;
+  color: rgba(232,238,245,.78);
+  line-height: 1.6;
+  font-size: 13px;
+}
+.colores-tags{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.col-tag{
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: rgba(232,238,245,.85);
+  font-weight: 700;
+}
+
+/* ============================
+   ✅ NUEVO: OVERLAY FICHA COMPLETA
+   ============================ */
+.ficha-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0,0,0,.68);
+  backdrop-filter: blur(10px);
+}
+.ficha-overlay.open{ display:flex; }
+
+.ficha-panel{
+  width: min(980px, 96vw);
+  max-height: min(88vh, 900px);
+  overflow: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(12,18,24,.96), rgba(8,12,18,.96));
+  box-shadow: 0 18px 60px rgba(0,0,0,.55);
+  padding: 14px;
+  position: relative;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.ficha-panel::-webkit-scrollbar{ width:0; height:0; }
+
+.ficha-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:6px 4px 12px 4px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.ficha-title{
+  margin:0;
+  font-size:16px;
+  letter-spacing:.3px;
+  color:#e8eef5;
+}
+.ficha-close{
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  border-radius:12px;
+  padding:8px 12px;
+  cursor:pointer;
+  font-weight:700;
+}
+.ficha-close:hover{
+  background:rgba(0,255,162,.15);
+  border-color:rgba(0,255,162,.35);
+}
+.ficha-body{ padding-top: 12px; }
+
+/* Dentro del overlay, summary no hace falta (ya es “ficha abierta”) */
+.ficha-body details > summary{ display:none; }
+.ficha-body details{ background: transparent; border:0; padding:0; margin:0; }
+</style>
+
 </head>
 
 <!-- =========================
-     PARTE 2 / 4  (BODY + FERRERET en cards + fichas + chibi)
+     PARTE 2 / 4  (BODY hasta antes de OVERLAYS)
      ========================= -->
-<body>  
-  <!-- NAV -->  
-  <nav class="nav">  
-    <div class="nav-inner">  
-      <div class="logo">  
-        <div class="logo-mark"></div>  
-        <h1>EAMV collection</h1>  
-      </div>  
-      <div>  
-        <a href="#por-que">Tu virtud</a>  
-        <a href="#coleccion">Colección</a>  
-        <a href="#technesano">Technesano</a>  
-        <a href="#eamv">Sobre EAMV</a>  
-        <a href="#sobre">Sobre mí</a>  
-        <a href="#chibi">Endemorias ligeras</a>  
-        <a href="#contacto">Contacto</a>  
-      </div>  
-    </div>  
-  </nav>  
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <h1>EAMV collection</h1>
+      </div>
+      <div>
+        <a href="#por-que">Tu virtud</a>
+        <a href="#coleccion">Colección</a>
+        <a href="#technesano">Technesano</a>
+        <a href="#eamv">Sobre EAMV</a>
+        <a href="#sobre">Sobre mí</a>
+        <a href="#chibi">Endemorias ligeras</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
 
-  <!-- HERO -->  
-  <img src="assets/eamv-logo.jpg" alt="EAMV Collection logo" class="hero-logo">  
-  <header class="hero">  
-    <div class="hero-inner">  
-      <div class="kicker">© Endemorias (Souvenirs con alma balear)</div>  
-      <h2 class="title">Donde <span>arte</span>, <span>naturaleza</span> y <span class="metal-text">cultura</span> se funden</h2> 
-        <p class="subtitle"> Esculturas coleccionables inspiradas en la memoria natural y cultural de Baleares.</p> 
-     <p class="subtitle">EAMV collection rescata especies y símbolos de Baleares en ediciones limitadas, bajo el principio <b>TECHNESANO</b>: tecnología con alma sana.</p>  
-      <p class="subtitle" style="margin-top:24px; font-size:clamp(16px,2vw,20px); line-height:1.6;">  
-        Símbolos de <b>prestigio</b>, <b>culto</b> y <b>lujo consciente</b>.<br>  
-        Son <b>recuerdos encarnados en presencia</b>,<br>  
-        y cada figura refleja una o más <b>virtudes</b>.<br>  
-        <span style="background:linear-gradient(90deg,var(--brand),var(--brand2));  
-        -webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">  
-        No te llevas un souvenir, te llevas una virtud.  
-        </span>  
-      </p>  
-      <div class="cta-row">  
-        <a class="cta" href="#coleccion">Explorar colección</a>  
-        <a class="cta secondary" href="#technesano">¿Qué es TECHNESANO?</a>  
-        <a class="cta secondary" href="#por-que">Tu virtud</a>  
-        <a class="cta secondary" href="#chibi">Endemorias ligeras</a>  
-      </div>  
-    </div>  
-  </header>  
+  <!-- HERO -->
+  <img src="assets/eamv-logo.jpg" alt="EAMV Collection logo" class="hero-logo">
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="kicker">© Endemorias (Souvenirs con alma balear)</div>
+      <h2 class="title">Donde <span>arte</span>, <span>naturaleza</span> y <span class="metal-text">cultura</span> se funden</h2>
+      <p class="subtitle">Esculturas coleccionables inspiradas en la memoria natural y cultural de Baleares.</p>
 
-  <!-- Tu virtud -->  
-  <section id="por-que" style="margin-top:80px;">  
-    <h2 class="section-title">Tu virtud</h2>  
-    <p class="section-sub"><b><i><v>Un fragmento de cultura, virtud y lujo consciente.</v></i></b></p>  
-    <p>🗺️ Cada <v>endemorias</v> es un recuerdo del viajero que explora con elegancia.  
-      Un <b>reflejo</b> de quien aprecia el arte, la naturaleza y la historia que habita en cada rincón del mundo.  
-      Mostrar una endemoria <b>EAMV</b> en casa no es presumir, es compartir un fragmento de cultura.</p>  
-    <p><v>Endemoria</v></p>  
-    <p>(del griego éndemos “de la tierra” + latín moria “memoria”)</p>  
-    <p><b>Recuerdo de origen.</b></p>  
-    <p>El nombre que damos a nuestras piezas: obras que nacen de un lugar, su fauna y su historia.</p>  
-    <p>  
-      Porque cada creación de <b>EAMV Collection</b> nace con propósito.<br>  
-      Fabricamos con <b>tecnología limpia</b> y <b>materiales responsables</b>, cuidando tanto del arte como del entorno que lo inspira.  
-    </p>  
-    <p><b>Las Endemorias representan fauna endémica de un territorio.</b></p>  
-    <p>  
-      Especies que revelan distintas virtudes: la capacidad de adaptarse, resistir o dejar memoria de lo que fue.  
-      A través de ellas, reflexionamos también sobre nuestra propia forma de habitar el mundo.  
-    </p>  
-    <p class="section-sub">  
-      Nuestra visión mira al futuro:<br>  
-      Promover la <b>educación</b>, la <b>cultura</b> y la <b>preservación de la fauna balear</b>,<br>  
-      como símbolo de respeto y evolución.  
-    </p>  
-    <p class="section-sub">  
-      <b>No compras un producto.</b><br>  
-      <span style="background:linear-gradient(90deg,var(--brand),var(--brand2));  
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">  
-      Dejas una huella.  
-      </span>  
-    </p>  
-  </section>  
+      <p class="subtitle" style="margin-top:24px; font-size:clamp(16px,2vw,20px); line-height:1.6;">
+        Símbolos de <b>prestigio</b> y <b>lujo consciente</b>.<br>
+        <b>Recuerdos encarnados en presencia</b><br>
+        Cada figura refleja una o más <b>virtudes</b>.<br>
+        <span style="background:linear-gradient(90deg,var(--brand),var(--brand2));
+        -webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">
+        No te llevas un souvenir, te llevas una virtud.
+        </span>
+      </p>
 
-  <!-- COLECCIÓN -->  
-  <section id="coleccion">  
-    <h2 class="section-title">Fauna de las Islas Baleares</h2>  
-    <p class="section-sub">Haz click en “Ver ediciones” para abrir Luxoris · Axion, o baja para leer la historia completa.</p>  
+      <div class="cta-row">
+        <a class="cta" href="#coleccion">Explorar colección</a>
+        <a class="cta secondary" href="#technesano">¿Qué es TECHNESANO?</a>
+        <a class="cta secondary" href="#por-que">Tu virtud</a>
+        <a class="cta secondary" href="#chibi">Endemorias ligeras</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- PODARCIS -->  
-    <article class="card">  
-      <div class="card-inner">  
-        <div class="card-front">  
-          <img src="assets/podarcis-figura1.jpg" alt="Podarcis lilfordi">  
-          <span class="tag" onclick="openEditions('podarcis')">Ver ediciones (Luxoris · Axion)</span>  
-          <h3>🦎 Podarcis lilfordi — El lagarto balear</h3>  
-          <p>Reptil lacértido endémico de Mallorca y Menorca. Símbolo de resiliencia y tenacidad.</p>  
-        </div>  
-        <div class="card-back">  
-          <button onclick="closeEditions()">← Volver</button>  
-          <h4>Ediciones</h4>  
-          <p style="color:rgba(232,238,245,.75);">Pulsa “Ver ediciones” en la cara frontal.</p>  
-        </div>  
-      </div>  
-    </article>  
-    <div class="boton-ficha">  
-      <a href="#podarcis" class="boton">Ver ficha completa</a>  
-    </div>  
+  <!-- Tu virtud -->
+  <section id="por-que" style="margin-top:80px;">
+    <h2 class="section-title">Tu virtud</h2>
+    <p class="section-sub"><b><i><v>Un fragmento de cultura, virtud y lujo consciente.</v></i></b></p>
 
-    <!-- MYOTRAGUS -->  
-    <article class="card">  
-      <div class="card-inner">  
-        <div class="card-front">  
-          <img src="assets/myotragus-real1.jpg" alt="Myotragus balearicus">  
-          <span class="tag" onclick="openEditions('myotragus')">Ver ediciones (Luxoris · Axion)</span>  
-          <h3>🐐 Myotragus balearicus — La cabra prehistórica</h3>  
-          <p>Bóvido endémico de Mallorca y Menorca. Símbolo de memoria y respeto.</p>  
-        </div>  
-        <div class="card-back">  
-          <button onclick="closeEditions()">← Volver</button>  
-          <h4>Ediciones</h4>  
-          <p style="color:rgba(232,238,245,.75);">Pulsa “Ver ediciones” en la cara frontal.</p>  
-        </div>  
-      </div>  
-    </article>  
-    <div class="boton-ficha">  
-      <a href="#myotragus" class="boton">Ver ficha completa</a>  
-    </div>  
+    <c title="Qué es una Endemoria">
+      <p>🗺️ Cada <v>Endēmoria</v> es un recuerdo del viajero que explora con elegancia.
+      Un <b>reflejo</b> de quien aprecia el arte, la naturaleza y la historia que habita en cada rincón del mundo.
+      No representa solo un animal, sino una presencia que conecta lugar, cultura y memoria.</p>
+      <p>Mostrar una Endēmoria <b>EAMV</b> en casa no es presumir, es compartir un fragmento de cultura.</p>
+    </c>
 
-    <!-- FERRERET (NUEVO: MISMO FORMATO) -->  
-    <article class="card">  
-      <div class="card-inner">  
-        <div class="card-front">  
-          <img src="assets/ferreret-real1.jpg" alt="Ferreret (Alytes muletensis)">  
-          <span class="tag" onclick="openEditions('ferreret')">Ver ediciones (Luxoris · Axion)</span>  
-          <h3>🐸 Ferreret — El sapo partero balear</h3>  
-          <p>Anfibio endémico de Mallorca. Símbolo resistencia y reserva.</p>  
-        </div>  
-        <div class="card-back">  
-          <button onclick="closeEditions()">← Volver</button>  
-          <h4>Ediciones</h4>  
-          <p style="color:rgba(232,238,245,.75);">Pulsa “Ver ediciones” en la cara frontal.</p>  
-        </div>  
-      </div>  
-    </article>  
-    <div class="boton-ficha">  
-      <a href="#ferreret" class="boton">Ver ficha completa</a>  
-    </div>  
+    <c title="Origen">
+      <p><v>Endēmoria</v></p>
+      <p>(del griego éndemos “de la tierra” + latín moria “memoria”)</p>
+      <p><b>Recuerdo de origen.</b></p>
+      <p>El nombre que damos a nuestras piezas: obras que nacen de un lugar, su fauna y su historia.
+      Cada Endēmoria conserva la memoria del territorio que la inspira.</p>
+    </c>
 
-    <!-- FICHAS DETALLADAS -->  
-    <details id="podarcis" style="margin-top:22px">  
-      <summary><span class="chev">▶</span>🦎 <b>Podarcis lilfordi – El lagarto balear</b></summary>  
-      <div class="details-body split">  
-        <div class="strip">  
-          <img class="item" src="assets/podarcis-real.jpg" alt="Podarcis en roca">  
-         
-        </div>  
-        <div>  
-          <p>· EAMV collection trae de vuelta a una superestrella de la naturaleza: un pequeño superviviente que venció al tiempo y al olvido.</p>  
-          <p>· Pequeño, ágil y luminoso, Podarcis lilfordi guarda en su mirada la esencia de las Baleares. Durante siglos habitó todas las islas, hasta que el ser humano y los depredadores lo empujaron a los islotes donde hoy resiste, adaptando su color al viento y al mar.</p>  
-          <p>· Es verde, azul o dorado, según el lugar que lo abrace. Símbolo de resiliencia y tenacidad: recuerda que incluso lo más frágil puede perdurar cuando pertenece verdaderamente a su tierra.</p>  
-        </div>  
-      </div>  
-    </details>  
+    <c title="Propósito">
+      <p>
+        Porque cada creación de <b>EAMV Collection</b> nace con propósito.<br>
+        Fabricamos con <b>tecnología limpia</b> y <b>materiales responsables</b>, cuidando tanto del arte como del entorno que lo inspira.
+      </p>
+      <p><b>Las Endēmorias representan fauna endémica de un territorio.</b></p>
+      <p>
+        Especies que revelan distintas virtudes: la capacidad de adaptarse, resistir o dejar memoria de lo que fue.
+        A través de ellas, reflexionamos también sobre nuestra propia forma de habitar el mundo.
+      </p>
+      <p class="section-sub">
+        Nuestra visión mira al futuro:<br>
+        Promover la <b>educación</b>, la <b>cultura</b> y la <b>preservación de la fauna balear</b>,<br>
+        como símbolo de respeto y evolución.
+      </p>
+    </c>
 
-    <details id="myotragus" style="margin-top:22px">  
-      <summary><span class="chev">▶</span>🐐 <b>Myotragus balearicus – La cabra de las Baleares</b></summary>  
-      <div class="details-body split">  
-        <div class="strip">  
-          <img class="item" src="assets/myotragus-real.jpg" alt="Esqueleto Myotragus">  
-          
-        </div>  
-        <div>  
-          <p> · El Myotragus balearicus fue una cabra única que vivió exclusivamente en Mallorca y Menorca. Pequeña, de mirada frontal y movimientos pausados, aprendió a sobrevivir en un entorno donde el tiempo parecía ir más despacio.</p>  
-          <p> · Pero hace unos 4.000 años, la llegada de los primeros humanos cambió ese equilibrio para siempre. El Myotragus desapareció, dejando tras de sí un silencio que aún se siente en las cuevas y montañas de las Baleares.</p>  
-          <p> · En EAMV collection, esta figura rescata su presencia como símbolo de memoria y respeto: una vida que existió en armonía y que, aunque extinguida, sigue marcando el pulso invisible de nuestras islas.</p>  
-        </div>  
-      </div>  
-    </details>  
+    <p class="section-sub">
+      <b>No compras un producto.</b><br>
+      <span style="background:linear-gradient(90deg,var(--brand),var(--brand2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">
+      Dejas una huella.
+      </span>
+    </p>
+  </section>
 
-    <!-- FERRERET (NUEVO: MISMO FORMATO QUE LOS OTROS) -->  
-    <details id="ferreret" style="margin-top:22px">  
-      <summary><span class="chev">▶</span>🐸 <b>Alytes muletensis – El ferreret de Mallorca</b></summary>  
-      <div class="details-body split">  
-        <div class="strip">  
-          <img class="item" src="assets/ferreret-real.jpg" alt="Ferreret en la roca">  
-          
-        </div>  
-        <div>  
+  <!-- COLECCIÓN -->
+  <section id="coleccion">
+    <h2 class="section-title">Fauna de las Islas Baleares</h2>
+    <p class="section-sub">Haz click en “Ver ediciones” para abrir Luxoris · Axion, o baja para leer la historia completa.</p>
+
+    <!-- PODARCIS -->
+    <article class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assets/podarcis-figura1.jpg" alt="Podarcis lilfordi">
+          <span class="tag" onclick="openEditions('podarcis')">Ver ediciones (Luxoris · Axion)</span>
+          <h3>🦎 Podarcis lilfordi — El lagarto balear</h3>
+          <p>Reptil lacértido endémico de Mallorca y Menorca. Símbolo de resiliencia y tenacidad.</p>
+        </div>
+        <div class="card-back">
+          <button onclick="closeEditions()">← Volver</button>
+          <h4>Ediciones</h4>
+          <p style="color:rgba(232,238,245,.75);">Pulsa “Ver ediciones” en la cara frontal.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="boton-ficha">
+      <!-- ✅ CAMBIO: ya NO hace scroll a #podarcis -->
+      <button type="button" class="boton" onclick="openFicha('podarcis')">Ver ficha completa</button>
+    </div>
+
+    <!-- MYOTRAGUS -->
+    <article class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assets/myotragus-real1.jpg" alt="Myotragus balearicus">
+          <span class="tag" onclick="openEditions('myotragus')">Ver ediciones (Luxoris · Axion)</span>
+          <h3>🐐 Myotragus balearicus — La cabra prehistórica</h3>
+          <p>Bóvido endémico de Mallorca y Menorca. Símbolo de memoria y respeto.</p>
+        </div>
+        <div class="card-back">
+          <button onclick="closeEditions()">← Volver</button>
+          <h4>Ediciones</h4>
+          <p style="color:rgba(232,238,245,.75);">Pulsa “Ver ediciones” en la cara frontal.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="boton-ficha">
+      <!-- ✅ CAMBIO: ya NO hace scroll a #myotragus -->
+      <button type="button" class="boton" onclick="openFicha('myotragus')">Ver ficha completa</button>
+    </div>
+
+    <!-- FERRERET -->
+    <article class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assets/ferreret-real1.jpg" alt="Ferreret (Alytes muletensis)">
+          <span class="tag" onclick="openEditions('ferreret')">Ver ediciones (Luxoris · Axion)</span>
+          <h3>🐸 Ferreret — El sapo partero balear</h3>
+          <p>Anfibio endémico de Mallorca. Símbolo resistencia y reserva.</p>
+        </div>
+        <div class="card-back">
+          <button onclick="closeEditions()">← Volver</button>
+          <h4>Ediciones</h4>
+          <p style="color:rgba(232,238,245,.75);">Pulsa “Ver ediciones” en la cara frontal.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="boton-ficha">
+      <!-- ✅ CAMBIO: ya NO hace scroll a #ferreret -->
+      <button type="button" class="boton" onclick="openFicha('ferreret')">Ver ficha completa</button>
+    </div>
+
+    <!-- FICHAS DETALLADAS (las dejamos tal cual, pero ahora se abrirán en overlay) -->
+    <details id="podarcis" style="margin-top:22px">
+      <summary><span class="chev">▶</span>🦎 <b>Podarcis lilfordi – El lagarto balear</b></summary>
+      <div class="details-body split">
+        <div class="strip">
+          <img class="item" src="assets/podarcis-real.jpg" alt="Podarcis en roca">
+        </div>
+        <div>
+          <p>· EAMV collection trae de vuelta a una superestrella de la naturaleza: un pequeño superviviente que venció al tiempo y al olvido.</p>
+          <p>· Pequeño, ágil y luminoso, Podarcis lilfordi guarda en su mirada la esencia de las Baleares. Durante siglos habitó todas las islas, hasta que el ser humano y los depredadores lo empujaron a los islotes donde hoy resiste, adaptando su color al viento y al mar.</p>
+          <p>· Es verde, azul o dorado, según el lugar que lo abrace. Símbolo de resiliencia y tenacidad: recuerda que incluso lo más frágil puede perdurar cuando pertenece verdaderamente a su tierra.</p>
+        </div>
+      </div>
+    </details>
+
+    <details id="myotragus" style="margin-top:22px">
+      <summary><span class="chev">▶</span>🐐 <b>Myotragus balearicus – La cabra de las Baleares</b></summary>
+      <div class="details-body split">
+        <div class="strip">
+          <img class="item" src="assets/myotragus-real.jpg" alt="Esqueleto Myotragus">
+        </div>
+        <div>
+          <p> · El Myotragus balearicus fue una cabra única que vivió exclusivamente en Mallorca y Menorca. Pequeña, de mirada frontal y movimientos pausados, aprendió a sobrevivir en un entorno donde el tiempo parecía ir más despacio.</p>
+          <p> · Pero hace unos 4.000 años, la llegada de los primeros humanos cambió ese equilibrio para siempre. El Myotragus desapareció, dejando tras de sí un silencio que aún se siente en las cuevas y montañas de las Baleares.</p>
+          <p> · En EAMV collection, esta figura rescata su presencia como símbolo de memoria y respeto: una vida que existió en armonía y que, aunque extinguida, sigue marcando el pulso invisible de nuestras islas.</p>
+        </div>
+      </div>
+    </details>
+
+    <details id="ferreret" style="margin-top:22px">
+      <summary><span class="chev">▶</span>🐸 <b>Alytes muletensis – El ferreret de Mallorca</b></summary>
+      <div class="details-body split">
+        <div class="strip">
+          <img class="item" src="assets/ferreret-real.jpg" alt="Ferreret en la roca">
+        </div>
+        <div>
           <p>·El Ferreret es un pequeño anfibio único de Mallorca, habitante ancestral de la Serra de Tramuntana desde hace millones de años.
-Durante siglos vivió oculto entre grietas y torrentes, reservado y silencioso, adaptándose a un entorno duro y cambiante.
-</p>  
+Durante siglos vivió oculto entre grietas y torrentes, reservado y silencioso, adaptándose a un entorno duro y cambiante.</p>
           <p>·La llegada del ser humano y de especies invasoras lo empujó al borde de la extinción, hasta que durante décadas se le dio por desaparecido.
-Su redescubrimiento devolvió la esperanza, convirtiéndolo en un símbolo de conservación y en una llamada de atención para Europa.
-</p>  
+Su redescubrimiento devolvió la esperanza, convirtiéndolo en un símbolo de conservación y en una llamada de atención para Europa.</p>
           <p>·No se adaptó conquistando, sino reservándose.No volvió como un vencedor, sino como un recordatorio.Sigue aquí para enseñarnos que permanecer también es una forma de fuerza.
-En EAMV Collection, representa la virtud de la reserva y resistencia: existir en silencio sin ser visto.
+En EAMV Collection, representa la virtud de la reserva y resistencia: existir en silencio sin ser visto.</p>
+        </div>
+      </div>
+    </details>
 
-</p>  
-        </div>  
-      </div>  
-    </details>  
+    <!-- SIMBOLOGÍA DE COLORES -->
+    <section id="colores" style="padding:0; margin-top: 28px;">
+      <h2 class="section-title">🎨 Simbología de colores</h2>
+      <p class="section-sub">
+        Cada edición nace de un color. Y cada color es una intención: una virtud que se siente antes de explicarse.
+      </p>
 
-    <!-- SIMBOLOGÍA DE COLORES (NO TOCO AQUÍ; PARTE 3 mete Lotus succinus + FF9A6B) -->  
-    <section id="colores" style="padding:0; margin-top: 28px;">  
-      <h2 class="section-title">🎨 Simbología de colores</h2>  
-      <p class="section-sub">  
-        Cada edición nace de un color. Y cada color es una intención: una virtud que se siente antes de explicarse.  
-      </p>  
-      <div class="col-board-wrap">  
-        <div class="col-board-head">  
-          <div>  
-            <h3>Tablero simbólico</h3>  
-            <p>Toca un color para ver su significado.</p>  
-          </div>  
-          <button class="col-board-chip" onclick="openColorOverlay()">Abrir panel ✦</button>  
-        </div>  
-        <div class="color-board" id="colorBoard"></div>  
-      </div>  
-    </section>  
-  </section>  
+      <div class="col-board-wrap">
+        <div class="col-board-head">
+          <div>
+            <h3>Tablero simbólico</h3>
+            <p>Toca un color para ver su significado.</p>
+          </div>
+          <button class="col-board-chip" onclick="openColorOverlay()">Abrir panel ✦</button>
+        </div>
+        <div class="color-board" id="colorBoard"></div>
+      </div>
+    </section>
 
-  <!-- TECHNESANO -->  
-  <section id="technesano">  
-    <details open>  
-      <summary><span class="chev">▶</span>⚙️ <b>¿Qué es el movimiento TECHNESANO? ©</b></summary>  
-      <div class="details-body">  
-        <button id="technesano-trigger" class="technesano-btn">  
-          <a href="technesano.html"><n>MANIFIESTO TECHNESANO</n></a>  
-        </button>  
-      </div>  
-    </details>  
-  </section>  
+  </section>
 
-  <!-- EAMV -->  
-  <section id="eamv">  
-    <details open>  
-      <summary><span class="chev">▶</span> <b>EAMV Collection — Souvenirs con alma balear</b></summary>  
-      <div class="details-body">  
-        <a href="sobre-eamv.html" class="btn-sobre-eamv">SOBRE EAMV</a>  
-      </div>  
-    </details>  
-  </section>  
+  <!-- TECHNESANO -->
+  <section id="technesano">
+    <details open>
+      <summary><span class="chev">▶</span>⚙️ <b>¿Qué es el movimiento TECHNESANO? ©</b></summary>
+      <div class="details-body">
+        <button id="technesano-trigger" class="technesano-btn">
+          <a href="technesano.html"><n>MANIFIESTO TECHNESANO</n></a>
+        </button>
+      </div>
+    </details>
+  </section>
 
-  <!-- SOBRE MÍ -->  
-  <section id="sobre">  
-    <details>  
-      <summary><span class="chev">▶</span>👤 <b>Sobre mí — El creador</b></summary>  
-      <div class="details-body">  
-        <a href="sobremi-es.html" class="link-sobremi">  
-          <div class="bloque-sobremi">  
-            <span class="icono"></span>  
-            <span class="texto">Sobre mí</span>  
-          </div>  
-        </a>  
-      </div>  
-    </details>  
-  </section>  
+  <!-- EAMV -->
+  <section id="eamv">
+    <details open>
+      <summary><span class="chev">▶</span> <b>EAMV Collection — Souvenirs con alma balear</b></summary>
+      <div class="details-body">
+        <a href="sobre-eamv.html" class="btn-sobre-eamv">SOBRE EAMV</a>
+      </div>
+    </details>
+  </section>
 
-  <!-- Endemorias ligeras -->  
-  <section id="chibi" style="margin-top:80px;">  
-    <h2 class="section-title">🧩 Endemorias ligeras y complementos EAMV</h2>  
-    <p class="section-sub">Las Endemorias ligeras <b>EAMV</b> nacen para quienes ven en lo pequeño algo grande. Para quienes aprecian las emociones sinceras y las formas tiernas, sin dejar de lado el alma que hay detrás.</p>  
-    <p class="section-sub">Cada endemoria ligera está hecho para conectar con el lado más humano del arte ese que sonríe, que siente y que recuerda sin palabras. Representan una nueva forma de expresión dentro de <b>EAMV Collection</b>: más ligera, más cercana, pero con la misma profundidad y propósito.</p>  
-    <p class="section-sub"><v>Aquí no vendemos solo un fragmento de alma, vendemos una emoción hecha forma.</v></p>  
-    <p class="section-sub"><v>No los compras, los adoptas.</v></p>  
-    <p class="section-sub"><v>Cada uno guarda su propia chispa, un recuerdo que se deja querer.</v></p>  
+  <!-- SOBRE MÍ -->
+  <section id="sobre">
+    <details>
+      <summary><span class="chev">▶</span>👤 <b>Sobre mí — El creador</b></summary>
+      <div class="details-body">
+        <a href="sobremi-es.html" class="link-sobremi">
+          <div class="bloque-sobremi">
+            <span class="icono"></span>
+            <span class="texto">Sobre mí</span>
+          </div>
+        </a>
+      </div>
+    </details>
+  </section>
 
-    <!-- Endemoria ligera MYOTRAGUS -->  
-    <article class="card">  
-      <div class="card-inner">  
-        <div class="card-front">  
-          <img src="assets/chibi-myotragus1.jpg" alt="Chibi Myotragus">  
-          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición ligera — Inspirada en las figuras originales EAMV</span>  
-          <h3>🐐 Endemoria ligera Myotragus</h3>  
-          <p>Coleccionable inspirada en el Myotragus balearicus, símbolo de memoria y respeto.</p>  
-        </div>  
-        <div class="card-back">  
-          <button onclick="this.closest('.card').classList.toggle('girada')">← Volver</button>  
-          <h4>Galería visual</h4>  
-          <div class="galeria">  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Versión Especial</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Marrón</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Beige claro</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Marrón rojizo</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Evento especial</figcaption></figure>  
-          </div>  
-        </div>  
-      </div>  
-    </article>  
+  <!-- Endemorias ligeras -->
+  <section id="chibi" style="margin-top:80px;">
+    <h2 class="section-title">🧩 Endemorias ligeras y complementos EAMV</h2>
+    <p class="section-sub">Las Endemorias ligeras <b>EAMV</b> nacen para quienes ven en lo pequeño algo grande. Para quienes aprecian las emociones sinceras y las formas tiernas, sin dejar de lado el alma que hay detrás.</p>
+   <c> <p class="section-sub">Cada endemoria ligera está hecho para conectar con el lado más humano del arte ese que sonríe, que siente y que recuerda sin palabras. Representan una nueva forma de expresión dentro de <b>EAMV Collection</b>: más ligera, más cercana, pero con la misma profundidad y propósito.</p>
+    <p class="section-sub"><v>Aquí no vendemos solo un fragmento de alma, vendemos una emoción hecha forma.</v></p>
+    <p class="section-sub"><v>No los compras, los adoptas.</v></p>
+    <p class="section-sub"><v>Cada uno guarda su propia chispa, un recuerdo que se deja querer.</v></p></c>
 
-    <!-- Endemoria ligera PODARCIS -->  
-    <article class="card">  
-      <div class="card-inner">  
-        <div class="card-front">  
-          <img src="assets/chibi-podarcis1.jpg" alt="Chibi Podarcis">  
-          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición ligera — Inspirada en las figuras originales EAMV</span>  
-          <h3>🦎 Endemoria ligera Podarcis</h3>  
-          <p>Coleccionable basada en el Podarcis lilfordi, símbolo de resiliencia y tenacidad.</p>  
-        </div>  
-        <div class="card-back">  
-          <button onclick="this.closest('.card').classList.toggle('girada')">← Volver</button>  
-          <h4>Galería visual</h4>  
-          <div class="galeria">  
-            <figure><img src="assets/chibi-podarcis1.jpg" alt=""><figcaption>Versión especial</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Azul</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Verde</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Negra</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Amarillo tostado</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Evento</figcaption></figure>  
-          </div>  
-        </div>  
-      </div>  
-    </article>  
+    <!-- Endemoria ligera MYOTRAGUS -->
+    <article class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assets/chibi-myotragus1.jpg" alt="Chibi Myotragus">
+          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición ligera — Inspirada en las figuras originales EAMV</span>
+          <h3>🐐 Endemoria ligera Myotragus</h3>
+          <p>Coleccionable inspirada en el Myotragus balearicus, símbolo de memoria y respeto.</p>
+        </div>
+        <div class="card-back">
+          <button onclick="this.closest('.card').classList.toggle('girada')">← Volver</button>
+          <h4>Galería visual</h4>
+          <div class="galeria">
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Versión Especial</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Marrón</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Beige claro</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Marrón rojizo</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Evento especial</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </article>
 
-    <!-- Endemoria ligera FERRERET (NUEVO: MISMO FORMATO) -->  
-    <article class="card">  
-      <div class="card-inner">  
-        <div class="card-front">  
-          <img src="assets/chibi-ferreret1.jpg" alt="Chibi Ferreret">  
-          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición ligera — Inspirada en las figuras originales EAMV</span>  
-          <h3>🐸 Endemoria ligera Ferreret</h3>  
-          <p>Coleccionable inspirada en el Ferreret, símbolo resistencia y reserva.</p>  
-        </div>  
-        <div class="card-back">  
-          <button onclick="this.closest('.card').classList.toggle('girada')">← Volver</button>  
-          <h4>Galería visual</h4>  
-          <div class="galeria">  
-            <figure><img src="assets/chibi-ferreret1.jpg" alt=""><figcaption>Versión especial</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Variante 1</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Variante 2</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Variante 3</figcaption></figure>  
-            <figure><img src="assets/p.jpg" alt=""><figcaption>Evento</figcaption></figure>  
-          </div>  
-        </div>  
-      </div>  
-    </article>  
+    <!-- Endemoria ligera PODARCIS -->
+    <article class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assets/chibi-podarcis1.jpg" alt="Chibi Podarcis">
+          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición ligera — Inspirada en las figuras originales EAMV</span>
+          <h3>🦎 Endemoria ligera Podarcis</h3>
+          <p>Coleccionable basada en el Podarcis lilfordi, símbolo de resiliencia y tenacidad.</p>
+        </div>
+        <div class="card-back">
+          <button onclick="this.closest('.card').classList.toggle('girada')">← Volver</button>
+          <h4>Galería visual</h4>
+          <div class="galeria">
+            <figure><img src="assets/chibi-podarcis1.jpg" alt=""><figcaption>Versión especial</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Azul</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Verde</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Negra</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Amarillo tostado</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Evento</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </article>
 
-  </section>  
+    <!-- Endemoria ligera FERRERET -->
+    <article class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assets/p.jpg" alt="Chibi Ferreret">
+          <span class="tag" onclick="this.closest('.card').classList.toggle('girada')">Mini edición ligera — Inspirada en las figuras originales EAMV</span>
+          <h3>🐸 Endemoria ligera Ferreret</h3>
+          <p>Coleccionable inspirada en el Ferreret, símbolo resistencia y reserva.</p>
+        </div>
+        <div class="card-back">
+          <button onclick="this.closest('.card').classList.toggle('girada')">← Volver</button>
+          <h4>Galería visual</h4>
+          <div class="galeria">
+            <figure><img src="assets/chibi-ferreret1.jpg" alt=""><figcaption>Versión especial</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Variante 1</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Variante 2</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Variante 3</figcaption></figure>
+            <figure><img src="assets/p.jpg" alt=""><figcaption>Evento</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
 
-  <!-- complementos -->  
-  <section id="accesorios" style="margin-top:80px;">  
-    <h2 class="section-title">✨ Complementos</h2>  
-    <p class="section-sub">Complementos para personalizar tus endemorias ligeras y ampliar la colección.</p>  
-    <div class="accesorio">  
-      <figure>  
-        <img src="assets/accesorio1.jpg" alt="Accesorio 1">  
-        <figcaption>Complementos 1</figcaption>  
-      </figure>  
-      <figure>  
-        <img src="assets/p.jpg" alt="Accesorio 2">  
-        <figcaption>Complementos 2</figcaption>  
-      </figure>  
-      <figure>  
-        <img src="assets/p.jpg" alt="Accesorio 3">  
-        <figcaption>Complementos 3</figcaption>  
-      </figure>  
-    </div>  
-  </section>  
+  <!-- complementos -->
+  <section id="accesorios" style="margin-top:80px;">
+    <h2 class="section-title">✨ Complementos</h2>
+    <p class="section-sub">Complementos para personalizar tus endemorias ligeras y ampliar la colección.</p>
+    <div class="accesorio">
+      <figure>
+        <img src="assets/accesorio1.jpg" alt="Accesorio 1">
+        <figcaption>Complementos 1</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/p.jpg" alt="Accesorio 2">
+        <figcaption>Complementos 2</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/p.jpg" alt="Accesorio 3">
+        <figcaption>Complementos 3</figcaption>
+      </figure>
+    </div>
+  </section>
 
-  <!-- CONTACTO -->  
-  <section id="contacto">  
-    <h2 class="section-title">Contacto</h2>  
-    <p class="section-sub">Colaboraciones, tiendas y exposiciones.</p>  
-    <div class="card" style="height:auto; max-width:450px; padding:20px;">  
-      <p>  
-        Instagram: <a href="https://instagram.com/eamvcollection" target="_blank">@EAMVcollection</a><br>  
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <h2 class="section-title">Contacto</h2>
+    <p class="section-sub">Colaboraciones, tiendas y exposiciones.</p>
+    <div class="card" style="height:auto; max-width:450px; padding:20px;">
+      <p>
+        Instagram: <a href="https://instagram.com/eamvcollection" target="_blank">@EAMVcollection</a><br>
         Email: <a href="mailto:eamversion@icloud.com">eamversion@icloud.com</a><br>
-        Tik Tok: 
-<a href="https://www.tiktok.com/@eamvcollection" 
-   target="_blank" 
-   rel="noopener noreferrer">
-   @eamvcollection
-</a>  </p>
-
-          <p>Ubicación: Mallorca, Islas Baleares  
-      </p>  
-    </div>  
-  </section>  
+        Tik Tok:
+        <a href="https://www.tiktok.com/@eamvcollection"
+           target="_blank"
+           rel="noopener noreferrer">
+          @eamvcollection
+        </a>
+      </p>
+      <p>Ubicación: Mallorca, Islas Baleares</p>
+    </div>
+  </section>
 
   <footer>® 2025 EAMV · Technesano Movement · Mallorca</footer>
 
+  <!-- =========================
+       (aquí empiezan los OVERLAYS en la PARTE 3)
+       ========================= →
 <!-- =========================
-     PARTE 3 / 4  (OVERLAYS + SCRIPTS + FERRERET editions + NUEVO COLOR Lotus succinus)
+     PARTE 3 / 4  (OVERLAYS + nuevo OVERLAY FICHAS + scripts)
      ========================= -->
 
-  <!-- OVERLAY EDICIONES -->  
-  <div class="ediciones-overlay" id="edOverlay" onclick="overlayClickClose(event)">  
-    <div class="ediciones-panel" role="dialog" aria-modal="true" aria-label="Ediciones" onclick="event.stopPropagation()">  
-      <div class="ediciones-top">  
-        <div>  
-          <h3 class="ediciones-title" id="edTitle">Ediciones</h3>  
-          <p class="ediciones-sub" id="edSub">Luxoris · Axion</p>  
-        </div>  
-        <button class="ediciones-close" onclick="closeEditions()">Cerrar ✕</button>  
-      </div>  
-      <div class="ediciones-grid">  
-        <!-- LUXORIS -->  
-        <div class="ed-col">  
-          <h4><span>Luxoris</span></h4>  
-          <details class="ed-block" open>  
-            <summary class="ed-block-title">Creative</summary>  
-            <div class="ed-items" id="luxCreative"></div>  
-          </details>  
-          <details class="ed-block">  
-            <summary class="ed-block-title">Origin</summary>  
-            <div class="ed-items" id="luxOrigin"></div>  
-          </details>  
-          <details class="ed-block">  
-            <summary class="ed-block-title">Eventum</summary>  
-            <div class="ed-items" id="luxEventum"></div>  
-          </details>  
-          <details class="ed-block">  
-            <summary class="ed-block-title">Limitata</summary>  
-            <div class="ed-items" id="luxLimitata"></div>  
-          </details>  
-          <details class="ed-block">  
-            <summary class="ed-block-title">Unicum</summary>  
-            <div class="ed-items" id="luxUnicum"></div>  
-          </details>  
-        </div>  
+  <!-- OVERLAY EDICIONES -->
+  <div class="ediciones-overlay" id="edOverlay" onclick="overlayClickClose(event)">
+    <div class="ediciones-panel" role="dialog" aria-modal="true" aria-label="Ediciones" onclick="event.stopPropagation()">
+      <div class="ediciones-top">
+        <div>
+          <h3 class="ediciones-title" id="edTitle">Ediciones</h3>
+          <p class="ediciones-sub" id="edSub">Luxoris · Axion</p>
+        </div>
+        <button class="ediciones-close" onclick="closeEditions()">Cerrar ✕</button>
+      </div>
 
-        <!-- AXION -->  
-        <div class="ed-col">  
-          <h4><span>Axion</span></h4>  
-          <details class="ed-block" open>  
-            <summary class="ed-block-title">Creative</summary>  
-            <div class="ed-items" id="axiCreative"></div>  
-          </details>  
-          <details class="ed-block">  
-            <summary class="ed-block-title">Origin</summary>  
-            <div class="ed-items" id="axiOrigin"></div>  
-          </details>  
-          <details class="ed-block">  
-            <summary class="ed-block-title">Eventum</summary>  
-            <div class="ed-items" id="axiEventum"></div>  
-          </details>  
-          <details class="ed-block">  
-            <summary class="ed-block-title">Limitata</summary>  
-            <div class="ed-items" id="axiLimitata"></div>  
-          </details>  
-          <details class="ed-block">  
-            <summary class="ed-block-title">Unicum</summary>  
-            <div class="ed-items" id="axiUnicum"></div>  
-          </details>  
-        </div>  
-      </div>  
-    </div>  
-  </div>  
+      <div class="ediciones-grid">
+        <!-- LUXORIS -->
+        <div class="ed-col">
+          <h4><span>Luxoris</span></h4>
+          <details class="ed-block" open>
+            <summary class="ed-block-title">Creative</summary>
+            <div class="ed-items" id="luxCreative"></div>
+          </details>
+          <details class="ed-block">
+            <summary class="ed-block-title">Origin</summary>
+            <div class="ed-items" id="luxOrigin"></div>
+          </details>
+          <details class="ed-block">
+            <summary class="ed-block-title">Eventum</summary>
+            <div class="ed-items" id="luxEventum"></div>
+          </details>
+          <details class="ed-block">
+            <summary class="ed-block-title">Limitata</summary>
+            <div class="ed-items" id="luxLimitata"></div>
+          </details>
+          <details class="ed-block">
+            <summary class="ed-block-title">Unicum</summary>
+            <div class="ed-items" id="luxUnicum"></div>
+          </details>
+        </div>
 
-  <!-- OVERLAY COLORES -->  
-  <div class="colores-overlay" id="colorOverlay" onclick="colorOverlayClickClose(event)">  
-    <div class="colores-panel" role="dialog" aria-modal="true" aria-label="Simbología de colores" onclick="event.stopPropagation()">  
-      <div class="colores-top">  
-        <div>  
-          <h3 class="colores-title">🎨 Simbología de colores</h3>  
-          <p class="colores-sub">Toca un color para leer su intención.</p>  
-        </div>  
-        <button class="colores-close" onclick="closeColorOverlay()">Cerrar ✕</button>  
-      </div>  
-      <div class="colores-body">  
-        <div class="colores-list">  
-          <h4>Colores</h4>  
-          <div id="colorList"></div>  
-        </div>  
-        <div class="colores-detail" id="colorDetail">  
-          <div class="colores-detail-top">  
-            <div class="colores-bigswatch" id="detailSwatch"></div>  
-            <div>  
-              <h4 id="detailName">Selecciona un color</h4>  
-              <p id="detailShort" style="margin-top:4px;color:rgba(232,238,245,.68);font-size:12px;">Aquí aparece la lectura simbólica.</p>  
-            </div>  
-          </div>  
-          <p id="detailBody">Elige un color en la izquierda para ver su significado sin saturación ni teoría pesada.</p>  
-          <div class="colores-tags" id="detailTags"></div>  
-        </div>  
-      </div>  
-    </div>  
+        <!-- AXION -->
+        <div class="ed-col">
+          <h4><span>Axion</span></h4>
+          <details class="ed-block" open>
+            <summary class="ed-block-title">Creative</summary>
+            <div class="ed-items" id="axiCreative"></div>
+          </details>
+          <details class="ed-block">
+            <summary class="ed-block-title">Origin</summary>
+            <div class="ed-items" id="axiOrigin"></div>
+          </details>
+          <details class="ed-block">
+            <summary class="ed-block-title">Eventum</summary>
+            <div class="ed-items" id="axiEventum"></div>
+          </details>
+          <details class="ed-block">
+            <summary class="ed-block-title">Limitata</summary>
+            <div class="ed-items" id="axiLimitata"></div>
+          </details>
+          <details class="ed-block">
+            <summary class="ed-block-title">Unicum</summary>
+            <div class="ed-items" id="axiUnicum"></div>
+          </details>
+        </div>
+      </div>
+    </div>
   </div>
-<script data-goatcounter="https://eamvcollection.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-  
+
+  <!-- OVERLAY COLORES -->
+  <div class="colores-overlay" id="colorOverlay" onclick="colorOverlayClickClose(event)">
+    <div class="colores-panel" role="dialog" aria-modal="true" aria-label="Simbología de colores" onclick="event.stopPropagation()">
+      <div class="colores-top">
+        <div>
+          <h3 class="colores-title">🎨 Simbología de colores</h3>
+          <p class="colores-sub">Toca un color para leer su intención.</p>
+        </div>
+        <button class="colores-close" onclick="closeColorOverlay()">Cerrar ✕</button>
+      </div>
+
+      <div class="colores-body">
+        <div class="colores-list">
+          <h4>Colores</h4>
+          <div id="colorList"></div>
+        </div>
+
+        <div class="colores-detail" id="colorDetail">
+          <div class="colores-detail-top">
+            <div class="colores-bigswatch" id="detailSwatch"></div>
+            <div>
+              <h4 id="detailName">Selecciona un color</h4>
+              <p id="detailShort" style="margin-top:4px;color:rgba(232,238,245,.68);font-size:12px;">
+                Aquí aparece la lectura simbólica.
+              </p>
+            </div>
+          </div>
+          <p id="detailBody">Elige un color en la izquierda para ver su significado sin saturación ni teoría pesada.</p>
+          <div class="colores-tags" id="detailTags"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================
+       ✅ NUEVO: OVERLAY "FICHA COMPLETA"
+       - Reutiliza el contenido de <details id="podarcis/myotragus/ferreret">
+       - Evita el scroll raro cuando pulsas "Ver ficha completa"
+       ========================= -->
+  <div class="colores-overlay" id="fichaOverlay" onclick="fichaOverlayClickClose(event)">
+    <div class="colores-panel" role="dialog" aria-modal="true" aria-label="Ficha completa" onclick="event.stopPropagation()">
+      <div class="colores-top">
+        <div>
+          <h3 class="colores-title" id="fichaTitle">Ficha completa</h3>
+          <p class="colores-sub" id="fichaSub">Historia · contexto · símbolo</p>
+        </div>
+        <button class="colores-close" onclick="closeFicha()">Cerrar ✕</button>
+      </div>
+
+      <div class="colores-detail" id="fichaBody" style="margin-top:12px;">
+        <!-- aquí inyectamos el contenido -->
+      </div>
+    </div>
+  </div>
+
+  <script data-goatcounter="https://eamvcollection.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
 </body>
-  <script> 
-/* ============================  
-   DATA DE EDICIONES  
-   ============================== */  
-const EDITIONS = {  
-  podarcis: {  
-    title: "🦎 Podarcis lilfordi — Ediciones",  
-    sub: "Luxoris · Axion",  
-    luxoris: {  
-      creative: [{img:"assets/podarcis1.jpg", name:"Luxoris Creative", note:""}],  
-      origin:   [{img:"assets/podarcis2.jpg", name:"Luxoris Origin",   note:""},     {img:"assets/podarcis22.jpg", name:"Luxoris Origin",   note:""},],  
-      eventum:  [{img:"assets/podarcis3.jpg", name:"Luxoris Eventum",  note:""}],  
-      limitata: [{img:"assets/p.jpg",         name:"Luxoris Limitata", note:"Próximamente"}],  
-      unicum:   [{img:"assets/p.jpg",         name:"", note:"Próximamente"}]  
-    },  
-    axion: {  
-      creative: [{img:"assets/podarcis5.jpg", name:"Axion Creative", note:""}, {img:"assets/podarcis55.jpg", name:"Axion Creative", note:""},],  
-      origin:   [{img:"assets/podarcis6.jpg", name:"Axion Origin",   note:""}, {img:"assets/podarcis66.jpg", name:"Axion Origin",   note:""}, ],  
-      eventum:  [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
-      limitata: [{img:"assets/p.jpg",         name:"Luxoris Limitata", note:"Próximamente"}],  
-      unicum:   [{img:"assets/p.jpg",         name:"", note:"Próximamente"}]  
-    }  
-  },  
 
-  myotragus: {  
-    title: "🐐 Myotragus balearicus — Ediciones",  
-    sub: "Luxoris · Axion",  
-    luxoris: {  
-      creative: [{img:"assets/myotragus1.jpg", name:"Luxoris Creative", note:""},{img:"assets/myotragus11.jpg", name:"Luxoris Creative", note:""},],  
-      origin:   [{img:"assets/myotragus2.jpg", name:"Luxoris Origin",   note:""},],  
-      eventum:  [{img:"assets/p.jpg",          name:"Luxoris Eventum",  note:"Próximamente"}],  
-      limitata: [{img:"assets/p.jpg",          name:"Luxoris Limitata", note:"Próximamente"}],  
-      unicum:   [{img:"assets/p.jpg",         name:"", note:"Próximamente"}]  
-    },  
-    axion: {  
-      creative: [{img:"assets/p.jpg", name:"Axion Creative", note:"Próximamente"}],  
-      origin:   [{img:"assets/p.jpg", name:"Axion Origin",   note:"Próximamente"}],  
-      eventum:  [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
-      limitata: [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
-      unicum:   [{img:"assets/p.jpg",         name:"", note:"Próximamente"}]  
-    }  
-  },  
+<!-- =========================
+     SCRIPTS
+     ========================= -->
 
-  /* ============================
-     FERRERET (NUEVO)
-     MISMA ESTRUCTURA QUE LOS OTROS
-     ============================ */  
-  ferreret: {  
-    title: "🐸 Ferreret — Ediciones",  
-    sub: "Luxoris · Axion",  
-    luxoris: {  
-      creative: [{img:"assets/ferreret1.jpg", name:"Luxoris Creative", note:""}],  
-      origin:   [{img:"assets/p.jpg",         name:"",  note:"Próximamente"}],  
-      eventum:  [{img:"assets/p.jpg",         name:"",  note:"Próximamente"}],  
-      limitata: [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
-      unicum:   [{img:"assets/p.jpg",         name:"", note:"Próximamente"}]  
-    },  
-    axion: {  
-      creative: [{img:"assets/ferreret5.jpg", name:"Axion Creative", note:""}, {img:"assets/ferreret55.jpg", name:"Axion Creative", note:""},],  
-      origin:   [{img:"assets/ferreret6.jpg", name:"Axion Origin",   note:""}],  
-      eventum:  [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
-      limitata: [{img:"assets/p.jpg",         name:"", note:"Próximamente"}],  
-      unicum:   [{img:"assets/ferreretXXXV.jpg", name:"COSMICA XXXV",   note:""}]  
-    }  
-  }  
-};  
+<script>
+/* =========================================================
+   1) BLOQUES <c title="..."> -> Acordeón bonito (panel-toggle)
+   ========================================================= */
+(function () {
+  let uid = 0;
 
-function renderItems(containerId, items){  
-  const el = document.getElementById(containerId);  
-  if(!el) return;  
-  el.innerHTML = "";  
-  if(!items || items.length === 0){  
-    const empty = document.createElement("div");  
-    empty.className = "ed-empty";  
-    empty.textContent = "Próximamente…";  
-    el.appendChild(empty);  
-    return;  
-  }  
-  items.forEach(it=>{  
-    const card = document.createElement("div");  
-    card.className = "ed-item";  
-    card.innerHTML = `  
-      <img src="${it.img}" alt="${(it.name||"Edición")}" />  
-      <div class="cap">  
-        <b>${it.name || "Edición"}</b>  
-        ${it.note ? `<span>${it.note}</span>` : `<span style="opacity:.7;">&nbsp;</span>`}  
-      </div>  
-    `;  
-    el.appendChild(card);  
-  });  
-}  
+  function setPanelHeight(panel, open) {
+    if (open) {
+      panel.classList.add('is-open');
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      panel.setAttribute('aria-hidden', 'false');
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      requestAnimationFrame(() => {
+        panel.style.maxHeight = '0px';
+        panel.classList.remove('is-open');
+        panel.setAttribute('aria-hidden', 'true');
+      });
+    }
+  }
 
-function openEditions(key){  
-  const data = EDITIONS[key];  
-  if(!data) return;  
-  document.getElementById("edTitle").textContent = data.title || "Ediciones";  
-  document.getElementById("edSub").textContent   = data.sub   || "Luxoris · Axion";  
-  renderItems("luxCreative",  data.luxoris && data.luxoris.creative);  
-  renderItems("luxOrigin",    data.luxoris && data.luxoris.origin);  
-  renderItems("luxEventum",   data.luxoris && data.luxoris.eventum);  
-  renderItems("luxLimitata",  data.luxoris && data.luxoris.limitata);  
-  renderItems("luxUnicum",    data.luxoris && data.luxoris.unicum);  
-  renderItems("axiCreative",  data.axion && data.axion.creative);  
-  renderItems("axiOrigin",    data.axion && data.axion.origin);  
-  renderItems("axiEventum",   data.axion && data.axion.eventum);  
-  renderItems("axiLimitata",  data.axion && data.axion.limitata);  
-  renderItems("axiUnicum",    data.axion && data.axion.unicum);  
-  const ov = document.getElementById("edOverlay");  
-  ov.classList.add("open");  
-  document.body.style.overflow = "hidden";  
-}  
+  const blocks = Array.from(document.querySelectorAll('c'));
+  blocks.forEach((cEl) => {
+    uid += 1;
+    const title = cEl.getAttribute('title') || 'Más info';
+    const id = `panel-c-${uid}`;
 
-function closeEditions(){  
-  const ov = document.getElementById("edOverlay");  
-  ov.classList.remove("open");  
-  document.body.style.overflow = "";  
-}  
+    const btn = document.createElement('button');
+    btn.className = 'panel-toggle';
+    btn.type = 'button';
+    btn.setAttribute('data-panel', id);
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = `
+      <span class="panel-title">${title}</span>
+      <span class="panel-icon" aria-hidden="true">✦</span>
+    `;
 
-function overlayClickClose(){  
-  closeEditions();  
-}  
+    const panel = document.createElement('div');
+    panel.className = 'panel';
+    panel.id = id;
+    panel.setAttribute('aria-hidden', 'true');
 
-/* Acordeón dentro de cada columna */  
-function setupAccordion(columnEl){  
-  const groups = columnEl.querySelectorAll("details.ed-block");  
-  groups.forEach(d=>{  
-    d.addEventListener("toggle", ()=>{  
-      if(!d.open) return;  
-      groups.forEach(other=>{  
-        if(other !== d) other.open = false;  
-      });  
-    });  
-  });  
-}  
+    const inner = document.createElement('div');
+    inner.className = 'panel-inner';
 
-/* ============================  
-   COLORES (EDITABLE AQUÍ)  
-   Formato: 1 adjetivo + 2–3 paisajes  
-   ============================== */  
-const COLORS = [  
-  {  
-    key: "verde_transparente",  
-    name: "Viridis Diaphanus",  
-    adjective: "Sabiduría",  
-    nature: ["bosque húmedo", "musgo", "hojas al sol"],  
-    hex: "#35E2A3"  
-  },  
-  {  
-    key: "azul_transparente",  
-    name: "Caeruleus Diaphanus",  
-    adjective: "Claridad",  
-    nature: ["mar en calma", "poza cristalina", "cielo limpio"],  
-    hex: "#4DBBFF"  
-  },  
-  {  
-    key: "naranja",  
-    name: "Aurantium Solis",  
-    adjective: "Solar",  
-    nature: ["atardecer mediterráneo", "arcilla cálida", "cala dorada"],  
-    hex: "#FF7A1A"  
-  },  
-  {  
-    key: "rojo_transparente",  
-    name: "Ruber Diaphanus",  
-    adjective: "Intenso",  
-    nature: ["granada abierta", "coral", "puesta roja"],  
-    hex: "#FF3B4A"  
-  },  
-  {  
-    key: "cosmica",  
-    name: "Cosmica (dorado · morado · negro)",  
-    adjective: "Enigmática",  
-    nature: ["cielo nocturno", "cueva profunda", "acantilado a medianoche"],  
-    hex: "#6B4CFF"  
-  },  
-  {  
-    key: "aetherius",  
-    name: "Aetherius (morado · azul · negro)",  
-    adjective: "Etérea",  
-    nature: ["bruma fría", "noche azulada", "cielo estrellado"],  
-    hex: "#4C7DFF"  
-  },  
-  {  
-    key: "azul_verde_fuerte",  
-    name: "Silva Humida (azul · verde fuerte)",  
-    adjective: "Vivo",  
-    nature: ["agua en movimiento", "Torrente", "bosque profundo"],  
-    hex: "#00C7B7"  
-  },  
-  {  
-    key: "rojo_dorado",  
-    name: "Ignis Ruber (rojo · dorado)",  
-    adjective: "Majestuosa",  
-    nature: ["sol bajo", "tierra roja", "reflejo dorado"],  
-    hex: "#D12A2A"  
-  },  
-  {  
-    key: "marron_dorado",  
-    name: "Succinum Antiquum (marrón · dorado)",  
-    adjective: "Noble",  
-    nature: ["pino seco", "arena tostada", "madera vieja"],  
-    hex: "#A56A2A"  
-  },  
-  {  
-    key: "verde_flojo_amarillo",  
-    name: "Viridis Matutinus (verde flojo · amarillo)",  
-    adjective: "Fresco",  
-    nature: ["limonero", "pradera joven", "luz de mañana"],  
-    hex: "#B8E85E"  
-  },  
+    while (cEl.firstChild) inner.appendChild(cEl.firstChild);
+    panel.appendChild(inner);
 
-  /* ============================
-     NUEVO COLOR: Lotus succinus
-     HEX pedido: FF9A6B
-     ============================ */  
-  {  
-    key: "lotus_succinus",  
-    name: "Lotus succineus",  
-    adjective: "Delicadeza",  
-    nature: ["flor de loto al atardecer", "ámbar suave", "brillo rosado"],  
-    hex: "#FF9A6B"  
-  },  
+    cEl.replaceWith(btn, panel);
 
-  {  
-    key: "blanco",  
-    name: "Albus Purus",  
-    adjective: "Puro",  
-    nature: ["sal marina", "nube alta", "arena clara"],  
-    hex: "#F2F5F8"  
-  },  
-  {  
-    key: "transparente",  
-    name: "Claritas",  
-    adjective: "Limpio",  
-    nature: ["agua clara", "hielo fino", "cristal"],  
-    hex: "#CFE8FF"  
-  }  
-];  
+    btn.addEventListener('click', () => {
+      const isOpen = btn.classList.contains('is-open');
+      const next = !isOpen;
+      btn.classList.toggle('is-open', next);
+      btn.setAttribute('aria-expanded', String(next));
+      setPanelHeight(panel, next);
+    });
+  });
 
-/* Render tablero visible */  
-function buildColorBoard(){  
-  const board = document.getElementById("colorBoard");  
-  if(!board) return;  
-  board.innerHTML = "";  
-  COLORS.forEach(c=>{  
-    const tile = document.createElement("div");  
-    tile.className = "color-tile";  
-    tile.setAttribute("role","button");  
-    tile.setAttribute("tabindex","0");  
-    const mini = `${c.adjective} · ${c.nature.slice(0,2).join(" · ")}`;  
-    tile.innerHTML = `  
-      <div class="color-swatch" style="background:${c.hex};"></div>  
-      <div class="color-name">  
-        ${c.name}  
-        <div class="color-sub">${mini}</div>  
-      </div>  
-    `;  
-    tile.addEventListener("click", ()=> openColorOverlayWithPreselect(c.key));  
-    tile.addEventListener("keydown", (e)=>{  
-      if(e.key === "Enter" || e.key === " "){  
-        e.preventDefault();  
-        openColorOverlayWithPreselect(c.key);  
-      }  
-    });  
-    board.appendChild(tile);  
-  });  
-}  
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.panel-toggle.is-open').forEach(btn => {
+      const id = btn.getAttribute('data-panel');
+      const panel = document.getElementById(id);
+      if (panel) panel.style.maxHeight = panel.scrollHeight + 'px';
+    });
+  });
+})();
+</script>
 
-/* Overlay colores */  
-function openColorOverlayWithPreselect(key){  
-  const ov = document.getElementById("colorOverlay");  
-  ov.classList.add("open");  
-  document.body.style.overflow = "hidden";  
-  const first = key || (COLORS[0] && COLORS[0].key);  
-  renderColorList(first);  
-  if(first) selectColor(first);  
-}  
+<script>
+/* =========================================================
+   2) OVERLAY "FICHA COMPLETA"
+   - openFicha('podarcis'|'myotragus'|'ferreret')
+   - coge el <details id="..."> y lo clona dentro del overlay
+   ========================================================= */
+function openFicha(id){
+  const src = document.getElementById(id);
+  if(!src) return;
 
-/* Botón "Abrir panel ✦" */  
-function openColorOverlay(){  
-  openColorOverlayWithPreselect(COLORS[0] && COLORS[0].key);  
-}  
+  // título desde el summary, limpio de "▶"
+  const sum = src.querySelector('summary');
+  const title = sum ? sum.textContent.replace('▶','').trim() : 'Ficha completa';
 
-function closeColorOverlay(){  
-  const ov = document.getElementById("colorOverlay");  
-  ov.classList.remove("open");  
-  document.body.style.overflow = "";  
-}  
+  document.getElementById('fichaTitle').textContent = title;
+  document.getElementById('fichaSub').textContent = "Historia · contexto · símbolo";
 
-function colorOverlayClickClose(){  
-  closeColorOverlay();  
-}  
+  const body = document.getElementById('fichaBody');
+  body.innerHTML = "";
 
-function renderColorList(activeKey){  
-  const list = document.getElementById("colorList");  
-  if(!list) return;  
-  list.innerHTML = "";  
-  COLORS.forEach(c=>{  
-    const btn = document.createElement("button");  
-    btn.className = "colores-btn";  
-    btn.type = "button";  
-    btn.dataset.key = c.key;  
-    const line = `${c.adjective} · ${c.nature.slice(0,3).join(" · ")}`;  
-    btn.innerHTML = `  
-      <span class="colores-dot" style="background:${c.hex};"></span>  
-      <span class="txt">  
-        <b>${c.name}</b>  
-        <span>${line}</span>  
-      </span>  
-    `;  
-    btn.addEventListener("click", ()=>selectColor(c.key));  
-    list.appendChild(btn);  
-  });  
-  if(activeKey){  
-    const b = list.querySelector('.colores-btn[data-key="'+activeKey+'"]');  
-    if(b) b.classList.add("active");  
-  }  
-}  
+  // clonamos SOLO el contenido (no el summary)
+  const content = src.querySelector('.details-body');
+  if(content){
+    const clone = content.cloneNode(true);
+    // por seguridad: imágenes al 100% del panel
+    clone.querySelectorAll('img').forEach(img=>{
+      img.style.width = "100%";
+      img.style.height = "auto";
+    });
+    body.appendChild(clone);
+  }else{
+    body.innerHTML = "<p style='color:rgba(232,238,245,.75);'>Contenido no encontrado.</p>";
+  }
 
-function selectColor(key){  
-  const c = COLORS.find(x=>x.key===key);  
-  if(!c) return;  
-  document.querySelectorAll(".colores-btn").forEach(b=>b.classList.remove("active"));  
-  const active = document.querySelector('.colores-btn[data-key="'+key+'"]');  
-  if(active) active.classList.add("active");  
-  document.getElementById("detailSwatch").style.background = c.hex;  
-  document.getElementById("detailName").textContent = c.name;  
-  // 1 adjetivo  
-  document.getElementById("detailShort").textContent = c.adjective;  
-  // 2-3 paisajes  
-  document.getElementById("detailBody").textContent = "Paisajes: " + c.nature.join(" · ") + ".";  
-  const tags = document.getElementById("detailTags");  
-  tags.innerHTML = "";  
-  (c.nature || []).forEach(t=>{  
-    const s = document.createElement("span");  
-    s.className = "col-tag";  
-    s.textContent = t;  
-    tags.appendChild(s);  
-  });  
-}  
+  const ov = document.getElementById("fichaOverlay");
+  ov.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
 
-/* Cerrar con ESC (para ambos overlays) */  
-window.addEventListener("keydown", (e)=>{  
-  if(e.key === "Escape"){  
-    const ed = document.getElementById("edOverlay");  
-    const co = document.getElementById("colorOverlay");  
-    if(ed && ed.classList.contains("open")) closeEditions();  
-    if(co && co.classList.contains("open")) closeColorOverlay();  
-  }  
-});  
+function closeFicha(){
+  const ov = document.getElementById("fichaOverlay");
+  ov.classList.remove("open");
+  document.body.style.overflow = "";
+}
 
-/* Init */  
-window.addEventListener("DOMContentLoaded", ()=>{  
-  document.querySelectorAll(".ed-col").forEach(setupAccordion);  
-  buildColorBoard();  
-});  
-  </script>
+function fichaOverlayClickClose(){
+  closeFicha();
+}
+</script>
+
+<script>
+/* ============================
+   DATA DE EDICIONES
+   =============================== */
+const EDITIONS = {
+  podarcis: {
+    title: "🦎 Podarcis lilfordi — Ediciones",
+    sub: "Luxoris · Axion",
+    luxoris: {
+      creative: [{img:"assets/podarcis1.jpg", name:"Luxoris Creative", note:""}],
+      origin:   [{img:"assets/podarcis2.jpg", name:"Luxoris Origin", note:""}, {img:"assets/podarcis22.jpg", name:"Luxoris Origin", note:""},],
+      eventum:  [{img:"assets/podarcis3.jpg", name:"Luxoris Eventum", note:""}],
+      limitata: [{img:"assets/p.jpg", name:"Luxoris Limitata", note:"Próximamente"}],
+      unicum:   [{img:"assets/p.jpg", name:"", note:"Próximamente"}]
+    },
+    axion: {
+      creative: [{img:"assets/podarcis5.jpg", name:"Axion Creative", note:""}, {img:"assets/podarcis55.jpg", name:"Axion Creative", note:""},],
+      origin:   [{img:"assets/podarcis6.jpg", name:"Axion Origin", note:""}, {img:"assets/podarcis66.jpg", name:"Axion Origin", note:""}, ],
+      eventum:  [{img:"assets/p.jpg", name:"", note:"Próximamente"}],
+      limitata: [{img:"assets/p.jpg", name:"Luxoris Limitata", note:"Próximamente"}],
+      unicum:   [{img:"assets/p.jpg", name:"", note:"Próximamente"}]
+    }
+  },
+  myotragus: {
+    title: "🐐 Myotragus balearicus — Ediciones",
+    sub: "Luxoris · Axion",
+    luxoris: {
+      creative: [{img:"assets/myotragus1.jpg", name:"Luxoris Creative", note:""},{img:"assets/myotragus11.jpg", name:"Luxoris Creative", note:""},],
+      origin:   [{img:"assets/myotragus2.jpg", name:"Luxoris Origin", note:""},],
+      eventum:  [{img:"assets/p.jpg", name:"Luxoris Eventum", note:"Próximamente"}],
+      limitata: [{img:"assets/p.jpg", name:"Luxoris Limitata", note:"Próximamente"}],
+      unicum:   [{img:"assets/p.jpg", name:"", note:"Próximamente"}]
+    },
+    axion: {
+      creative: [{img:"assets/p.jpg", name:"Axion Creative", note:"Próximamente"}],
+      origin:   [{img:"assets/p.jpg", name:"Axion Origin", note:"Próximamente"}],
+      eventum:  [{img:"assets/p.jpg", name:"", note:"Próximamente"}],
+      limitata: [{img:"assets/p.jpg", name:"", note:"Próximamente"}],
+      unicum:   [{img:"assets/p.jpg", name:"", note:"Próximamente"}]
+    }
+  },
+  ferreret: {
+    title: "🐸 Ferreret — Ediciones",
+    sub: "Luxoris · Axion",
+    luxoris: {
+      creative: [{img:"assets/ferreret1.jpg", name:"Luxoris Creative", note:""}],
+      origin:   [{img:"assets/p.jpg", name:"", note:"Próximamente"}],
+      eventum:  [{img:"assets/p.jpg", name:"", note:"Próximamente"}],
+      limitata: [{img:"assets/p.jpg", name:"", note:"Próximamente"}],
+      unicum:   [{img:"assets/p.jpg", name:"", note:"Próximamente"}]
+    },
+    axion: {
+      creative: [{img:"assets/ferreret5.jpg", name:"Axion Creative", note:""}, {img:"assets/ferreret55.jpg", name:"Axion Creative", note:""},],
+      origin:   [{img:"assets/ferreret6.jpg", name:"Axion Origin", note:""}],
+      eventum:  [{img:"assets/p.jpg", name:"", note:"Próximamente"}],
+      limitata: [{img:"assets/p.jpg", name:"", note:"Próximamente"}],
+      unicum:   [{img:"assets/ferreretXXXV.jpg", name:"COSMICA XXXV", note:""}]
+    }
+  }
+};
+
+function renderItems(containerId, items){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  el.innerHTML = "";
+  if(!items || items.length === 0){
+    const empty = document.createElement("div");
+    empty.className = "ed-empty";
+    empty.textContent = "Próximamente…";
+    el.appendChild(empty);
+    return;
+  }
+  items.forEach(it=>{
+    const card = document.createElement("div");
+    card.className = "ed-item";
+    card.innerHTML = `
+      <img src="${it.img}" alt="${(it.name||"Edición")}" />
+      <div class="cap">
+        <b>${it.name || "Edición"}</b>
+        ${it.note ? `<span>${it.note}</span>` : `<span style="opacity:.7;">&nbsp;</span>`}
+      </div>
+    `;
+    el.appendChild(card);
+  });
+}
+
+function openEditions(key){
+  const data = EDITIONS[key];
+  if(!data) return;
+  document.getElementById("edTitle").textContent = data.title || "Ediciones";
+  document.getElementById("edSub").textContent   = data.sub   || "Luxoris · Axion";
+
+  renderItems("luxCreative",  data.luxoris && data.luxoris.creative);
+  renderItems("luxOrigin",    data.luxoris && data.luxoris.origin);
+  renderItems("luxEventum",   data.luxoris && data.luxoris.eventum);
+  renderItems("luxLimitata",  data.luxoris && data.luxoris.limitata);
+  renderItems("luxUnicum",    data.luxoris && data.luxoris.unicum);
+
+  renderItems("axiCreative",  data.axion && data.axion.creative);
+  renderItems("axiOrigin",    data.axion && data.axion.origin);
+  renderItems("axiEventum",   data.axion && data.axion.eventum);
+  renderItems("axiLimitata",  data.axion && data.axion.limitata);
+  renderItems("axiUnicum",    data.axion && data.axion.unicum);
+
+  const ov = document.getElementById("edOverlay");
+  ov.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeEditions(){
+  const ov = document.getElementById("edOverlay");
+  ov.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function overlayClickClose(){
+  closeEditions();
+}
+
+/* Acordeón dentro de cada columna */
+function setupAccordion(columnEl){
+  const groups = columnEl.querySelectorAll("details.ed-block");
+  groups.forEach(d=>{
+    d.addEventListener("toggle", ()=>{
+      if(!d.open) return;
+      groups.forEach(other=>{
+        if(other !== d) other.open = false;
+      });
+    });
+  });
+}
+</script>
+
+<script>
+/* ============================
+   COLORES (EDITABLE AQUÍ)
+   =============================== */
+const COLORS = [
+  {
+    key: "verde_transparente",
+    name: "Viridis Diaphanus",
+    adjective: "Sabiduría",
+    nature: ["bosque húmedo", "musgo", "hojas al sol"],
+    hex: "#35E2A3"
+  },
+  {
+    key: "azul_transparente",
+    name: "Caeruleus Diaphanus",
+    adjective: "Claridad",
+    nature: ["mar en calma", "poza cristalina", "cielo limpio"],
+    hex: "#4DBBFF"
+  },
+  {
+    key: "naranja",
+    name: "Aurantium Solis",
+    adjective: "Solar",
+    nature: ["atardecer mediterráneo", "arcilla cálida", "cala dorada"],
+    hex: "#FF7A1A"
+  },
+  {
+    key: "rojo_transparente",
+    name: "Ruber Diaphanus",
+    adjective: "Intenso",
+    nature: ["granada abierta", "coral", "puesta roja"],
+    hex: "#FF3B4A"
+  },
+  {
+    key: "cosmica",
+    name: "Cosmica (dorado · morado · negro)",
+    adjective: "Enigmática",
+    nature: ["cielo nocturno", "cueva profunda", "acantilado a medianoche"],
+    hex: "#6B4CFF"
+  },
+  {
+    key: "aetherius",
+    name: "Aetherius (morado · azul · negro)",
+    adjective: "Etérea",
+    nature: ["bruma fría", "noche azulada", "cielo estrellado"],
+    hex: "#4C7DFF"
+  },
+  {
+    key: "azul_verde_fuerte",
+    name: "Silva Humida (azul · verde fuerte)",
+    adjective: "Vivo",
+    nature: ["agua en movimiento", "Torrente", "bosque profundo"],
+    hex: "#00C7B7"
+  },
+  {
+    key: "rojo_dorado",
+    name: "Ignis Ruber (rojo · dorado)",
+    adjective: "Majestuosa",
+    nature: ["sol bajo", "tierra roja", "reflejo dorado"],
+    hex: "#D12A2A"
+  },
+  {
+    key: "marron_dorado",
+    name: "Succinum Antiquum (marrón · dorado)",
+    adjective: "Noble",
+    nature: ["pino seco", "arena tostada", "madera vieja"],
+    hex: "#A56A2A"
+  },
+  {
+    key: "verde_flojo_amarillo",
+    name: "Viridis Matutinus (verde flojo · amarillo)",
+    adjective: "Fresco",
+    nature: ["limonero", "pradera joven", "luz de mañana"],
+    hex: "#B8E85E"
+  },
+  {
+    key: "lotus_succinus",
+    name: "Lotus succineus",
+    adjective: "Delicadeza",
+    nature: ["flor de loto al atardecer", "ámbar suave", "brillo rosado"],
+    hex: "#FF9A6B"
+  },
+  {
+    key: "blanco",
+    name: "Albus Purus",
+    adjective: "Puro",
+    nature: ["sal marina", "nube alta", "arena clara"],
+    hex: "#F2F5F8"
+  },
+  {
+    key: "transparente",
+    name: "Claritas",
+    adjective: "Limpio",
+    nature: ["agua clara", "hielo fino", "cristal"],
+    hex: "#CFE8FF"
+  }
+];
+
+/* Render tablero visible */
+function buildColorBoard(){
+  const board = document.getElementById("colorBoard");
+  if(!board) return;
+  board.innerHTML = "";
+  COLORS.forEach(c=>{
+    const tile = document.createElement("div");
+    tile.className = "color-tile";
+    tile.setAttribute("role","button");
+    tile.setAttribute("tabindex","0");
+    const mini = `${c.adjective} · ${c.nature.slice(0,2).join(" · ")}`;
+    tile.innerHTML = `
+      <div class="color-swatch" style="background:${c.hex};"></div>
+      <div class="color-name">
+        ${c.name}
+        <div class="color-sub">${mini}</div>
+      </div>
+    `;
+    tile.addEventListener("click", ()=> openColorOverlayWithPreselect(c.key));
+    tile.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        openColorOverlayWithPreselect(c.key);
+      }
+    });
+    board.appendChild(tile);
+  });
+}
+
+/* Overlay colores */
+function openColorOverlayWithPreselect(key){
+  const ov = document.getElementById("colorOverlay");
+  ov.classList.add("open");
+  document.body.style.overflow = "hidden";
+  const first = key || (COLORS[0] && COLORS[0].key);
+  renderColorList(first);
+  if(first) selectColor(first);
+}
+
+/* Botón "Abrir panel ✦" */
+function openColorOverlay(){
+  openColorOverlayWithPreselect(COLORS[0] && COLORS[0].key);
+}
+
+function closeColorOverlay(){
+  const ov = document.getElementById("colorOverlay");
+  ov.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function colorOverlayClickClose(){
+  closeColorOverlay();
+}
+
+function renderColorList(activeKey){
+  const list = document.getElementById("colorList");
+  if(!list) return;
+  list.innerHTML = "";
+  COLORS.forEach(c=>{
+    const btn = document.createElement("button");
+    btn.className = "colores-btn";
+    btn.type = "button";
+    btn.dataset.key = c.key;
+    const line = `${c.adjective} · ${c.nature.slice(0,3).join(" · ")}`;
+    btn.innerHTML = `
+      <span class="colores-dot" style="background:${c.hex};"></span>
+      <span class="txt">
+        <b>${c.name}</b>
+        <span>${line}</span>
+      </span>
+    `;
+    btn.addEventListener("click", ()=>selectColor(c.key));
+    list.appendChild(btn);
+  });
+  if(activeKey){
+    const b = list.querySelector('.colores-btn[data-key="'+activeKey+'"]');
+    if(b) b.classList.add("active");
+  }
+}
+
+function selectColor(key){
+  const c = COLORS.find(x=>x.key===key);
+  if(!c) return;
+
+  document.querySelectorAll(".colores-btn").forEach(b=>b.classList.remove("active"));
+  const active = document.querySelector('.colores-btn[data-key="'+key+'"]');
+  if(active) active.classList.add("active");
+
+  document.getElementById("detailSwatch").style.background = c.hex;
+  document.getElementById("detailName").textContent = c.name;
+
+  // 1 adjetivo
+  document.getElementById("detailShort").textContent = c.adjective;
+
+  // 2-3 paisajes
+  document.getElementById("detailBody").textContent = "Paisajes: " + c.nature.join(" · ") + ".";
+
+  const tags = document.getElementById("detailTags");
+  tags.innerHTML = "";
+  (c.nature || []).forEach(t=>{
+    const s = document.createElement("span");
+    s.className = "col-tag";
+    s.textContent = t;
+    tags.appendChild(s);
+  });
+}
+
+/* Cerrar con ESC (para ambos overlays + ficha) */
+window.addEventListener("keydown", (e)=>{
+  if(e.key === "Escape"){
+    const ed = document.getElementById("edOverlay");
+    const co = document.getElementById("colorOverlay");
+    const fi = document.getElementById("fichaOverlay");
+    if(ed && ed.classList.contains("open")) closeEditions();
+    if(co && co.classList.contains("open")) closeColorOverlay();
+    if(fi && fi.classList.contains("open")) closeFicha();
+  }
+});
+
+/* Init */
+window.addEventListener("DOMContentLoaded", ()=>{
+  document.querySelectorAll(".ed-col").forEach(setupAccordion);
+  buildColorBoard();
+});
+</script>
+
+<!-- =========================
+     (la PARTE 4/4 cierra el </html> y añade el CSS NUEVO del overlay ficha si hace falta)
+     ========================= →
+
+<!-- =========================
+     PARTE 4 / 4  (CSS opcional + ajustes "Ver ficha completa" + cierres)
+     ========================= -->
+
+<!-- ✅ CSS opcional para que el overlay de ficha tenga look aún más “pro”
+     (si NO quieres más CSS, puedes borrar este bloque entero sin romper nada) -->
+<style>
+  /* Dentro del overlay de ficha: tipografía y espaciado */
+  #fichaBody{
+    line-height: 1.65;
+    font-size: 14px;
+    color: rgba(232,238,245,.88);
+  }
+  /* Separación entre imagen y texto */
+  #fichaBody .strip{
+    margin-bottom: 14px;
+  }
+  /* Que las imágenes del strip se vean potentes dentro del panel */
+  #fichaBody .strip .item{
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 10px 26px rgba(0,0,0,.35);
+  }
+  /* Que el texto no se pegue */
+  #fichaBody p{
+    margin: 0 0 12px 0;
+  }
+</style>
+
+<!-- ✅ AJUSTE IMPORTANTE:
+     Cambia tus botones "Ver ficha completa" para que NO hagan scroll (#podarcis etc.)
+     y en su lugar abran el overlay
+     
+     Busca esto en tu HTML:
+       <a href="#podarcis" class="boton">Ver ficha completa</a>
+
+     Y cámbialo por:
+       <a href="#" class="boton" onclick="openFicha('podarcis'); return false;">Ver ficha completa</a>
+
+     Haz lo mismo para myotragus y ferreret.
+-->
+
 </html>
+```0
 
